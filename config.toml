@@ -1,0 +1,35 @@
+baseURL = 'http://kanda.rec/'
+languageCode = 'en-us'
+title = 'k4ndar3c blog'
+theme = 'nightfall'
+
+[params]
+author = "k4ndar3c"
+user = "k4ndar3c"
+hostname = "kanda.rec"
+
+[[params.social]]
+key = 0
+name = "github"
+url = "https://github.com/k4ndAr3c"
+
+[[params.social]]
+key = 1
+name = "email"
+url = "mailto:k4ndar3c@kanda.rec"
+
+[menu]
+  [[menu.header]]
+    name = "posts"
+    weight = 0
+    url = "/posts"
+
+  [[menu.header]]
+    name = "infos"
+    weight = 0
+    url = "/infos"
+  
+  [[menu.header]]
+    name = "commands"
+    weight = 0
+    url = "/commands"
