@@ -1,7 +1,6 @@
 ---
 title: "SecondOne"
 date: 2023-09-08T16:22:57+02:00
-draft: true
 ---
 
 ## What Does The F Say
