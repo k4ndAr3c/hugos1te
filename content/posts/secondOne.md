@@ -10,8 +10,8 @@ date: 2023-09-08T16:22:57+02:00
 * La fonction vodka contient une faille de type format string.  
 * Nous pouvons leaker des adresses contenues dans la stack.  
 * Grace a la fmt, l'on recupere l'adresse du binaire et de la libc.  
-* On ecrit l'adresse de system, en 3 fois, a l'aide de la faille.  
-* Puis un gadget ecrasant l'adresse de retour, qui se chargera des arguments.  
+* On ecrit l'adresse d'un one gadget, en 3 fois, a l'aide de la faille.  
+* Puis un gadget ecrasant l'adresse de retour, nous permettant d'atteindre notre 'payload'.
 * Get shell !
 
 
