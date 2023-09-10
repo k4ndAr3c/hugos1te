@@ -1,5 +1,5 @@
 baseURL = 'http://kanda.rec/'
-languageCode = 'en-us'
+languageCode = 'fr-FR'
 title = 'k4ndar3c blog'
 theme = 'nightfall'
 
