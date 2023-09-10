@@ -18,6 +18,11 @@ key = 1
 name = "email"
 url = "mailto:k4ndar3c@kanda.rec"
 
+[[params.social]]
+key = 2
+name = "root-me"
+url = "https://www.root-me.org/k4ndar3c"
+
 [menu]
   [[menu.header]]
     name = "posts"
@@ -33,3 +38,4 @@ url = "mailto:k4ndar3c@kanda.rec"
     name = "commands"
     weight = 0
     url = "/commands"
+
