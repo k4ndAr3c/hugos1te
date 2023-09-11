@@ -23,6 +23,11 @@ key = 2
 name = "root-me"
 url = "https://www.root-me.org/k4ndar3c"
 
+[[params.social]]
+key = 3
+name = "ctf team"
+url = "https://ctftime.org/team/212552"
+
 [menu]
   [[menu.header]]
     name = "posts"
