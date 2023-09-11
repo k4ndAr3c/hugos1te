@@ -40,7 +40,7 @@ url = "https://ctftime.org/team/212552"
     url = "/infos"
   
   [[menu.header]]
-    name = "commands"
+    name = "tl;dr"
     weight = 0
-    url = "/commands"
+    url = "/tldr"
 
