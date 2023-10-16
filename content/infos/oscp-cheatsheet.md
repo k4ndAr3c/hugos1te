@@ -1,7 +1,7 @@
 ---
 title: "OSCP CheatSheet"
-date: 2023-10-16T13:29:42+02:00
-url: "/infos/oscp-cheatsheet"
+date: 2023-10-16T11:29:42+02:00
+url: "/infos/oscp-cheatsheet
 ---
 
 # OSCP Cheat Sheet
