@@ -1749,9 +1749,7 @@ https://<RHOST>/item/2?server=server.<RHOST>/file?id=9&x=
 
 > https://cobalt.io/blog/a-pentesters-guide-to-server-side-template-injection-ssti
 
-```c
-${{<%[%'"}}%\.
-```
+```c${{<%[%'"}}%\.```
 
 ##### Magic Payload
 
