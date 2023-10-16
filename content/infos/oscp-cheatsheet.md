@@ -446,7 +446,6 @@ Commands, Payloads and Resources for the OffSec Certified Professional Certifica
 | phpgcc | https://github.com/ambionics/phpggc |
 | PHP-Reverse-Shell | https://github.com/ivan-sincek/php-reverse-shell|
 | PowerLine | https://github.com/fullmetalcache/powerline |
-| PowerShell Encoder (CyberChef) | [Receipe for encoding PowerShell Payloads for Windows](https://cyberchef.io/#recipe=Encode_text('UTF-16LE%20(1200)')To_Base64('A-Za-z0-9%2B/%3D')) |
 | Raikia's Hub Powershell Encoder | https://raikia.com/tool-powershell-encoder/ |
 | ScareCrow | https://github.com/optiv/ScareCrow |
 | Shikata Ga Nai | https://github.com/EgeBalci/sgn |
