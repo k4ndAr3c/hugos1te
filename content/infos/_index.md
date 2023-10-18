@@ -1,5 +1,5 @@
-{{ partial "custom-head.html" . }}
-
 ---
 title: "Infos"
 ---
+{{ partial "custom-head.html" . }}
+
