@@ -66,6 +66,7 @@ function showSearchResults() {
                 target_count.innerHTML = `${matchPosts.length} result(s).`;
             } else {
                 // if no results found, then render a general message
+                target_count.innerHTML = "";
                 target.innerHTML = `<br><h2 style="text-align:center">No search results found</h2>`;
             };
         } else {
