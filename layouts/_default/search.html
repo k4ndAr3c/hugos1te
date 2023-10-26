@@ -1,0 +1,25 @@
+{{ define "main" }}
+  {{ $pages := where .Site.RegularPages "Section" "==" "tldr"}}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.0.2/lunr.js"></script>
+  <div id="main" class="search-page">
+    <div class="container">
+      <div class="input-group mt-5">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fas fa-search"></i></div>
+        </div>
+	<input type="text" class="form-control" id="search-input" placeholder="Search" onkeypress="showSearchResults()">
+	<!--<input type="search" class="input" name="q" placeholder="Search" hx-get="index.json" hx-trigger="keyup changed delay:200ms, search" hx-target="#search-results" autocomplete="off" value="" hx-indicator="#search-indicator">-->
+      </div>
+
+      <p id="search-results-count" class="mt-5 mb-4"></p>
+
+      <div class="search-results">
+      </div>
+
+      <h5 id="search-results-message" class="text-center mt-5"></h5>
+      <script src="../search.js"></script>
+    </div>
+  </div>
+{{ end }}
+
