@@ -1,3 +1,9 @@
+---
+title: "pwntools cheatsheet"
+date: 2023-12-29T16:00:19+02:00
+url: "/infos/pwntools-cheatsheet"
+---
+
 # Pwntools Cheatsheet
 
  1. [Program Interaction](#program-interaction)
