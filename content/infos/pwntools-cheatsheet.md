@@ -6,15 +6,15 @@ url: "/infos/pwntools-cheatsheet"
 
 # Pwntools Cheatsheet
 
- 1. [Program Interaction](#program-interaction)
- 2. [Environment and Contexts](#environment-and-contexts)
- 3. [Logging and Output](#logging-and-output)
- 4. [Encoding, Packing and Utility](#encoding-packing-and-utility)
- 5. [Assembly and Shellcraft](#assembly-and-shellcraft)
- 6. [ELFs, Strings and Symbols](#elfs-strings-and-symbols)
- 7. [Return Oriented Programming](#return-oriented-programming)
- 8. [SROP and Sigreturn Frames](#srop-and-sigreturn-frames)
- 9. [Format String Exploits](#format-string-exploits)
+ 1. [Program Interaction](https://k4ndar3c.github.io/hugos1te/infos/pwntools-cheatsheet/#program-interaction)
+ 2. [Environment and Contexts](https://k4ndar3c.github.io/hugos1te/infos/pwntools-cheatsheet/#environment-and-contexts)
+ 3. [Logging and Output](https://k4ndar3c.github.io/hugos1te/infos/pwntools-cheatsheet/#logging-and-output)
+ 4. [Encoding, Packing and Utility](https://k4ndar3c.github.io/hugos1te/infos/pwntools-cheatsheet/#encoding-packing-and-utility)
+ 5. [Assembly and Shellcraft](https://k4ndar3c.github.io/hugos1te/infos/pwntools-cheatsheet/#assembly-and-shellcraft)
+ 6. [ELFs, Strings and Symbols](https://k4ndar3c.github.io/hugos1te/infos/pwntools-cheatsheet/#elfs-strings-and-symbols)
+ 7. [Return Oriented Programming](https://k4ndar3c.github.io/hugos1te/infos/pwntools-cheatsheet/#return-oriented-programming)
+ 8. [SROP and Sigreturn Frames](https://k4ndar3c.github.io/hugos1te/infos/pwntools-cheatsheet/#srop-and-sigreturn-frames)
+ 9. [Format String Exploits](https://k4ndar3c.github.io/hugos1te/infos/pwntools-cheatsheet/#format-string-exploits)
 
 
 <a name="program-interaction"></a>
