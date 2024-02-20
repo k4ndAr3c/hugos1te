@@ -26,7 +26,7 @@ url = "https://www.root-me.org/k4ndar3c"
 [[params.social]]
 key = 3
 name = "ctf_team"
-url = "https://ctftime.org/team/212552"
+url = "https://ctftime.org/team/282180"
 
 [menu]
   [[menu.header]]
