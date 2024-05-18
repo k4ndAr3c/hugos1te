@@ -1,4 +1,4 @@
-baseURL = 'https://kanda.rec/'
+aseURL = 'https://kanda.rec/'
 languageCode = 'fr-FR'
 title = 'k4ndar3c blog'
 theme = 'nightfall'
@@ -27,6 +27,11 @@ url = "https://www.root-me.org/k4ndar3c"
 key = 3
 name = "ctf_team"
 url = "https://ctftime.org/team/282180"
+
+[[params.social]]
+key = 4
+name = "presentation"
+url = "https://forum.zenk-security.com/showthread.php?tid=4690"
 
 [menu]
   [[menu.header]]
