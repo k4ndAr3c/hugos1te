@@ -1,3 +1,9 @@
+---
+title: "5 Pillars of Cybersec"
+date: 2024-10-08T10:13:42+02:00
+url: "/infos/5-Pillars"
+---
+
 # Hey There!
 
 **This document spawned an entire website. Check it out at: [DFIRmadness.com](https://dfirmadness.com). We have labs, articles and resources like this! See you over there.**
