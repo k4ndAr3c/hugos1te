@@ -5,10 +5,9 @@ date: 2024-10-14T13:22:09+02:00
 
 ### 16/08/2023 -> coup de couteau
 
-**suite à l'action improbable d'une personne diminuée, un couteau de cuisine me perfore le ventre**
-**résumé du séjour**
-**ne lisez pas si vous n'etes pas concerné(e)s**
-**do not read if you are not concerned**
+## suite à l'action improbable d'une personne diminuée, un couteau de cuisine me perfore le ventre
+## ne lisez pas si vous n'etes pas concerné(e)s
+## do not read if you are not concerned
 
 ## - 17/08
 Je suis arrivé à l'hôpital vers 2h45, dans la nuit de mercredi à jeudi, l'opération(\*1) a débutée à 7h15, effectuée par le chirurgien C.Toubert.
