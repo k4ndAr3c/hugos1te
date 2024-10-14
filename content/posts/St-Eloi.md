@@ -3,13 +3,18 @@ title: "Sejour-hopital"
 date: 2024-10-14T13:22:09+02:00
 ---
 
-### 17/08/2023 -> coup de couteau
+### 16/08/2023 -> coup de couteau
+
+**suite à l'action improbable d'une personne diminuée, un couteau de cuisine me perfore le ventre**
+**résumé du séjour**
+**ne lisez pas si vous n'etes pas concerné(e)s**
+**do not read if you are not concerned**
 
 ## - 17/08
-Je suis arrivé à l'hôpital vers 2h45, dans la nuit de mercredi à jeudi, l'opération a débutée à 7h15, effectuée par le chirurgien C.Toubert.
+Je suis arrivé à l'hôpital vers 2h45, dans la nuit de mercredi à jeudi, l'opération(\*1) a débutée à 7h15, effectuée par le chirurgien C.Toubert.
 A mon réveil, une perfusion dans chaque bras, et un drain (tuyau de 25cm dans la cavité ventrale, avec poche de récupération) situé au dessus de la hanche droite, je prends conscience de la pénibilté de ce matériel.
 J'apprends aussi le fait que je ne peux pas me nourrir, ni meme boire, tant que je n'ai pas eu de gaz; l'alimentation s'effectue alors par perfusion.
-Malheureusement, une infection du poumon droit est apparue avec l'opération (nosocomiale ?), provoquant des quintes de toux, qui, conjugué avec le fait que mes abdos sont agraphés, me font souffrir. Les infirmières me recommandent de tenir mon ventre lors de ces passages, par crainte d'un éventrement.
+Malheureusement, une infection du poumon droit est apparue avec l'opération, provoquant des quintes de toux, qui, conjugué avec le fait que mes abdos sont agraphés, me font souffrir. Les infirmières me recommandent de tenir mon ventre lors de ces passages, par crainte d'un éventrement.
 Les jours suivants, je les passe en dormant, tant bien que mal, la plupart du temps.
 
 ## - 21/08
@@ -72,4 +77,4 @@ La prise de sang et le scanner du jeudi 14/09, ne présentent pas de risques gra
 Deux jours après le début du traitement antiobiotique, toujours des selles totalement liquides, mais plus de douleurs. Aujourd'hui, vendredi, est le dernier jour du traitement, Dr. Toubert en est informé et préconise d'attendre de voir l'évolution, tout en précisant que le mois qui arrive va osciller entre constipations et diarhées.
 
 
-
+\*1:prélevement de la partie endommagée (5cm) de l'intestin et racord. Par chance aucun organe ne fut atteint. 
