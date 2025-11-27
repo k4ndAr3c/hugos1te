@@ -76,4 +76,4 @@ La prise de sang et le scanner du jeudi 14/09, ne présentent pas de risques gra
 Deux jours après le début du traitement antiobiotique, toujours des selles totalement liquides, mais plus de douleurs. Aujourd'hui, vendredi, est le dernier jour du traitement, Dr. Toubert en est informé et préconise d'attendre de voir l'évolution, tout en précisant que le mois qui arrive va osciller entre constipations et diarhées.
 
 
-\*1:prélevement de la partie endommagée (5cm) de l'intestin et racord. Par chance aucun organe ne fut atteint. 
+\*1:prélevement de la partie endommagée (5cm) de l'intestin et raccord. Par chance aucun organe ne fut atteint. 

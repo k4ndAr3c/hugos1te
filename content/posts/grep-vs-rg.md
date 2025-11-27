@@ -3,7 +3,7 @@ title: "grep-vs-rg"
 date: 2025-11-27T22:57:09+02:00
 ---
 
-### grep vs rg
+## grep vs rg
 
 ```bash
 ~/STuff/stuff_git/www on  master!  0:07:55
@@ -24,6 +24,6 @@ $ rg "chrome_pwn "
 $ 
 ```
 
-## rg is useless
+### rg is useless
 
 By default rg should show same results as grep.
