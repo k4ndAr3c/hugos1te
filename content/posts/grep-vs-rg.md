@@ -1,6 +1,7 @@
 ---
 title: "grep-vs-rg"
 date: 2025-11-27T22:57:09+02:00
+draft: false
 ---
 
 ## grep vs rg
