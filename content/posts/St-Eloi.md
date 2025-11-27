@@ -1,6 +1,6 @@
 ---
 title: "Sejour-hopital"
-date: 2024-10-14T13:22:09+02:00
+date: 2023-10-14T13:22:09+02:00
 ---
 
 ### 16/08/2023 -> coup de couteau
