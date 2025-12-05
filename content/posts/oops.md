@@ -5,7 +5,7 @@ date: 2025-12-03T22:37:01+02:00
 
 # oops
 
-A chall was publishded for the x-mas advent of root-me.
+A chall was published for the x-mas advent cal of root-me.
 
 ## results ->
 
