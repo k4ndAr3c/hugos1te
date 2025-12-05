@@ -1,10 +1,9 @@
 ---
 title: "grep-vs-rg"
 date: 2025-11-26T22:57:09+02:00
-draft: false
 ---
 
-## grep vs rg
+## grep vs ripgrep
 
 ```bash
 ~/STuff/stuff_git/www on  master!  0:07:55
