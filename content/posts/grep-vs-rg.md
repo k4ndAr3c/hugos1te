@@ -7,7 +7,7 @@ date: 2025-11-26T22:57:09+02:00
 
 ```bash
 ~/STuff/stuff_git/www on  master!  0:07:55
-$ grep "chrome_pwn " server_log.txt
+$ grep -r "chrome_pwn "
  - - [06/Nov/2025 21:54:35] "GET /?chrome_pwn HTTP/1.1" 200 -
  - - [07/Nov/2025 08:38:33] "GET /?chrome_pwn HTTP/1.1" 200 -
  - - [11/Nov/2025 15:27:34] "GET /?chrome_pwn HTTP/1.1" 200 -
