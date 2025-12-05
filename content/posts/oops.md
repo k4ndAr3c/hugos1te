@@ -5,12 +5,13 @@ date: 2025-12-03T22:37:01+02:00
 
 # oops
 
-A chall was published for the x-mas advent cal of root-me.
+A chall was published for the x-mas advent cal of root-me. (day 3)
 
 ## results ->
 
 we're all [Threat Actors](https://socket.dev/blog/elves-on-npm).
 
-![meme](/images/threat_actors.webp)
+![meme](
+https://github.com/k4ndAr3c/hugos1te/raw/refs/heads/master/images/threat_actors.webp)
 
 Indeed it's a funny vuln, many "random", not so random, computers connects back through our new package.
