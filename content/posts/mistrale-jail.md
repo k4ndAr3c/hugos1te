@@ -3,7 +3,7 @@ title: "bash-jail"
 date: 2025-12-24T12:00:09+02:00
 ---
 
-# day8 of root-me advent
+# day8 of root-me x-mas event
 
 This is a bash jail challenge.
 
