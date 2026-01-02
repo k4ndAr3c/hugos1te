@@ -7,7 +7,7 @@ date: 2025-12-15T17:00:06+02:00
 
 I just found an old screenshot, it remembers me the old times :)
 
-I made the poker game, and finally lost all my money 'cause i don't spend it in time.
+I made the poker game, and finally lost all my money 'cause i don't spent it in time.
 
 
 ## scoreboard
