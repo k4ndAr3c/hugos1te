@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shellfolio | Terminal Portfolio</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #050505;
+            --terminal-green: #00ff41;
+            --accent-color: #008f11;
+            --text-main: #e0e0e0;
+            --font-mono: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--terminal-green);
+            font-family: var(--font-mono);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Matrix Canvas Background */
+        #matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.12;
+            pointer-events: none;
+        }
+
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Top Right UI */
+        .top-right-ui {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            text-align: right;
+            z-index: 10;
+            background: rgba(5, 5, 5, 0.85);
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 255, 65, 0.2);
+        }
+
+        .top-right-ui h1 {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-main);
+        }
+
+        .email-btn {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid var(--terminal-green);
+            color: var(--terminal-green);
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .email-btn:hover {
+            background-color: var(--terminal-green);
+            color: var(--bg-color);
+            box-shadow: 0 0 10px var(--terminal-green);
+        }
+
+        /* Terminal Styling */
+        .terminal-container {
+            position: relative;
+            padding: 120px 20px 80px 20px;
+            font-size: 1rem;
+            line-height: 1.4;
+            flex-grow: 1;
+            overflow-y: auto;
+            scrollbar-width: none;
+            width: 100%;
+            z-index: 2;
+        }
+        
+        @media (min-width: 768px) {
+            .terminal-container { padding: 140px 40px 80px 40px; }
+        }
+
+        .terminal-container::-webkit-scrollbar { display: none; }
+
+        .output-line {
+            margin-bottom: 5px;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .input-area {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .prompt {
+            color: var(--terminal-green);
+            margin-right: 10px;
+            white-space: nowrap;
+        }
+
+        #terminal-input {
+            background: transparent;
+            border: none;
+            color: var(--terminal-green);
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            outline: none;
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        /* Fixed Bottom Credit - Your Legacy Link */
+        .footer-credit {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            font-size: 0.65rem;
+            opacity: 0.5;
+            z-index: 5;
+            text-decoration: none;
+            color: var(--terminal-green);
+        }
+
+        .bottom-hint {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            opacity: 0.3;
+            letter-spacing: 2px;
+            z-index: 5;
+        }
+
+        .man-page {
+            color: #fff;
+            background: rgba(0, 255, 65, 0.05);
+            padding: 15px;
+            border-left: 3px solid var(--terminal-green);
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .cmd-highlight { color: var(--terminal-green); font-weight: bold; }
+        .terminal-link { color: #4ade80; text-decoration: underline; cursor: pointer; }
+        
+        /* Easter Egg Styling */
+        .matrix-glitch {
+            color: #ff0055;
+            text-shadow: 2px 2px #00ff41;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body onclick="document.getElementById('terminal-input').focus()">
+
+    <canvas id="matrix-bg"></canvas>
+    <div class="scanlines"></div>
+
+    <div class="top-right-ui" id="ui-header">
+        <h1 id="ui-title">CONNECT</h1>
+        <a href="#" id="ui-mail-link" class="email-btn">[ SEND_MESSAGE ]</a>
+    </div>
+
+    <div class="terminal-container" id="terminal-history">
+        <div id="terminal-content">
+            <div id="initial-message" class="output-line">System initialized. Type 'help' to begin.</div>
+            <div id="command-history"></div>
+        </div>
+        
+        <div class="input-area">
+            <span class="prompt" id="terminal-prompt">user@dev:~$</span>
+            <input type="text" id="terminal-input" autofocus autocomplete="off" spellcheck="false">
+        </div>
+    </div>
+
+    <div class="bottom-hint">Type "man root"</div>
+    
+    <!-- Link back to creator -->
+    <a href="https://k4ndar3c.github.io/hugos1te/" target="_blank" class="footer-credit">Shellfolio</a>
+
+    <script>
+        /* CONFIG: Users can edit these values to customize the portfolio
+        */
+        const CONFIG = {
+            name: "k4ndar3c",
+            description: "Passionate, self-taught, curious.",
+            email: "root@kanda.rec",
+            prompt: "root@kanda.rec ~/ #",
+            files: { 
+                'projects.txt': `[ Root-Me ]\nhttps://www.root-me.org/k4ndar3c?inc=info&lang=fr\n\n[ pwn.college ]\nhttps://pwn.college/hacker/83598\n\n[ HackTheBox ]\nhttps://app.hackthebox.com/users/1408875\n\n[ NewbieContest ]\nhttps://www.newbiecontest.org/index.php?page=info_membre&id=79413\n\n[ Github ]\nhttps://github.com/k4ndAr3c\n\n`,
+                'skills.txt': `- Linux Admin\n- Python\n- Bash\n- CTF Enthusiast\n`,
+            }
+        };
+
+        // Initialize UI
+        document.getElementById('ui-mail-link').href = `mailto:${CONFIG.email}`;
+        document.getElementById('terminal-prompt').textContent = CONFIG.prompt;
+
+        const input = document.getElementById('terminal-input');
+        const historyContainer = document.getElementById('command-history');
+        const terminal = document.getElementById('terminal-history');
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+
+        // Matrix Rain
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        let columns = Math.floor(width / 20);
+        const characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$+-*/=%\"'#&_(),.;:?!\\|{}<>[]^~";
+        const drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(5, 5, 5, 0.05)";
+            ctx.fillRect(0, 0, width, height);
+            ctx.fillStyle = "#00ff41";
+            ctx.font = "15px monospace";
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * 20, drops[i] * 20);
+                if (drops[i] * 20 > height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            columns = Math.floor(width / 20);
+            drops.length = columns;
+            drops.fill(1);
+        });
+
+        // Command Engine
+        const COMMANDS = {
+            'ls': Object.keys(CONFIG.files).join('  '),
+            'whoami': CONFIG.name,
+            'help': 'Commands: ls, cat [file], whoami, help, clear, sudo',
+            'clear': 'CLEAR',
+            'sudo': '<span class="matrix-glitch">ERROR: User not in sudoers file. This incident will be reported.</span>',
+            'help': `
+<div class="man-page">
+<span class="cmd-highlight">NAME:</span> ${CONFIG.name}
+<span class="cmd-highlight">DESCRIPTION:</span> ${CONFIG.description}
+
+<span class="cmd-highlight">AVAILABLE DIRECTIVES:</span>
+  <span class="cmd-highlight">ls</span>           - List artifacts.
+  <span class="cmd-highlight">cat [file]</span>   - Read file contents.
+  <span class="cmd-highlight">whoami</span>       - Display identity profile.
+  <span class="cmd-highlight">clear</span>        - Flush terminal buffer.
+</div>`,
+            'matrix': 'Wake up, Neo ...',
+            'nmap': 'Try learning nmap: https://nmap.org'
+        };
+
+        let cmdHistory = [];
+        let historyIndex = -1;
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const val = input.value.trim();
+                const rawVal = val.toLowerCase();
+                
+                if (val) { cmdHistory.unshift(val); historyIndex = -1; }
+                
+                const line = document.createElement('div');
+                line.className = 'output-line';
+                line.innerHTML = `<span class="prompt">${CONFIG.prompt}</span> ${val}`;
+                historyContainer.appendChild(line);
+
+                if (rawVal === 'clear') {
+                    historyContainer.innerHTML = '';
+                    if (document.getElementById('initial-message')) document.getElementById('initial-message').remove();
+                } else if (COMMANDS[rawVal]) {
+                    const res = document.createElement('div');
+                    res.className = 'output-line';
+                    res.innerHTML = COMMANDS[rawVal];
+                    historyContainer.appendChild(res);
+                } else if (rawVal.startsWith('cat ')) {
+                    const filename = val.split(' ')[1];
+                    const res = document.createElement('div');
+                    res.className = 'output-line';
+                    const content = CONFIG.files[filename];
+                    if (content) {
+                        res.innerHTML = content.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" class="terminal-link">$1</a>');
+                    } else {
+                        res.textContent = `cat: ${filename}: No such file`;
+                    }
+                    historyContainer.appendChild(res);
+                } else if (val !== "") {
+                    const err = document.createElement('div');
+                    err.className = 'output-line';
+                    err.textContent = `Command not found: ${val}. Type 'help' for assistance.`;
+                    historyContainer.appendChild(err);
+                }
+
+                input.value = '';
+                terminal.scrollTop = terminal.scrollHeight;
+            } else if (e.key === 'ArrowUp') {
+                if (historyIndex < cmdHistory.length - 1) {
+                    historyIndex++;
+                    input.value = cmdHistory[historyIndex];
+                }
+                e.preventDefault();
+            } else if (e.key === 'ArrowDown') {
+                if (historyIndex > 0) {
+                    historyIndex--;
+                    input.value = cmdHistory[historyIndex];
+                } else {
+                    historyIndex = -1;
+                    input.value = '';
+                }
+                e.preventDefault();
+            }
+        });
+
+        setInterval(drawMatrix, 50);
+        window.onload = () => input.focus();
+    </script>
+</body>
+</html>
