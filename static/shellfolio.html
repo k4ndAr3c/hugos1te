@@ -293,6 +293,7 @@
 <span class="cmd-highlight">AVAILABLE DIRECTIVES:</span>
   <span class="cmd-highlight">ls</span>           - List artifacts.
   <span class="cmd-highlight">cat [file]</span>   - Read file contents.
+  <span class="cmd-highlight">cat *</span>        - Display all files.
   <span class="cmd-highlight">whoami</span>       - Display identity profile.
   <span class="cmd-highlight">clear</span>        - Flush terminal buffer.
 </div>`,
@@ -327,11 +328,21 @@
           const filename = val.split(' ')[1];
           const res = document.createElement('div');
           res.className = 'output-line';
-          const content = CONFIG.files[filename];
-          if (content) {
-            res.innerHTML = content.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" class="terminal-link">$1</a>');
+          
+          // Handle cat * - display all files
+          if (filename === '*') {
+            let allContent = '';
+            for (const [file, content] of Object.entries(CONFIG.files)) {
+              allContent += `=== ${file} ===\n${content}\n\n`;
+            }
+            res.innerHTML = allContent.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" class="terminal-link">$1</a>');
           } else {
-            res.textContent = `cat: ${filename}: No such file`;
+            const content = CONFIG.files[filename];
+            if (content) {
+              res.innerHTML = content.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" class="terminal-link">$1</a>');
+            } else {
+              res.textContent = `cat: ${filename}: No such file`;
+            }
           }
           historyContainer.appendChild(res);
         } else if (val !== "") {
