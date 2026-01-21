@@ -277,7 +277,7 @@
 
     // Command Engine
     const COMMANDS = {
-      'ls': Object.keys(CONFIG.files).join('\n'),
+      'ls': Object.keys(CONFIG.files).join(' '),
       'whoami': CONFIG.name,
       'help': 'Commands: ls, cat [file], whoami, man, clear, sudo',
       'clear': 'CLEAR',
