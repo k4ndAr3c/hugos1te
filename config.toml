@@ -33,6 +33,11 @@ key = 4
 name = "presentation"
 url = "https://forum.zenk-security.com/showthread.php?tid=4690"
 
+[[params.social]]
+key = 5
+name = "shellfolio"
+url = "https://k4ndar3c.github.io/hugos1te/shellfolio.html"
+
 [menu]
   [[menu.header]]
     name = "posts"
