@@ -281,7 +281,7 @@
 
     // Command Engine
     const COMMANDS = {
-      'ls': Object.keys(CONFIG.files).join('  '),
+      'ls': Object.keys(CONFIG.files).join('\n'),
       'whoami': CONFIG.name,
       'help': 'Commands: ls, cat [file], whoami, man, clear, sudo',
       'clear': 'CLEAR',
@@ -326,6 +326,25 @@
         } else if (rawVal === 'clear') {
           historyContainer.innerHTML = '';
           if (document.getElementById('initial-message')) document.getElementById('initial-message').remove();
+        } else if (rawVal.startsWith('ls ')) {
+          const filename = val.split(' ')[1];
+          const res = document.createElement('div');
+          res.className = 'output-line';
+
+          if (CONFIG.files[filename]) {
+            const fileSize = CONFIG.files[filename].length;
+            const fileDate = new Date().toLocaleString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            });
+
+            res.textContent = `-rw-r--r-- 1 ${CONFIG.name} users ${fileSize} ${fileDate} ${filename}`;
+          } else {
+            res.textContent = `ls: cannot access '${filename}': No such file`;
+          }
+          historyContainer.appendChild(res);
         } else if (COMMANDS[rawVal]) {
           const res = document.createElement('div');
           res.className = 'output-line';
