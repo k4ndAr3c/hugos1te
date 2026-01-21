@@ -210,8 +210,7 @@
 
   <div class="terminal-container" id="terminal-history">
     <div id="terminal-content">
-      <div id="initial-message" class="output-line">System initialized. Type 'help' to begin.<p>TAB function is NOT
-          activated</p>
+      <div id="initial-message" class="output-line">System initialized. Type 'help' to begin.<p>TAB function is NOT activated</p>
       </div>
       <div id="command-history"></div>
     </div>
@@ -294,6 +293,7 @@
 <span class="cmd-highlight">AVAILABLE DIRECTIVES:</span>
   <span class="cmd-highlight">ls</span>           - List artifacts.
   <span class="cmd-highlight">cat [file]</span>   - Read file contents.
+  <span class="cmd-highlight">cat *</span>        - Display all files.
   <span class="cmd-highlight">whoami</span>       - Display identity profile.
   <span class="cmd-highlight">clear</span>        - Flush terminal buffer.
 </div>`,
@@ -316,7 +316,13 @@
         line.innerHTML = `<span class="prompt">${CONFIG.prompt}</span> ${val}`;
         historyContainer.appendChild(line);
 
-        if (rawVal === 'clear') {
+        // Check for sudo in any command
+        if (rawVal.includes('sudo')) {
+          const res = document.createElement('div');
+          res.className = 'output-line';
+          res.innerHTML = '<span class="matrix-glitch">ERROR: User not in sudoers file. This incident will be reported.</span>';
+          historyContainer.appendChild(res);
+        } else if (rawVal === 'clear') {
           historyContainer.innerHTML = '';
           if (document.getElementById('initial-message')) document.getElementById('initial-message').remove();
         } else if (COMMANDS[rawVal]) {
@@ -328,7 +334,8 @@
           const filename = val.split(' ')[1];
           const res = document.createElement('div');
           res.className = 'output-line';
-
+          
+          // Handle cat * - display all files
           if (filename === '*') {
             let allContent = '';
             for (const [file, content] of Object.entries(CONFIG.files)) {
