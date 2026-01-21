@@ -210,9 +210,7 @@
 
   <div class="terminal-container" id="terminal-history">
     <div id="terminal-content">
-      <div id="initial-message" class="output-line">System initialized. Type 'help' to begin.
-        <p>TAB function is NOT activated</p>
-      </div>
+      <div id="initial-message" class="output-line">System initialized. Type 'help' to begin.</div>
       <div id="command-history"></div>
     </div>
 
@@ -280,7 +278,7 @@
     const COMMANDS = {
       'ls': Object.keys(CONFIG.files).join('\n'),
       'whoami': CONFIG.name,
-      'help': 'Commands: ls, cat [file], whoami, man, clear, sudo',
+      'help': 'Commands: ls, cat [file], whoami, man, clear, sudo, matrix, nmap',
       'clear': 'CLEAR',
       'sudo': '<span class="matrix-glitch">ERROR: User not in sudoers file. This incident will be reported.</span>',
       'man': `
@@ -290,10 +288,15 @@
 
 <span class="cmd-highlight">AVAILABLE DIRECTIVES:</span>
   <span class="cmd-highlight">ls</span>           - List artifacts.
+  <span class="cmd-highlight">ls [file]</span>    - Show file details.
   <span class="cmd-highlight">cat [file]</span>   - Read file contents.
   <span class="cmd-highlight">whoami</span>       - Display identity profile.
   <span class="cmd-highlight">clear</span>        - Flush terminal buffer.
   <span class="cmd-highlight">man</span>          - Display manual.
+
+<span class="cmd-highlight">TAB COMPLETION:</span>
+  Press TAB to auto-complete ALL commands and filenames.
+  Works with: ls, cat, and all other commands.
 </div>`,
       'matrix': 'Wake up, Neo ...',
       'nmap': 'Try learning nmap: https://nmap.org'
@@ -303,7 +306,78 @@
     let historyIndex = -1;
 
     input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        const currentVal = input.value.trim();
+        const parts = currentVal.split(' ');
+        const baseCommand = parts[0].toLowerCase();
+        const currentArg = parts.length > 1 ? parts[parts.length - 1] : '';
+
+        // Available commands and files for completion
+        const availableCommands = Object.keys(COMMANDS);
+        const availableFiles = Object.keys(CONFIG.files);
+
+        // Commands that accept file arguments
+        const fileCommands = ['ls', 'cat'];
+
+        if (currentVal === '') {
+          // Show available commands
+          const commandsHint = availableCommands.join('  ');
+          const hint = document.createElement('div');
+          hint.className = 'output-line';
+          hint.textContent = commandsHint;
+          hint.style.opacity = '0.7';
+          hint.style.fontSize = '0.9em';
+          historyContainer.appendChild(hint);
+          terminal.scrollTop = terminal.scrollHeight;
+        } else if (fileCommands.includes(baseCommand)) {
+          // File completion for commands that accept files
+          if (currentArg === '') {
+            // Show available files
+            const filesHint = availableFiles.join('  ');
+            const hint = document.createElement('div');
+            hint.className = 'output-line';
+            hint.textContent = filesHint;
+            hint.style.opacity = '0.7';
+            hint.style.fontSize = '0.9em';
+            historyContainer.appendChild(hint);
+            terminal.scrollTop = terminal.scrollHeight;
+          } else {
+            // Complete filename
+            const matches = availableFiles.filter(file => file.startsWith(currentArg));
+            if (matches.length === 1) {
+              // Complete the filename
+              parts[parts.length - 1] = matches[0];
+              input.value = parts.join(' ');
+            } else if (matches.length > 1) {
+              // Show possible completions
+              const hint = document.createElement('div');
+              hint.className = 'output-line';
+              hint.textContent = matches.join('  ');
+              hint.style.opacity = '0.7';
+              hint.style.fontSize = '0.9em';
+              historyContainer.appendChild(hint);
+              terminal.scrollTop = terminal.scrollHeight;
+            }
+          }
+        } else {
+          // Command completion for all commands
+          const matches = availableCommands.filter(cmd => cmd.startsWith(baseCommand));
+          if (matches.length === 1) {
+            // Complete the command
+            input.value = matches[0];
+          } else if (matches.length > 1) {
+            // Show possible command completions
+            const hint = document.createElement('div');
+            hint.className = 'output-line';
+            hint.textContent = matches.join('  ');
+            hint.style.opacity = '0.7';
+            hint.style.fontSize = '0.9em';
+            historyContainer.appendChild(hint);
+            terminal.scrollTop = terminal.scrollHeight;
+          }
+        }
+      } else if (e.key === 'Enter') {
         const val = input.value.trim();
         const rawVal = val.toLowerCase();
 
