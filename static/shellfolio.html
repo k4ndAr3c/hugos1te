@@ -210,7 +210,8 @@
 
   <div class="terminal-container" id="terminal-history">
     <div id="terminal-content">
-      <div id="initial-message" class="output-line">System initialized. Type 'help' to begin.<p>TAB function is NOT activated</p>
+      <div id="initial-message" class="output-line">System initialized. Type 'help' to begin.
+        <p>TAB function is NOT activated</p>
       </div>
       <div id="command-history"></div>
     </div>
@@ -282,10 +283,10 @@
     const COMMANDS = {
       'ls': Object.keys(CONFIG.files).join('  '),
       'whoami': CONFIG.name,
-      'help': 'Commands: ls, cat [file], whoami, help, clear, sudo',
+      'help': 'Commands: ls, cat [file], whoami, man, clear, sudo',
       'clear': 'CLEAR',
       'sudo': '<span class="matrix-glitch">ERROR: User not in sudoers file. This incident will be reported.</span>',
-      'help': `
+      'man': `
 <div class="man-page">
 <span class="cmd-highlight">NAME:</span> ${CONFIG.name}
 <span class="cmd-highlight">DESCRIPTION:</span> ${CONFIG.description}
@@ -295,6 +296,7 @@
   <span class="cmd-highlight">cat [file]</span>   - Read file contents.
   <span class="cmd-highlight">whoami</span>       - Display identity profile.
   <span class="cmd-highlight">clear</span>        - Flush terminal buffer.
+  <span class="cmd-highlight">man</span>          - Display manual.
 </div>`,
       'matrix': 'Wake up, Neo ...',
       'nmap': 'Try learning nmap: https://nmap.org'
@@ -316,7 +318,7 @@
         historyContainer.appendChild(line);
 
         // Check for sudo in any command
-        if (rawVal.includes('sudo')) {
+        if (rawVal.startsWith('sudo')) {
           const res = document.createElement('div');
           res.className = 'output-line';
           res.innerHTML = '<span class="matrix-glitch">ERROR: User not in sudoers file. This incident will be reported.</span>';
@@ -333,7 +335,7 @@
           const filename = val.split(' ')[1];
           const res = document.createElement('div');
           res.className = 'output-line';
-          
+
           // Handle cat * - display all files
           if (filename === '*') {
             let allContent = '';
