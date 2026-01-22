@@ -279,7 +279,7 @@
     const COMMANDS = {
       'ls': Object.keys(CONFIG.files).join(' '),
       'whoami': CONFIG.name,
-      'help': 'Commands: ls, cat [file], whoami, man, clear, sudo',
+      'help': 'Commands: ls, cat [file], whoami, man, clear, sudo, root-me',
       'clear': 'CLEAR',
       'sudo': '<span class="matrix-glitch">ERROR: User not in sudoers file. This incident will be reported.</span>',
       'man': `
@@ -293,6 +293,7 @@
   <span class="cmd-highlight">whoami</span>       - Display identity profile.
   <span class="cmd-highlight">clear</span>        - Flush terminal buffer.
   <span class="cmd-highlight">man</span>          - Display manual.
+  <span class="cmd-highlight">root-me</span>      - Display Root-Me stats.
 
 <span class="cmd-highlight">TAB COMPLETION:</span>
   Press TAB to auto-complete all commands and filenames.
@@ -392,6 +393,10 @@
           const res = document.createElement('div');
           res.className = 'output-line';
           res.innerHTML = '<span class="matrix-glitch">ERROR: User not in sudoers file. This incident will be reported.</span>';
+          historyContainer.appendChild(res);
+        } else if (rawVal === 'root-me') {
+          const res = document.createElement('div');
+          res.innerHTML = '<img src="https://camo.githubusercontent.com/cb9361b9582aa0ab1a098f5d010803073bde24ca919cef2c8a77e7f657b1ce58/68747470733a2f2f726f6f742d6d652d646966662e76657263656c2e6170702f726d2d67683f6e69636b6e616d653d6b346e6461723363267374796c653d6461726b266773746174733d73686f77" alt="Root-me-stats" data-canonical-src="https://root-me-diff.vercel.app/rm-gh?nickname=k4ndar3c&amp;style=dark&amp;gstats=show" style="max-width: 100%;">';
           historyContainer.appendChild(res);
         } else if (rawVal === 'clear') {
           historyContainer.innerHTML = '';
