@@ -190,6 +190,45 @@
       cursor: pointer;
     }
 
+    /* Progress Bar Styles */
+    .progress-container {
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background-color: rgba(0, 255, 65, 0.2);
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: var(--terminal-green);
+      transition: width 0.5s ease;
+      position: relative;
+    }
+
+    .progress-text {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--bg-color);
+      font-size: 8px;
+      line-height: 10px;
+      text-shadow: 0 0 2px var(--bg-color);
+    }
+
+    .progress-stage {
+      margin-top: 5px;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+
     /* Easter Egg Styling */
     .matrix-glitch {
       color: #ff0055;
@@ -276,11 +315,77 @@
       drops.fill(1);
     });
 
+    // Simulate upgrade progress function
+    function simulateUpgradeProgress(container, historyContainer, terminal) {
+      const stages = [
+        'Syncing repositories...',
+        'Calculating dependencies...',
+        'Building package list...',
+        'Downloading packages...',
+        'Compiling sources...',
+        'Installing packages...',
+        'Cleaning up...',
+        'Upgrade complete!'
+      ];
+
+      let currentStage = 0;
+
+      // Create progress bar container
+      const progressBar = document.createElement('div');
+      progressBar.className = 'progress-bar';
+
+      const progressFill = document.createElement('div');
+      progressFill.className = 'progress-fill';
+      progressFill.style.width = '0%';
+
+      const progressText = document.createElement('div');
+      progressText.className = 'progress-text';
+      progressText.textContent = '0%';
+
+      progressFill.appendChild(progressText);
+      progressBar.appendChild(progressFill);
+      container.appendChild(progressBar);
+
+      // Add stage text below progress bar
+      const stageText = document.createElement('div');
+      stageText.className = 'progress-stage';
+      stageText.textContent = stages[currentStage];
+      container.appendChild(stageText);
+
+      const interval = setInterval(() => {
+        currentStage++;
+
+        if (currentStage >= stages.length) {
+          clearInterval(interval);
+          progressFill.style.width = '100%';
+          progressText.textContent = '100%';
+          stageText.textContent = stages[currentStage - 1];
+
+          // Add completion message
+          const completeMsg = document.createElement('div');
+          completeMsg.className = 'output-line';
+          completeMsg.textContent = 'System upgrade completed successfully!';
+          completeMsg.style.marginTop = '10px';
+          historyContainer.appendChild(completeMsg);
+
+          terminal.scrollTop = terminal.scrollHeight;
+          return;
+        }
+
+        const progress = (currentStage / (stages.length - 1)) * 100;
+        progressFill.style.width = progress + '%';
+        progressText.textContent = Math.round(progress) + '%';
+        stageText.textContent = stages[currentStage];
+
+        terminal.scrollTop = terminal.scrollHeight;
+      }, 1500);
+    }
+
     // Command Engine
     const COMMANDS = {
       'ls': Object.keys(CONFIG.files).join(' '),
       'whoami': CONFIG.name,
-      'help': 'Commands: ls, cat [file], whoami, man, clear, sudo, root-me',
+      'help': 'Commands: ls, cat [file], whoami, man, clear, sudo, root-me, upgrade',
       'clear': 'CLEAR',
       'sudo': '<span class="matrix-glitch">ERROR: User not in sudoers file. This incident will be reported.</span>',
       'man': `
@@ -301,8 +406,8 @@
 </div>`,
       'root-me': "My stats",
       'nmap': 'Try learning nmap: https://nmap.org',
-      'tmux': "[-] Can't run tmux, shell has no tty."
-      'upgrade': 'eix-sync ; emerge -1DNuavt --keep-going @world'
+      'tmux': "[-] Can't run tmux, shell has no tty.",
+      'upgrade': 'Upgrade system'
     };
 
     let cmdHistory = [];
@@ -449,6 +554,27 @@
             }
           }
           historyContainer.appendChild(res);
+        } else if (rawVal === 'upgrade') {
+          const res = document.createElement('div');
+          res.className = 'output-line';
+          res.textContent = 'Starting system upgrade...';
+          historyContainer.appendChild(res);
+
+          // Show the original upgrade command
+          const cmdRes = document.createElement('div');
+          cmdRes.className = 'output-line';
+          cmdRes.innerHTML = 'running: "eix-sync ; emerge -1DNuavt --keep-going @world" ...';
+          historyContainer.appendChild(cmdRes);
+
+          // Create progress bar container
+          const progressContainer = document.createElement('div');
+          progressContainer.className = 'output-line';
+          progressContainer.id = 'upgrade-progress';
+          progressContainer.style.marginTop = '5px';
+          historyContainer.appendChild(progressContainer);
+
+          // Simulate upgrade progress
+          simulateUpgradeProgress(progressContainer, historyContainer, terminal);
         } else if (val !== "") {
           const err = document.createElement('div');
           err.className = 'output-line';
