@@ -399,7 +399,8 @@
   <span class="cmd-highlight">whoami</span>       - Display identity profile.
   <span class="cmd-highlight">clear</span>        - Flush terminal buffer.
   <span class="cmd-highlight">man</span>          - Display manual.
-  <span class="cmd-highlight">root-me</span>      - Display my Root-Me stats.
+  <span class="cmd-highlight">root-me</span>      - Display my Root-Me stats. (maybe run 2 times, sometimes)
+  <span class="cmd-highlight">upgrade</span>      - Full system upgrade.
 
 <span class="cmd-highlight">TAB COMPLETION:</span>
   Press TAB to auto-complete all commands and filenames.
@@ -407,6 +408,7 @@
       'root-me': "My stats",
       'nmap': 'Try learning nmap: https://nmap.org',
       'tmux': "[-] Can't run tmux, shell has no tty.",
+      'upgrade': 'Upgrade system'
     };
 
     let cmdHistory = [];
@@ -527,11 +529,6 @@
             res.textContent = `ls: cannot access '${filename}': No such file`;
           }
           historyContainer.appendChild(res);
-        } else if (COMMANDS[rawVal]) {
-          const res = document.createElement('div');
-          res.className = 'output-line';
-          res.innerHTML = COMMANDS[rawVal];
-          historyContainer.appendChild(res);
         } else if (rawVal.startsWith('cat ')) {
           const filename = val.split(' ')[1];
           const res = document.createElement('div');
@@ -562,7 +559,7 @@
           // Show the original upgrade command
           const cmdRes = document.createElement('div');
           cmdRes.className = 'output-line';
-          cmdRes.innerHTML = 'running: "eix-sync ; emerge -1DNuavt --keep-going @world" ...';
+          cmdRes.innerHTML = 'running: <b>eix-sync ; emerge -1DNuavt --keep-going @world</b> ...';
           historyContainer.appendChild(cmdRes);
 
           // Create progress bar container
@@ -574,6 +571,11 @@
 
           // Simulate upgrade progress
           simulateUpgradeProgress(progressContainer, historyContainer, terminal);
+        } else if (COMMANDS[rawVal]) {
+          const res = document.createElement('div');
+          res.className = 'output-line';
+          res.innerHTML = COMMANDS[rawVal];
+          historyContainer.appendChild(res);
         } else if (val !== "") {
           const err = document.createElement('div');
           err.className = 'output-line';
