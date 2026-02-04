@@ -409,6 +409,7 @@
       'root-me': "My stats",
       'nmap': 'Try learning nmap: https://nmap.org',
       'tmux': "[-] Can't run tmux, shell has no tty.",
+      'leaks': "Show leaks",
       'upgrade': 'Upgrade system'
     };
 
@@ -572,6 +573,8 @@
 
           // Simulate upgrade progress
           simulateUpgradeProgress(progressContainer, historyContainer, terminal);
+        } else if (rawVal === 'leaks') {
+          window.open('https://bonjourlafuite.eu.org/', '_blank');
         } else if (COMMANDS[rawVal]) {
           const res = document.createElement('div');
           res.className = 'output-line';
