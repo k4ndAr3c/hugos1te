@@ -1,6 +1,6 @@
 ---                            
 title: "thc tips and tricks" 
-date: 2026-02-08T16:30:42+01:00
+date: 2026-02-07T16:30:42+01:00
 url: "/infos/thc-tips"        
 ---                            
 
