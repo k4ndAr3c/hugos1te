@@ -10,6 +10,6 @@ date: 2026-03-15T20:00:06+02:00
 #### I didn't think this could append because of adversarial IA.
 ##### (which i don't have)
 
-![profile](https://github.com/k4ndAr3c/hugos1te/raw/refs/heads/master/images/top10_badge.png)
 ![legend](https://github.com/k4ndAr3c/hugos1te/raw/refs/heads/master/images/top10_badge_ex.png)
+![profile](https://github.com/k4ndAr3c/hugos1te/raw/refs/heads/master/images/top10_badge.png)
 
