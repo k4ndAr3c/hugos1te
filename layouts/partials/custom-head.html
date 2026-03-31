@@ -1,2 +1,23 @@
 <link rel="shortcut icon" href="../../../../../../../hugos1te/favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* Fix wide code blocks breaking mobile layout */
+  pre {
+    overflow-x: auto;
+    white-space: pre;
+    max-width: 100%;
+    word-wrap: normal;
+  }
+
+  /* Prevent the entire page from scrolling horizontally */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  /* Ensure all containers stay within viewport */
+  .container, main, article, header, footer {
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+</style>
