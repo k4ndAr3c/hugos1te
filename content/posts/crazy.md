@@ -1,6 +1,6 @@
 ---
 title: "ai reflection"
-date: 2026-08-13T20:00:06+02:00
+date: 2026-08-12T20:00:06+02:00
 ---
 
 ## I want your personal opinion on actual behavior of human kind
