@@ -9,7 +9,7 @@ I just found an old screenshot, it remembers me the old times :)
 
 I made the poker game, and finally lost all my money 'cause i don't spent it in time.
 
-The minigames on discord were deleted.
+The root-me's minigames on discord were deleted.
 
 ## scoreboard
 
